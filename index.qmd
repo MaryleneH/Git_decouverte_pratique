@@ -1,0 +1,169 @@
+---
+pagetitle: "Git sans douleur — Jour 1 · Formation Git/GitLab pour statisticiens"
+toc: false
+---
+
+```{=html}
+<section class="home-hero">
+  <span class="home-hero__eyebrow">Formation Git &amp; GitLab · Jour 1</span>
+  <h1>Donner une <em>mémoire</em> à vos études</h1>
+  <p class="home-hero__lede">
+    Vous n'avez pas besoin de devenir développeur pour comprendre Git.
+    Aujourd'hui, en une journée, vous allez apprendre à retrouver n'importe quelle
+    version de vos analyses — et à ne plus jamais perdre le fil.
+  </p>
+  <div class="home-hero__actions">
+    <a class="btn-hero" href="cours/01-pourquoi-git.qmd">Commencer la journée</a>
+    <a class="btn-ghost" href="#programme">Voir le programme</a>
+  </div>
+</section>
+```
+
+```{=html}
+<div class="chaos-scene" data-animate="fade" aria-label="Quatre fichiers aux noms confus sont remplacés par un seul fichier accompagné d'un historique de versions.">
+  <div class="chaos-files">
+    <span class="file-chip">analyse_final.R</span>
+    <span class="file-chip">analyse_final2.R</span>
+    <span class="file-chip">analyse_final_corrige.R</span>
+    <span class="file-chip">analyse_final_vraiment_final.R</span>
+  </div>
+  <div class="chaos-arrow" aria-hidden="true">
+    →
+    <span class="chaos-arrow__label">avec Git</span>
+  </div>
+  <div class="chaos-result">
+    <span class="file-chip">analyse.R</span>
+    <div class="chaos-history" aria-hidden="true">
+      <span>Corrige le calcul de l'indicateur</span>
+      <span>Ajoute la ventilation par sexe</span>
+      <span>Première version stable</span>
+    </div>
+  </div>
+</div>
+```
+
+> Un seul fichier. Toutes les versions. Et pour chacune : *qui*, *quand*, *pourquoi*.
+
+------------------------------------------------------------------------
+
+## Ce que vous saurez faire ce soir {.unnumbered}
+
+::: {data-animate="stagger"}
+- **Enregistrer** l'état exact de votre étude à un instant donné, avec un message qui explique le pourquoi.
+- **Comparer** ce que vous venez de changer avec la dernière version enregistrée.
+- **Retrouver** l'état de vendredi dernier, quand « ça fonctionnait ».
+- **Marquer** la version officielle transmise au commanditaire.
+- **Partager** votre travail sur GitLab pour que vos collègues le voient.
+:::
+
+::: {.remember}
+Une seule idée à garder en tête toute la journée : Git ne fait qu'une chose — il **photographie votre projet** quand vous le lui demandez, et il **classe soigneusement toutes les photos**. Tout le reste en découle.
+:::
+
+## Le programme de la journée {#programme .unnumbered}
+
+```{=html}
+<nav class="day-outline" aria-label="Programme du jour 1">
+  <a class="day-outline__item" href="cours/01-pourquoi-git.qmd">
+    <span class="day-outline__num">01</span>
+    <span>
+      <span class="day-outline__title">Pourquoi Git ?</span>
+      <span class="day-outline__desc">rapport_final_vraiment_final.docx — il existe une autre façon de travailler.</span>
+    </span>
+    <span class="day-outline__go" aria-hidden="true">→</span>
+  </a>
+  <a class="day-outline__item" href="cours/02-premier-commit.qmd">
+    <span class="day-outline__num">02</span>
+    <span>
+      <span class="day-outline__title">Premier commit</span>
+      <span class="day-outline__desc">Regarder, choisir, enregistrer : le geste de base, en trois commandes.</span>
+    </span>
+    <span class="day-outline__go" aria-hidden="true">→</span>
+  </a>
+  <a class="day-outline__item" href="cours/03-historique.qmd">
+    <span class="day-outline__num">03</span>
+    <span>
+      <span class="day-outline__title">L'histoire</span>
+      <span class="day-outline__desc">Lire l'historique du projet et comprendre pourquoi 43 ans, et pas 40.</span>
+    </span>
+    <span class="day-outline__go" aria-hidden="true">→</span>
+  </a>
+  <a class="day-outline__item" href="cours/04-revenir.qmd">
+    <span class="day-outline__num">04</span>
+    <span>
+      <span class="day-outline__title">Revenir</span>
+      <span class="day-outline__desc">Vendredi, ça marchait. Regarder le passé, restaurer, annuler — sans rien casser.</span>
+    </span>
+    <span class="day-outline__go" aria-hidden="true">→</span>
+  </a>
+  <a class="day-outline__item" href="cours/05-tags.qmd">
+    <span class="day-outline__num">05</span>
+    <span>
+      <span class="day-outline__title">Versions officielles</span>
+      <span class="day-outline__desc">Marquer la version livrée au commanditaire, pour toujours.</span>
+    </span>
+    <span class="day-outline__go" aria-hidden="true">→</span>
+  </a>
+  <a class="day-outline__item" href="cours/06-gitlab.qmd">
+    <span class="day-outline__num">06</span>
+    <span>
+      <span class="day-outline__title">Git ≠ GitLab</span>
+      <span class="day-outline__desc">L'un vit sur votre poste, l'autre sur le réseau. Deux rôles très différents.</span>
+    </span>
+    <span class="day-outline__go" aria-hidden="true">→</span>
+  </a>
+  <a class="day-outline__item" href="cours/07-local-distant.qmd">
+    <span class="day-outline__num">07</span>
+    <span>
+      <span class="day-outline__title">Synchroniser</span>
+      <span class="day-outline__desc">Pourquoi Franck ne voit pas le commit de Marie — et comment y remédier.</span>
+    </span>
+    <span class="day-outline__go" aria-hidden="true">→</span>
+  </a>
+  <a class="day-outline__item" href="cours/08-collaboration.qmd">
+    <span class="day-outline__num">08</span>
+    <span>
+      <span class="day-outline__title">Collaborer</span>
+      <span class="day-outline__desc">Marie est absente : Franck reprend son étude en dix minutes.</span>
+    </span>
+    <span class="day-outline__go" aria-hidden="true">→</span>
+  </a>
+  <a class="day-outline__item" href="cours/09-mission.qmd">
+    <span class="day-outline__num">09</span>
+    <span>
+      <span class="day-outline__title">Mission — livraison 17 h</span>
+      <span class="day-outline__desc">Le commanditaire attend une nouvelle version. À vous de jouer, en autonomie.</span>
+    </span>
+    <span class="day-outline__go" aria-hidden="true">→</span>
+  </a>
+</nav>
+```
+
+## Comment ce site fonctionne {.unnumbered}
+
+Chaque page suit le même rythme : **je comprends → je regarde → j'essaie → je vérifie**. Vous croiserez toujours les mêmes repères visuels :
+
+::: {.concept}
+Un encart comme celui-ci introduit une **notion** — l'idée à comprendre, jamais plus d'une à la fois.
+:::
+
+::: {.try}
+Celui-ci vous invite à **essayer vous-même**, dans votre terminal. Deux à cinq minutes, jamais plus.
+:::
+
+::: {.remember}
+Celui-ci contient **la phrase à retenir** — celle que vous pourrez vous répéter dans trois mois.
+:::
+
+::: {.warning}
+Et celui-ci signale un **piège classique**, pour ne pas y tomber.
+:::
+
+Si vous connaissez déjà un peu Git, ouvrez les blocs « Pour aller plus loin » : ils contiennent le niveau de détail supplémentaire, sans encombrer la lecture des débutants.
+
+```{=html}
+<div class="next-cta" data-animate>
+  <p>Prêt·e ? Commençons par une question toute simple : quelle est la bonne version ?</p>
+  <a class="btn-hero" href="cours/01-pourquoi-git.qmd">Séquence 01 — Pourquoi Git ?</a>
+</div>
+```
