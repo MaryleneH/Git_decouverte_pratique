@@ -167,11 +167,12 @@ L'historique raconte alors toute la vérité :
 
 L'erreur reste dans l'album, son annulation aussi. Dans six mois, on comprendra exactement ce qui s'est passé — et si l'idée redevient pertinente, tout est encore là.
 
-::: {.go-further}
+<details class="go-further">
 <summary>Pour aller plus loin — et `git reset --hard`, qu'on voit partout sur Internet ?</summary>
 
 `git reset --hard` **réécrit l'histoire** : il fait disparaître des commits comme s'ils n'avaient jamais existé. Sur un travail partagé, c'est la recette des catastrophes — vos collègues ont, eux, encore l'ancienne histoire. Tant que vous débutez, considérez que cette commande n'existe pas : `git restore` pour les fichiers, `git revert` pour les commits couvrent tous vos besoins réels, sans jamais rien perdre. Le jour où un `reset` sera vraiment justifié, vous saurez exactement pourquoi — et ce jour n'est pas aujourd'hui.
-:::
+
+</details>
 
 ## Le bon geste, du premier coup
 

@@ -149,11 +149,12 @@ Trois fichiers ont été modifiés cet après-midi. Cliquez sur les fichiers pou
 `git add .` sélectionne **tout** d'un coup. C'est pratique, mais c'est aussi comme cela qu'un brouillon ou un fichier de données confidentiel se retrouve enregistré par accident. Réflexe à prendre : toujours un `git status` **après** le `git add`, pour relire sa sélection avant de photographier.
 :::
 
-::: {.go-further}
+<details class="go-further">
 <summary>Pour aller plus loin — cette « sélection » a un nom : la staging area</summary>
 
 La zone de sélection s'appelle officiellement la *staging area* (ou *index*). Vous croiserez ces termes dans les messages de Git et les documentations. Inutile de les mémoriser aujourd'hui : retenez le geste — *je compose ma prochaine photo*. Notez aussi que `git add` sur un fichier en capture le contenu **à cet instant** : si vous le modifiez encore après, il faudra refaire `git add` pour inclure les nouveaux changements.
-:::
+
+</details>
 
 ## Enregistrer : `git commit`
 
@@ -206,7 +207,7 @@ git diff
 
 Lecture : la ligne précédée de `-` disparaît, celle précédée de `+` la remplace. Ici, quelqu'un a changé le seuil d'âge de 40 à 43 ans. C'est exactement la réponse à « qu'est-ce qui a changé depuis vendredi ? ».
 
-::: {.go-further}
+<details class="go-further">
 <summary>Pour aller plus loin — `git diff` ou `git diff --staged` ?</summary>
 
 Une fois qu'un fichier est sélectionné (`git add`), il sort du champ de `git diff`. Pour relire ce que contiendra la photo, utilisez `git diff --staged` :
@@ -216,7 +217,8 @@ Une fois qu'un fichier est sélectionné (`git add`), il sort du champ de `git d
 - `git status` → la vue d'ensemble des deux.
 
 Le trio complet, juste avant un commit important : `git status`, puis `git diff --staged`, puis `git commit`.
-:::
+
+</details>
 
 ## À vous, en entier
 
@@ -245,11 +247,12 @@ Faites un tour complet du geste, dans votre dossier d'exercice :
 ```
 :::
 
-::: {.go-further}
+<details class="go-further">
 <summary>Pour aller plus loin — mes messages Git sont en anglais ?</summary>
 
 Selon l'installation, Git parle français ou anglais : `Sur la branche main` devient `On branch main`, `rien à valider` devient `nothing to commit, working tree clean`. Les commandes, elles, sont identiques partout. Les exemples de ce site utilisent les messages français ; si votre poste affiche l'anglais, la structure des messages reste exactement la même.
-:::
+
+</details>
 
 ```{=html}
 <div class="next-cta" data-animate>

@@ -68,11 +68,12 @@ Souvenez-vous du « Pour aller plus loin » de la séquence 01 : Git est dit *di
 
 Trois copies complètes de l'album. Si le serveur tombe, rien n'est perdu ; si un poste est réinstallé, rien n'est perdu. Chaque copie peut reconstituer les autres. C'est ce qui rend l'ensemble si robuste — et c'est pour cela que « GitLab = simple sauvegarde » est un contresens : c'est un **pair** parmi les copies, celui que l'équipe a choisi comme point de rencontre.
 
-::: {.go-further}
+<details class="go-further">
 <summary>Pour aller plus loin — GitHub, Gitea, Bitbucket… c'est pareil ?</summary>
 
 Oui : GitHub, Gitea, Bitbucket ou l'instance GitLab interne de votre administration jouent tous le même rôle de plateforme au-dessus de Git. Les commandes Git que vous apprenez aujourd'hui sont **identiques** quelle que soit la plateforme — seuls changent l'interface web et quelques services annexes. Si votre service migre un jour de GitLab vers autre chose, vos réflexes resteront valables à 100 %.
-:::
+
+</details>
 
 ::: {.checkpoint}
 ```{=html}

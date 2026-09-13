@@ -146,11 +146,12 @@ Voici la carte mentale que nous allons enrichir toute la journée. Pour l'instan
 
 Rien d'autre ne change dans votre façon de travailler : vous continuez d'éditer vos fichiers dans RStudio, VS Code ou votre éditeur habituel. Git observe le dossier, et photographie **quand vous le décidez**.
 
-::: {.go-further}
+<details class="go-further">
 <summary>Pour aller plus loin — « système de gestion de versions distribué » ?</summary>
 
 C'est la définition officielle de Git, et vous comprenez maintenant chacun de ses mots : *gestion de versions* = l'album photo ; *système* = l'outil qui le tient à jour ; *distribué* = chaque personne possède une copie complète de l'album sur son poste (nous verrons cela en séquence 06). Git a été créé en 2005 pour le développement du noyau Linux ; il est devenu l'outil standard bien au-delà de l'informatique — y compris à l'Insee et dans la statistique publique, pour les programmes R et Python comme pour les publications Quarto.
-:::
+
+</details>
 
 ::: {.checkpoint}
 ```{=html}

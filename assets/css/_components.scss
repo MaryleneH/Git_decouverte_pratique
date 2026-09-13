@@ -5,6 +5,15 @@
 // Proximité : padding interne serré, marges externes larges.
 // ============================================================
 
+// Les enfants de grilles doivent pouvoir rétrécir sous la largeur
+// de leur contenu (sinon un bloc de code élargit toute la page).
+.before-after > div,
+.duo > .duo-card,
+.sw-zones > .sw-zone,
+.pw-panels > .pw-panel {
+  min-width: 0;
+}
+
 // --- Base commune des encarts --------------------------------
 %encart {
   position: relative;

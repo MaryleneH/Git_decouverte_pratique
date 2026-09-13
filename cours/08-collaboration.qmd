@@ -150,11 +150,12 @@ La boucle est bouclée : la même mémoire partagée sert à l'aller (Franck rep
 Et vous ? Si vous partiez demain pour un mois, combien de temps faudrait-il à un collègue pour reprendre votre étude la plus importante ? Qu'est-ce qui lui manquerait en premier : les fichiers, l'ordre d'exécution, ou les raisons de vos choix ?
 :::
 
-::: {.go-further}
+<details class="go-further">
 <summary>Pour aller plus loin — et si Marie et Franck avaient travaillé en même temps ?</summary>
 
 Aujourd'hui, Franck travaille *à la place* de Marie. Quand deux personnes travaillent *en même temps* sur les mêmes fichiers, Git sait fusionner leurs travaux, et signale un « conflit » quand les modifications se chevauchent — c'est moins effrayant que ça en a l'air, et c'est justement l'objet du Jour 2, avec les **branches** : des lignes de travail parallèles qu'on fusionne proprement. Pour l'instant, la règle simple d'une équipe débutante suffit : on tire avant de pousser, et on pousse souvent.
-:::
+
+</details>
 
 ```{=html}
 <div class="next-cta" data-animate>
