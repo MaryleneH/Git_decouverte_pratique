@@ -1,0 +1,169 @@
+---
+pagetitle: "07 · Synchroniser — Git sans douleur"
+---
+
+::: {.page-hero}
+<span class="eyebrow">Séquence 07 · Local ↔ distant</span>
+<span class="page-hero__num" aria-hidden="true">07</span>
+
+# Pourquoi Franck ne voit rien {.unnumbered}
+
+[La scène se joue tous les jours dans tous les services qui débutent avec Git. Jouons-la ensemble — puis ne la revivons plus jamais.]{.lede}
+:::
+
+## La scène
+
+Marie termine une belle amélioration de l'indicateur. Consciencieuse, elle enregistre :
+
+::: {.duo data-animate="stagger"}
+::: {.duo-card}
+<span class="duo-name" data-initial="M">Marie · 14 h 32</span>
+
+```bash
+git commit -m "Ajoute la ventilation par sexe"
+```
+
+« Voilà, c'est enregistré. Franck peut regarder. »
+:::
+
+::: {.duo-card .duo-b}
+<span class="duo-name" data-initial="F">Franck · 14 h 33</span>
+
+*Ouvre le projet sur GitLab. Actualise. Actualise encore.*
+
+« Euh… je ne vois rien de nouveau. Tu es sûre d'avoir enregistré ? »
+:::
+:::
+
+Marie a pourtant tout bien fait. Alors, pourquoi Franck ne voit-il rien ? Faites-le vous-même, la réponse est dans la manipulation :
+
+```{=html}
+<div class="push-widget" id="push-widget">
+  <div class="pw-panels">
+    <div class="pw-panel pw-local">
+      <span class="pw-panel__label">Poste de Marie — dépôt local</span>
+      <div class="pw-local-list">
+        <div class="pw-commit">51bd882 Version stable avant modification</div>
+      </div>
+    </div>
+    <div class="pw-net" aria-hidden="true">réseau</div>
+    <div class="pw-panel pw-remote">
+      <span class="pw-panel__label">GitLab — ce que voit Franck</span>
+      <div class="pw-remote-list">
+        <div class="pw-commit">51bd882 Version stable avant modification</div>
+      </div>
+    </div>
+  </div>
+  <div class="pw-actions">
+    <button type="button" class="gsd-btn" data-action="commit"><code>git commit</code></button>
+    <button type="button" class="gsd-btn" data-action="push" disabled><code>git push</code></button>
+    <button type="button" class="gsd-btn gsd-btn--ghost" data-action="reset">Recommencer</button>
+  </div>
+  <p class="pw-hint" data-role="hint" aria-live="polite">Marie vient de finir sa modification. À vous : commencez par <code>git commit</code>.</p>
+</div>
+```
+
+::: {.remember}
+**Commit ≠ push.** `git commit` colle la photo dans **votre** album, sur **votre** poste — et s'arrête là. Tant que vous n'avez pas fait `git push`, personne d'autre ne peut la voir. Enregistrer, c'est pour vous ; pousser, c'est pour les autres.
+:::
+
+## Les trois commandes du voyage
+
+La carte complète, désormais. Trois commandes font circuler les commits entre votre poste et GitLab :
+
+```{=html}
+<div class="git-map" data-animate="stagger" aria-label="Schéma : le dépôt local en bas, GitLab en haut ; git push envoie, git fetch et git pull ramènent.">
+  <div class="gm-zone gm-remote">
+    <span class="gm-label">GitLab — dépôt commun</span>
+    <span class="gm-desc">L'album de référence de l'équipe.</span>
+  </div>
+  <div class="gm-arrow gm-both"><code>push ↑ · fetch / pull ↓</code></div>
+  <div class="gm-zone is-focus">
+    <span class="gm-label">Votre poste — dépôt local</span>
+    <span class="gm-desc">Votre album : celui où <code>git commit</code> range les photos.</span>
+  </div>
+</div>
+```
+
+**`git push` — envoyer.** Vos nouveaux commits partent vers GitLab. C'est le geste de partage : après un `push`, l'équipe voit votre travail.
+
+```{=html}
+<div class="terminal-demo" data-title="etude-population">
+```
+```bash
+git push
+```
+```text
+Énumération des objets: 5, fait.
+Écriture des objets: 100% (3/3), 412 octets.
+Vers gitlab.exemple.fr:etudes/etude-population.git
+   51bd882..c47d1e9  main -> main
+```
+```{=html}
+</div>
+```
+
+**`git fetch` — se renseigner.** Git demande à GitLab « quoi de neuf ? » et télécharge les nouveaux commits des collègues **sans toucher à vos fichiers**. Vous pouvez regarder ce qui arrive avant de l'intégrer. C'est la commande prudente, celle qui ne change jamais rien à votre travail en cours.
+
+**`git pull` — récupérer.** `fetch` + intégration : les nouveaux commits de l'équipe sont téléchargés **et** appliqués à votre copie. C'est le geste du matin : on démarre sa journée en se mettant au niveau du dépôt commun.
+
+```{=html}
+<div class="terminal-demo" data-title="etude-population">
+```
+```bash
+git pull
+```
+```text
+Mise à jour 51bd882..e02ab55
+ traitement.py  | 14 ++++++++------
+ rapport.qmd    |  3 ++-
+ 2 fichiers modifiés, 11 insertions(+), 7 suppressions(-)
+```
+```{=html}
+</div>
+```
+
+Lecture : pendant votre absence, l'équipe a modifié `traitement.py` et `rapport.qmd` ; votre copie locale vient de rattraper le dépôt commun.
+
+## Le rythme d'une journée
+
+La routine qui deviendra automatique — remarquez la symétrie : on **tire** le matin, on **pousse** le soir :
+
+::: {data-animate="stagger"}
+1. **Le matin** — `git pull` : je récupère ce que l'équipe a poussé depuis hier.
+2. **Dans la journée** — je travaille normalement : modifications, `git status`, `git diff`, `git add`, `git commit`… autant de fois que nécessaire, tout est local et rapide.
+3. **Avant de partir** (ou dès qu'un travail est bon à partager) — `git push` : mes commits du jour rejoignent le dépôt commun.
+:::
+
+::: {.try}
+La synchronisation demande un dépôt distant — si votre formateur en a préparé un, c'est le moment : faites un commit dans le projet partagé, constatez sur GitLab (dans le navigateur) qu'il n'apparaît **pas**, puis `git push` et actualisez : il est là, avec votre nom et votre message. Sinon, gardez cette manipulation pour la mission finale.
+:::
+
+::: {.warning}
+Si `git push` est refusé avec un message du type *« le distant contient du travail que vous n'avez pas en local »*, c'est qu'un collègue a poussé avant vous. Rien de grave, c'est même le fonctionnement normal : faites `git pull` pour récupérer son travail, vérifiez que tout va bien, puis repoussez. Règle d'or : **on tire avant de pousser.**
+:::
+
+::: {.checkpoint}
+```{=html}
+<div class="quiz" data-quiz>
+  <p class="quiz-q">Il est 9 h, vous reprenez l'étude commune après trois jours de congés. Première commande ?</p>
+  <button type="button" class="quiz-opt"><code>git push</code> — je montre que je suis de retour.</button>
+  <button type="button" class="quiz-opt" data-right><code>git pull</code> — je me mets d'abord au niveau du travail de l'équipe.</button>
+  <button type="button" class="quiz-opt"><code>git commit</code> — j'enregistre avant tout.</button>
+  <p class="quiz-explain" hidden>Travailler trois jours en retard sur l'équipe, c'est préparer des conflits. Le réflexe du matin : <code>git pull</code>. (Et <code>git commit</code> sans rien avoir modifié n'aurait de toute façon rien à photographier.)</p>
+</div>
+```
+:::
+
+::: {.go-further}
+<summary>Pour aller plus loin — que fait exactement `git fetch` de plus prudent que `pull` ?</summary>
+
+`git fetch` range les commits téléchargés dans une copie miroir du distant (visible sous le nom `origin/main`) sans toucher ni à vos fichiers ni à votre `main`. Vous pouvez alors comparer tranquillement : `git log main..origin/main --oneline` liste ce que l'équipe a fait et que vous n'avez pas encore intégré. Quand vous êtes prêt, `git pull` fait l'intégration. Avec l'habitude, beaucoup gardent `pull` au quotidien et sortent `fetch` quand ils veulent inspecter avant d'intégrer — par exemple au retour de congés.
+:::
+
+```{=html}
+<div class="next-cta" data-animate>
+  <p>Vous savez tout partager. Voyons ce que cela change quand un collègue doit vous remplacer.</p>
+  <a class="btn-hero" href="08-collaboration.qmd">Séquence 08 — Collaborer</a>
+</div>
+```
