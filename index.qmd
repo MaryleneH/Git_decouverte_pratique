@@ -6,7 +6,7 @@ toc: false
 ```{=html}
 <section class="home-hero">
   <span class="home-hero__eyebrow">Formation Git &amp; GitLab · Jour 1</span>
-  <h1>Donner une <em>mémoire</em> à vos études</h1>
+  <h1>Découverte <em>pratique</em> de Git</h1>
   <p class="home-hero__lede">
     Vous n'avez pas besoin de devenir développeur pour comprendre Git.
     Aujourd'hui, en une journée, vous allez apprendre à retrouver n'importe quelle

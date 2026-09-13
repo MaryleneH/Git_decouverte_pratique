@@ -38,7 +38,7 @@ déployable sur n'importe quel serveur web (ou consultable en local).
 ```text
 .
 ├── _quarto.yml              # Configuration : navigation, thème, format
-├── index.qmd                # Accueil « Donner une mémoire à vos études »
+├── index.qmd                # Accueil « Découverte pratique de Git »
 ├── cours/                   # Les 9 séquences du Jour 1
 │   ├── 01-pourquoi-git.qmd  #   Problèmes vécus → l'idée de Git
 │   ├── 02-premier-commit.qmd#   status / diff / add / commit + widget staging
