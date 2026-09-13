@@ -1,0 +1,208 @@
+---
+pagetitle: "04 · Revenir — Git sans douleur"
+---
+
+::: {.page-hero}
+<span class="eyebrow">Séquence 04 · Revenir à une version</span>
+<span class="page-hero__num" aria-hidden="true">04</span>
+
+# Vendredi, ça marchait {.unnumbered}
+
+[La promesse de l'album photo, c'est de pouvoir y retourner. Il y a trois gestes différents — et les distinguer, c'est toute la sérénité de Git.]{.lede}
+:::
+
+## Trois gestes, trois intentions
+
+Avant les commandes, clarifions **ce que vous voulez faire**. Ce sont trois situations très différentes :
+
+::: {data-animate="stagger"}
+::: {.concept}
+**Regarder le passé.** « Je veux juste *voir* l'état de vendredi, vérifier un chiffre, relancer le programme tel qu'il était. » Rien n'est modifié — on visite.
+:::
+
+::: {.concept}
+**Restaurer un fichier.** « Mes modifications du matin sont ratées, je veux *récupérer* ce fichier tel qu'il était à la dernière photo — ou à une photo plus ancienne. » Un fichier revient en arrière, le reste ne bouge pas.
+:::
+
+::: {.concept}
+**Annuler un commit.** « Cette modification enregistrée hier était une erreur, je veux *l'annuler proprement*, en gardant la trace de tout. » L'histoire continue vers l'avant, avec un commit d'annulation.
+:::
+:::
+
+## Geste 1 — Regarder le passé
+
+Le programme tournait parfaitement au commit `51bd882`. Allons **voir** cet état, sans rien toucher :
+
+```{=html}
+<div class="terminal-demo" data-title="etude-population">
+```
+```bash
+git log --oneline
+git switch --detach 51bd882
+```
+```text
+8f31c2a Modifie le calcul de l'indicateur
+51bd882 Version stable avant modification
+a904ef1 Ajoute le graphique par sexe
+
+Note : basculement sur '51bd882'.
+Vous êtes dans un état « HEAD détachée » : vous pouvez regarder,
+compiler, tester... vos fichiers sont exactement dans l'état
+de ce commit.
+```
+```{=html}
+</div>
+```
+
+Ouvrez `analyse.R` : c'est la version de vendredi. Relancez vos calculs : ce sont les chiffres de vendredi. Vous êtes en visite dans le passé — Git a simplement remis vos fichiers dans l'état de cette photo.
+
+Quand la visite est finie, on **revient au présent** :
+
+```{=html}
+<div class="terminal-demo" data-title="etude-population">
+```
+```bash
+git switch main
+```
+```text
+Basculement sur la branche 'main'
+```
+```{=html}
+</div>
+```
+
+::: {.remember}
+`main` est le nom de la ligne principale de votre projet — le présent. Quel que soit l'endroit de l'album où vous êtes allé vous promener, `git switch main` **vous ramène toujours à l'état actuel**. C'est votre bouton « retour à la maison ».
+:::
+
+::: {.warning}
+Pendant une visite du passé (« HEAD détachée »), ne créez pas de nouveaux commits : ils seraient rattachés à rien et difficiles à retrouver. La visite, c'est pour **regarder**. On modifie et on commite uniquement une fois revenu sur `main`.
+:::
+
+## Geste 2 — Restaurer un fichier
+
+### Cas A : annuler mes modifications du matin (non commitées)
+
+Depuis 9 h, vous retouchez `analyse.R`… et c'est de pire en pire. Vous voulez repartir de la dernière photo :
+
+```{=html}
+<div class="terminal-demo" data-title="etude-population">
+```
+```bash
+git restore analyse.R
+```
+```text
+```
+```{=html}
+</div>
+```
+
+Pas de message : Git a silencieusement remis `analyse.R` dans l'état du dernier commit. Vos retouches du matin sont effacées — c'était le but.
+
+::: {.warning}
+`git restore` supprime **définitivement** les modifications non commitées du fichier : elles n'étaient dans aucune photo, il n'y a rien à récupérer. Prenez le réflexe : `git diff analyse.R` d'abord, pour relire ce que vous êtes sur le point de jeter.
+:::
+
+### Cas B : récupérer la version d'un ancien commit
+
+Le graphique était meilleur dans la version `51bd882` ? Récupérez le fichier tel qu'il était **sur cette photo-là**, sans toucher au reste du projet :
+
+```{=html}
+<div class="terminal-demo" data-title="etude-population">
+```
+```bash
+git restore --source=51bd882 analyse.R
+git status
+```
+```text
+Sur la branche main
+Modifications qui ne seront pas validées :
+	modifié : analyse.R
+```
+```{=html}
+</div>
+```
+
+Regardez bien le `git status` : le fichier restauré apparaît comme une **modification ordinaire**. Rien n'est encore enregistré — vous pouvez comparer avec `git diff`, ajuster, puis commiter cette restauration comme n'importe quel changement. Vous gardez la main à chaque étape.
+
+## Geste 3 — Annuler proprement un commit
+
+Le commit `8f31c2a` (« Modifie le calcul de l'indicateur ») s'avère être une erreur : les chiffres validés étaient les bons. Ce commit a déjà été partagé avec l'équipe — impossible de faire comme s'il n'avait jamais existé. La bonne solution : **un commit qui défait**.
+
+```{=html}
+<div class="terminal-demo" data-title="etude-population">
+```
+```bash
+git revert 8f31c2a
+```
+```text
+[main 9c8d7e6] Revert "Modifie le calcul de l'indicateur"
+ 1 fichier modifié, 3 insertions(+), 3 suppressions(-)
+```
+```{=html}
+</div>
+```
+
+L'historique raconte alors toute la vérité :
+
+```{=html}
+<ol class="git-timeline" data-animate="timeline">
+  <li class="tl-commit">
+    <span class="tl-hash">9c8d7e6</span>
+    <span class="tl-msg">Revert "Modifie le calcul de l'indicateur"</span>
+    <span class="tl-meta">Le commit d'annulation : le calcul revient à la version validée.</span>
+  </li>
+  <li class="tl-commit">
+    <span class="tl-hash">8f31c2a</span>
+    <span class="tl-msg">Modifie le calcul de l'indicateur</span>
+    <span class="tl-meta">L'erreur — toujours visible, assumée, documentée.</span>
+  </li>
+  <li class="tl-commit">
+    <span class="tl-hash">51bd882</span>
+    <span class="tl-msg">Version stable avant modification</span>
+    <span class="tl-meta">La version validée.</span>
+  </li>
+</ol>
+```
+
+L'erreur reste dans l'album, son annulation aussi. Dans six mois, on comprendra exactement ce qui s'est passé — et si l'idée redevient pertinente, tout est encore là.
+
+::: {.go-further}
+<summary>Pour aller plus loin — et `git reset --hard`, qu'on voit partout sur Internet ?</summary>
+
+`git reset --hard` **réécrit l'histoire** : il fait disparaître des commits comme s'ils n'avaient jamais existé. Sur un travail partagé, c'est la recette des catastrophes — vos collègues ont, eux, encore l'ancienne histoire. Tant que vous débutez, considérez que cette commande n'existe pas : `git restore` pour les fichiers, `git revert` pour les commits couvrent tous vos besoins réels, sans jamais rien perdre. Le jour où un `reset` sera vraiment justifié, vous saurez exactement pourquoi — et ce jour n'est pas aujourd'hui.
+:::
+
+## Le bon geste, du premier coup
+
+| Votre situation | Le geste | La commande |
+|---|---|---|
+| « Je veux voir l'état de vendredi » | Visiter | `git switch --detach <commit>` puis `git switch main` |
+| « Mes retouches non commitées sont ratées » | Restaurer | `git restore fichier` |
+| « Je veux ce fichier tel qu'il était avant » | Restaurer depuis une photo | `git restore --source=<commit> fichier` |
+| « Ce commit partagé était une erreur » | Annuler en avançant | `git revert <commit>` |
+
+: {tbl-colwidths="[40,20,40]"}
+
+::: {.checkpoint}
+```{=html}
+<div class="quiz" data-quiz>
+  <p class="quiz-q">Vous avez passé la matinée à modifier <code>traitement.py</code> sans commiter, et tout est à jeter. Quel geste ?</p>
+  <button type="button" class="quiz-opt"><code>git revert</code> — on annule proprement.</button>
+  <button type="button" class="quiz-opt" data-right><code>git restore traitement.py</code> — le fichier revient à la dernière photo.</button>
+  <button type="button" class="quiz-opt"><code>git switch --detach</code> — on retourne dans le passé.</button>
+  <p class="quiz-explain" hidden><code>revert</code> annule un <em>commit</em> ; or ici rien n'a été commité. <code>switch --detach</code> sert à <em>visiter</em>. Pour jeter des modifications non enregistrées d'un fichier : <code>restore</code>.</p>
+</div>
+```
+:::
+
+::: {.try}
+Dans votre dossier d'exercice : modifiez `analyse.R` n'importe comment (cassez-le, vraiment), vérifiez les dégâts avec `git diff`, puis récupérez la version saine avec `git restore analyse.R`. Sentez ce que cela change : **vous ne pouvez plus perdre un travail commité**. Expérimenter, casser, tester devient sans danger.
+:::
+
+```{=html}
+<div class="next-cta" data-animate>
+  <p>Toutes les photos se valent-elles ? Non — certaines sont des versions officielles.</p>
+  <a class="btn-hero" href="05-tags.qmd">Séquence 05 — Versions officielles</a>
+</div>
+```

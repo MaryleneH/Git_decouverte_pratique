@@ -1,0 +1,164 @@
+---
+pagetitle: "05 · Versions officielles — Git sans douleur"
+---
+
+::: {.page-hero}
+<span class="eyebrow">Séquence 05 · Les versions officielles</span>
+<span class="page-hero__num" aria-hidden="true">05</span>
+
+# Marquer la version livrée {.unnumbered}
+
+[« C'est bien cette version-là que nous avons transmise au commanditaire ? » Dans la statistique publique, cette question revient sans cesse. Git a une réponse faite exactement pour elle.]{.lede}
+:::
+
+## Le problème du jour de livraison
+
+Votre étude vit : des dizaines de commits, des corrections, des ajustements. Un jour, vous **livrez** — au commanditaire, à la publication, au service demandeur. Six mois plus tard, une question arrive sur les chiffres livrés. Il vous faut retrouver **exactement** cet état.
+
+Un identifiant de commit (`8f31c2a`) le permet… si quelqu'un a pensé à le noter quelque part. Il y a mieux : donner un **nom officiel** à ce commit.
+
+::: {.concept}
+Un **commit** documente une étape de travail — il y en a des dizaines, c'est la vie du projet. Un **tag** désigne l'un de ces commits comme **référence officielle** : la version livrée, la version publiée, la version validée. Peu de tags, choisis, nommés avec soin — ce sont les jalons du projet.
+:::
+
+## Un commit devient un jalon
+
+Voici l'historique en fin d'étude. La version qui part chez le commanditaire, c'est l'état actuel. Posez le jalon vous-même :
+
+```{=html}
+<div data-widget="tag" data-tag-name="livraison-2026-v1">
+  <ol class="git-timeline" data-animate="timeline">
+    <li class="tl-commit" data-tag-target>
+      <span class="tl-hash">f2e9b04</span>
+      <span class="tl-msg">Finalise les graphiques</span>
+      <span class="tl-meta">Marie · aujourd'hui, 15 h 50</span>
+    </li>
+    <li class="tl-commit">
+      <span class="tl-hash">c47d1e9</span>
+      <span class="tl-msg">Met à jour les estimations</span>
+      <span class="tl-meta">Franck · aujourd'hui, 14 h 10</span>
+    </li>
+    <li class="tl-commit">
+      <span class="tl-hash">e02ab55</span>
+      <span class="tl-msg">Corrige la population</span>
+      <span class="tl-meta">Marie · hier, 16 h 35</span>
+    </li>
+  </ol>
+  <p>
+    <button type="button" class="gsd-btn" data-tag-button><code>git tag -a livraison-2026-v1</code> — poser le jalon</button>
+  </p>
+  <p data-tag-done hidden><strong>Regardez la frise :</strong> le commit <code>f2e9b04</code> n'a pas changé — il porte simplement, désormais, un nom officiel. Rond = étape de travail ; losange = jalon.</p>
+</div>
+```
+
+La commande complète, avec son message :
+
+```{=html}
+<div class="terminal-demo" data-title="etude-population">
+```
+```bash
+git tag -a livraison-2026-v1 -m "Version transmise au commanditaire"
+```
+```text
+```
+```{=html}
+</div>
+```
+
+::: {.remember}
+Le tag ne copie rien, ne fige rien, n'empêche rien : le projet continue d'avancer, de nouveaux commits s'empilent au-dessus. Le tag est une **étiquette indélébile** collée sur une photo précise de l'album : « ceci est la version livrée du 13 septembre 2026 ».
+:::
+
+## Retrouver ses jalons
+
+Lister les versions officielles du projet — souvent la première commande qu'on lance en reprenant une vieille étude :
+
+```{=html}
+<div class="terminal-demo" data-title="etude-population">
+```
+```bash
+git tag
+```
+```text
+livraison-2025-v1
+livraison-2025-v2
+livraison-2026-v1
+```
+```{=html}
+</div>
+```
+
+Et examiner ce que contient exactement une livraison, message du tag compris :
+
+```{=html}
+<div class="terminal-demo" data-title="etude-population">
+```
+```bash
+git show livraison-2026-v1
+```
+```text
+tag livraison-2026-v1
+Étiqueteur : Marie Dupont <marie.dupont@exemple.fr>
+Date :       samedi 13 septembre 2026, 16:12
+
+Version transmise au commanditaire
+
+commit f2e9b04a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e
+    Finalise les graphiques
+```
+```{=html}
+</div>
+```
+
+Besoin de relancer les calculs de cette livraison à l'identique ? C'est le geste « visite » de la séquence 04, avec le nom du tag à la place de l'identifiant : `git switch --detach livraison-2026-v1`, puis `git switch main` pour revenir.
+
+## Partager le jalon
+
+Détail qui compte : les tags ne partent pas tout seuls vers GitLab (nous verrons le partage en détail dans les séquences suivantes). Il faut pousser le tag explicitement :
+
+```bash
+git push origin livraison-2026-v1
+```
+
+Une fois poussé, toute l'équipe voit la même version officielle — et GitLab l'affiche dans sa liste des versions du projet.
+
+::: {.try}
+Dans votre dossier d'exercice :
+
+```bash
+git tag -a exercice-v1 -m "Fin de la séquence 05"
+git tag
+git show exercice-v1
+```
+
+Vous venez de poser votre premier jalon. Il désigne pour toujours l'état actuel de votre atelier.
+:::
+
+::: {.warning}
+Résistez à la tentation de taguer tous les jours « au cas où » : les commits jouent déjà ce rôle. Un tag = un événement qui compte pour l'extérieur (livraison, publication, validation). Si tout est officiel, plus rien ne l'est.
+:::
+
+::: {.checkpoint}
+```{=html}
+<div class="quiz" data-quiz>
+  <p class="quiz-q">Quelle différence entre le commit <code>f2e9b04</code> et le tag <code>livraison-2026-v1</code> posé dessus ?</p>
+  <button type="button" class="quiz-opt">Le tag est une copie de sauvegarde du commit.</button>
+  <button type="button" class="quiz-opt">Le tag fige le projet : plus rien ne peut être modifié ensuite.</button>
+  <button type="button" class="quiz-opt" data-right>Aucune sur le contenu : le tag est un nom officiel et durable donné à ce commit précis.</button>
+  <p class="quiz-explain" hidden>Le commit contient l'état du projet ; le tag n'est qu'une étiquette qui pointe vers lui. Le projet continue d'avancer normalement — mais ce jalon restera toujours retrouvable par son nom.</p>
+</div>
+```
+:::
+
+::: {.go-further}
+<summary>Pour aller plus loin — conventions de nommage des versions</summary>
+
+Dans le monde logiciel, les tags suivent souvent la « gestion sémantique de version » : `v1.0.0`, `v1.1.0`, `v2.0.0`. Pour des études statistiques, un nommage par événement est souvent plus parlant : `livraison-2026-v1`, `publication-ip-1899`, `diffusion-2026-t3`. L'essentiel est d'adopter **une convention d'équipe et de s'y tenir** — le nom doit suffire à comprendre de quelle version officielle il s'agit. Le `-a` de `git tag -a` crée un tag « annoté » : daté, signé de son auteur et porteur d'un message — toujours préférable pour un jalon officiel.
+:::
+
+```{=html}
+<div class="next-cta" data-animate>
+  <p>Jusqu'ici, tout se passait sur votre poste. Il est temps de parler de GitLab.</p>
+  <a class="btn-hero" href="06-gitlab.qmd">Séquence 06 — Git ≠ GitLab</a>
+</div>
+```
