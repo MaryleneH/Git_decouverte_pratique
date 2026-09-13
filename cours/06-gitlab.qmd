@@ -1,0 +1,98 @@
+---
+pagetitle: "06 · Git ≠ GitLab — Git sans douleur"
+---
+
+::: {.page-hero}
+<span class="eyebrow">Séquence 06 · Git n'est pas GitLab</span>
+<span class="page-hero__num" aria-hidden="true">06</span>
+
+# Deux outils, deux mondes {.unnumbered}
+
+[On les confond tout le temps — les noms n'aident pas. Pourtant la distinction est simple, et une fois qu'elle est claire, la moitié des mystères de Git s'évaporent.]{.lede}
+:::
+
+## Une image d'abord
+
+```{=html}
+<div class="git-map" data-animate="stagger" aria-label="Schéma : Git vit sur votre ordinateur avec l'historique local ; GitLab est une plateforme distante reliée par le réseau, hébergeant une copie du dépôt.">
+  <div class="gm-zone is-focus">
+    <span class="gm-label">Mon ordinateur — Git</span>
+    <span class="gm-desc">L'outil installé sur votre poste. Le dépôt, l'historique, les commits : <strong>tout est là, chez vous</strong>. Git fonctionne intégralement sans réseau.</span>
+    <div class="gm-files">
+      <span class="file-chip">analyse.R</span>
+      <span class="file-chip">rapport.qmd</span>
+      <span class="file-chip">+ l'album complet des commits</span>
+    </div>
+  </div>
+  <div class="gm-arrow gm-both"><code>réseau ⇅</code></div>
+  <div class="gm-zone gm-remote">
+    <span class="gm-label">GitLab — la plateforme</span>
+    <span class="gm-desc">Un service sur le réseau qui héberge <strong>une copie du dépôt</strong> — et construit autour d'elle un lieu de travail commun pour l'équipe.</span>
+  </div>
+</div>
+```
+
+::: {.concept}
+**Git** est la mémoire locale du projet : un outil qui tourne sur votre machine et tient l'album des versions. **GitLab** est une plateforme distante qui héberge une copie de cet album et y ajoute tout ce qui sert au **collectif** : consultation dans le navigateur, partage, droits d'accès, discussions, gestion de projet. Git existe sans GitLab. GitLab, lui, repose entièrement sur Git.
+:::
+
+## Ce que chacun sait faire
+
+| | Git (votre poste) | GitLab (la plateforme) |
+|---|---|---|
+| Où ça vit | Sur votre ordinateur | Sur un serveur, accessible en réseau |
+| Photographier une version (`commit`) | ✔ | — |
+| Comparer, restaurer, feuilleter l'album | ✔ | consultation dans le navigateur |
+| Fonctionner sans connexion | ✔ | ✘ |
+| Centraliser le dépôt de référence de l'équipe | — | ✔ |
+| Partager le travail, gérer qui accède à quoi | — | ✔ |
+| Discuter d'une modification, suivre les tâches | — | ✔ |
+
+: {tbl-colwidths="[40,30,30]"}
+
+Autrement dit : **le travail de version se fait chez vous, avec Git** ; **la mise en commun se fait sur GitLab**. Les deux se synchronisent — c'est l'objet de la séquence suivante.
+
+::: {.warning}
+GitLab n'est pas « une sauvegarde de mes fichiers ». C'est le **dépôt de référence de l'équipe** : le lieu où l'étude officielle vit, se consulte et se partage. La nuance compte : une sauvegarde, on n'y pense qu'en cas de pépin ; le dépôt commun, c'est là que vos collègues travaillent vraiment — et ce qu'on y envoie doit être digne de leur confiance.
+:::
+
+## « Distribué » : chacun a l'album complet
+
+Souvenez-vous du « Pour aller plus loin » de la séquence 01 : Git est dit *distribué*. Voici ce que cela signifie concrètement :
+
+::: {data-animate="stagger"}
+- Le poste de **Marie** contient le projet **et tout l'historique** ;
+- le poste de **Franck** contient le projet **et tout l'historique** ;
+- **GitLab** contient le projet **et tout l'historique**.
+:::
+
+Trois copies complètes de l'album. Si le serveur tombe, rien n'est perdu ; si un poste est réinstallé, rien n'est perdu. Chaque copie peut reconstituer les autres. C'est ce qui rend l'ensemble si robuste — et c'est pour cela que « GitLab = simple sauvegarde » est un contresens : c'est un **pair** parmi les copies, celui que l'équipe a choisi comme point de rencontre.
+
+::: {.go-further}
+<summary>Pour aller plus loin — GitHub, Gitea, Bitbucket… c'est pareil ?</summary>
+
+Oui : GitHub, Gitea, Bitbucket ou l'instance GitLab interne de votre administration jouent tous le même rôle de plateforme au-dessus de Git. Les commandes Git que vous apprenez aujourd'hui sont **identiques** quelle que soit la plateforme — seuls changent l'interface web et quelques services annexes. Si votre service migre un jour de GitLab vers autre chose, vos réflexes resteront valables à 100 %.
+:::
+
+::: {.checkpoint}
+```{=html}
+<div class="quiz" data-quiz>
+  <p class="quiz-q">Le réseau de votre bâtiment est en panne toute la matinée. Que pouvez-vous faire ?</p>
+  <button type="button" class="quiz-opt">Plus rien : Git a besoin de GitLab pour fonctionner.</button>
+  <button type="button" class="quiz-opt" data-right>Tout, sauf partager : modifier, comparer, commiter, feuilleter l'historique — en local.</button>
+  <button type="button" class="quiz-opt">Seulement consulter les fichiers, sans enregistrer de version.</button>
+  <p class="quiz-explain" hidden>L'album complet est sur votre poste : Git travaille sans réseau. Seuls les échanges avec GitLab (partager, récupérer) attendront le retour de la connexion — et rien ne sera perdu entre-temps.</p>
+</div>
+```
+:::
+
+::: {.checkpoint}
+Question pour vous, sans bouton ni bonne réponse cachée : dans votre équipe, aujourd'hui, où vit « la » version de référence de vos études ? Un dossier réseau ? La boîte mail ? Le poste d'une seule personne ? Qu'est-ce que cela implique le jour où cette personne est absente ?
+:::
+
+```{=html}
+<div class="next-cta" data-animate>
+  <p>Reste à faire voyager les commits entre votre poste et GitLab.</p>
+  <a class="btn-hero" href="07-local-distant.qmd">Séquence 07 — Synchroniser</a>
+</div>
+```
