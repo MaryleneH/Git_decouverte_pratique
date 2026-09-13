@@ -125,12 +125,10 @@ details.go-further {
   summary {
     cursor: pointer;
     font-weight: 650;
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 1rem 0.75rem 3rem;
     border-radius: var(--gsd-radius-sm);
     list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
+    position: relative;
     transition: background var(--gsd-dur-fast) var(--gsd-ease);
 
     &::-webkit-details-marker { display: none; }
@@ -145,7 +143,9 @@ details.go-further {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      flex: none;
+      position: absolute;
+      left: 1rem;
+      top: 0.85rem;
       transition: transform var(--gsd-dur-fast) var(--gsd-ease);
     }
   }
@@ -443,9 +443,6 @@ details.go-further {
       background: var(--gsd-ink-faint);
     }
 
-    &.gm-both code::after {
-      content: " ⇅";
-    }
   }
 }
 
