@@ -1,0 +1,164 @@
+---
+pagetitle: "08 · Collaborer — Git sans douleur"
+---
+
+::: {.page-hero}
+<span class="eyebrow">Séquence 08 · Collaboration</span>
+<span class="page-hero__num" aria-hidden="true">08</span>
+
+# Marie est absente {.unnumbered}
+
+[Congé imprévu, mutation, arrêt maladie : un jour ou l'autre, quelqu'un doit reprendre l'étude d'un collègue. Avec un dépôt bien tenu, c'est l'affaire de dix minutes.]{.lede}
+:::
+
+## La situation
+
+Lundi matin. Marie est absente pour trois semaines, et les estimations qu'elle produisait doivent partir vendredi. Franck hérite du dossier. Il n'a **jamais** travaillé sur cette étude.
+
+Dans le monde d'avant, Franck passerait sa semaine à fouiller un dossier réseau : quelle version est la bonne ? quel programme lance-t-on en premier ? pourquoi ce seuil de 43 ans ?
+
+Dans le monde Git + GitLab, voici sa matinée.
+
+## 9 h 02 — Récupérer le projet : `git clone`
+
+Le dépôt de référence vit sur GitLab. Franck en prend une **copie complète** — fichiers *et* album entier des versions :
+
+```{=html}
+<div class="terminal-demo" data-title="poste-de-franck">
+```
+```bash
+git clone git@gitlab.exemple.fr:etudes/etude-population.git
+```
+```text
+Clonage dans 'etude-population'...
+réception des objets: 100% (247/247), 1.82 Mio
+Résolution des deltas: 100% (121/121), fait.
+```
+```{=html}
+</div>
+```
+
+`git clone` ne se fait **qu'une fois** par projet et par poste. Ensuite, le dépôt local de Franck vit sa vie : `pull` le matin, `commit` dans la journée, `push` le soir — exactement la routine de la séquence 07.
+
+::: {.concept}
+Cloner, ce n'est pas « télécharger les fichiers » : c'est recevoir **le projet avec toute sa mémoire**. Sur son poste, Franck peut immédiatement feuilleter trois ans d'historique, lire chaque décision, retrouver chaque version livrée — comme s'il avait toujours été là.
+:::
+
+## 9 h 05 — S'orienter
+
+Franck ne se jette pas sur le code. Trois commandes, dans l'ordre, pour prendre ses marques :
+
+```{=html}
+<div class="terminal-demo" data-title="poste-de-franck · etude-population">
+```
+```bash
+git log --oneline -5
+git tag
+git status
+```
+```text
+f2e9b04 Finalise les graphiques du T2
+c47d1e9 Met à jour les estimations
+e02ab55 Corrige la population de référence
+b7e4a91 Justifie le seuil de 43 ans
+4d02c7f Fixe le seuil de population à 43 ans
+
+livraison-2025-v2
+livraison-2026-v1
+
+Sur la branche main
+rien à valider, la copie de travail est propre
+```
+```{=html}
+</div>
+```
+
+En trente secondes, Franck sait : où en était Marie (`log`), quelles versions ont été livrées (`tag`), et que rien n'était en cours à son départ (`status`, copie propre). Puis il ouvre le `README.md` du projet — le fichier d'accueil que Marie tenait à jour :
+
+```{=html}
+<div class="before-after" data-animate="stagger">
+  <div class="before">
+    <p><strong>Dossier réseau classique</strong></p>
+    <ul>
+      <li>37 fichiers, dont 9 variantes de <code>estimation.R</code></li>
+      <li>Aucune indication d'ordre d'exécution</li>
+      <li>La connaissance était dans la tête de Marie</li>
+    </ul>
+  </div>
+  <div class="after">
+    <p><strong>Dépôt Git bien tenu</strong></p>
+    <ul>
+      <li>Un <code>README.md</code> : objectif, données, ordre des programmes</li>
+      <li>Un historique qui raconte chaque décision</li>
+      <li>Les livraisons marquées par des tags</li>
+    </ul>
+  </div>
+</div>
+```
+
+::: {.remember}
+Ce qui sauve Franck, ce n'est pas une commande magique : c'est que **le dépôt raconte l'étude**. Un README à jour, des messages de commit qui expliquent le pourquoi, des tags sur les livraisons — trois habitudes minuscules qui transforment une passation de trois semaines en une matinée.
+:::
+
+## Au fait, qui est « origin » ?
+
+Dans les messages de Git, vous croiserez le mot `origin`. C'est simplement le **surnom** que Git donne au dépôt distant d'où vient le clone — l'adresse GitLab, en plus court. Pour vérifier vers où votre dépôt s'envoie et se met à jour :
+
+```{=html}
+<div class="terminal-demo" data-title="poste-de-franck · etude-population">
+```
+```bash
+git remote -v
+```
+```text
+origin  git@gitlab.exemple.fr:etudes/etude-population.git (fetch)
+origin  git@gitlab.exemple.fr:etudes/etude-population.git (push)
+```
+```{=html}
+</div>
+```
+
+Voilà pourquoi on écrit `git push origin livraison-2026-v1` : « pousse ce tag vers *origin* », c'est-à-dire vers le GitLab de l'équipe. Quand vous lisez `origin`, entendez « notre GitLab ».
+
+::: {.duo data-animate="stagger"}
+::: {.duo-card}
+<span class="duo-name" data-initial="F">Franck · vendredi, 16 h 45</span>
+
+```bash
+git tag -a livraison-2026-v2 \
+  -m "Estimations T3, livrées en l'absence de Marie"
+git push
+git push origin livraison-2026-v2
+```
+:::
+
+::: {.duo-card .duo-b}
+<span class="duo-name" data-initial="M">Marie · trois semaines plus tard</span>
+
+```bash
+git pull
+git log --oneline
+```
+
+« Je vois tout ce que Franck a fait, commit par commit, et la version exacte qui a été livrée. Reprise en douceur. »
+:::
+:::
+
+La boucle est bouclée : la même mémoire partagée sert à l'aller (Franck reprend) et au retour (Marie récupère).
+
+::: {.checkpoint}
+Et vous ? Si vous partiez demain pour un mois, combien de temps faudrait-il à un collègue pour reprendre votre étude la plus importante ? Qu'est-ce qui lui manquerait en premier : les fichiers, l'ordre d'exécution, ou les raisons de vos choix ?
+:::
+
+::: {.go-further}
+<summary>Pour aller plus loin — et si Marie et Franck avaient travaillé en même temps ?</summary>
+
+Aujourd'hui, Franck travaille *à la place* de Marie. Quand deux personnes travaillent *en même temps* sur les mêmes fichiers, Git sait fusionner leurs travaux, et signale un « conflit » quand les modifications se chevauchent — c'est moins effrayant que ça en a l'air, et c'est justement l'objet du Jour 2, avec les **branches** : des lignes de travail parallèles qu'on fusionne proprement. Pour l'instant, la règle simple d'une équipe débutante suffit : on tire avant de pousser, et on pousse souvent.
+:::
+
+```{=html}
+<div class="next-cta" data-animate>
+  <p>Vous avez toutes les cartes en main. Place à la mission finale.</p>
+  <a class="btn-hero" href="09-mission.qmd">Séquence 09 — Mission</a>
+</div>
+```

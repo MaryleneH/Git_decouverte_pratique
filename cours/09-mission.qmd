@@ -1,0 +1,129 @@
+---
+pagetitle: "09 · Mission — Git sans douleur"
+toc: false
+---
+
+::: {.page-hero}
+<span class="eyebrow">Séquence 09 · Challenge final</span>
+<span class="page-hero__num" aria-hidden="true">09</span>
+
+# À vous de livrer {.unnumbered}
+
+[Plus de démonstration, plus de widget : votre terminal, l'horloge, et tout ce que vous avez appris aujourd'hui.]{.lede}
+:::
+
+```{=html}
+<div class="mission-banner" data-animate="fade">
+  <span class="mission-banner__kicker">Mission — livraison 17:00</span>
+  <p class="mission-banner__title">Un indicateur de plus avant ce soir</p>
+  <p>16 h. Le commanditaire vient d'appeler : il souhaite une nouvelle version du rapport,
+  avec un indicateur supplémentaire — la part des moins de 30 ans. La modification est
+  simple ; ce qui compte, c'est de livrer <em>proprement</em> : une version enregistrée,
+  expliquée, partagée et marquée. Exactement votre journée d'aujourd'hui, en conditions réelles.</p>
+</div>
+```
+
+## Votre feuille de route
+
+Travaillez dans le dépôt d'exercice préparé par votre formateur (ou, à défaut, dans votre dossier `atelier-git`). Chaque étape tient en une ou deux commandes — toutes ont été vues aujourd'hui. Les indices ne sont là que si vous en avez besoin : essayez d'abord sans.
+
+```{=html}
+<ol class="mission-steps">
+  <li>
+    <strong>Récupérer le projet et se mettre à jour</strong>
+    Ouvrez le projet. Si vous ne l'avez pas encore en local, récupérez-le depuis GitLab ; sinon, assurez-vous d'être au niveau de l'équipe.
+    <details class="reveal"><summary>Indice</summary><p><code>git clone &lt;adresse&gt;</code> la première fois — <code>git pull</code> toutes les autres.</p></details>
+  </li>
+  <li>
+    <strong>Regarder l'état des lieux</strong>
+    Avant de toucher quoi que ce soit : où en est le projet ? Y a-t-il des modifications en cours ? Quel est le dernier commit ?
+    <details class="reveal"><summary>Indice</summary><p><code>git status</code> pour l'état, <code>git log --oneline -5</code> pour les dernières photos.</p></details>
+  </li>
+  <li>
+    <strong>Modifier le programme</strong>
+    Ajoutez le nouvel indicateur dans <code>analyse.R</code> (ou le fichier indiqué par votre formateur) — par exemple une part des moins de 30 ans dans la population étudiée.
+  </li>
+  <li>
+    <strong>Relire précisément ce que vous avez changé</strong>
+    Ligne par ligne. C'est votre filet de sécurité avant d'enregistrer.
+    <details class="reveal"><summary>Indice</summary><p><code>git diff</code> — les lignes <code>-</code> disparaissent, les lignes <code>+</code> arrivent.</p></details>
+  </li>
+  <li>
+    <strong>Vérifier la vue d'ensemble</strong>
+    Quels fichiers sont modifiés ? N'y a-t-il que ce que vous croyez ?
+    <details class="reveal"><summary>Indice</summary><p><code>git status</code>. Si un fichier inattendu apparaît, ne le sélectionnez simplement pas à l'étape suivante.</p></details>
+  </li>
+  <li>
+    <strong>Sélectionner la modification</strong>
+    Composez la photo : uniquement le travail demandé, rien d'autre.
+    <details class="reveal"><summary>Indice</summary><p><code>git add analyse.R</code> — puis un <code>git status</code> de relecture, réflexe de la séquence 02.</p></details>
+  </li>
+  <li>
+    <strong>Créer un commit clair</strong>
+    Le message doit dire le <em>pourquoi</em> du point de vue de l'étude — pensez à la personne qui le lira dans six mois.
+    <details class="reveal"><summary>Indice</summary><p><code>git commit -m "Ajoute la part des moins de 30 ans demandée par le commanditaire"</code></p></details>
+  </li>
+  <li>
+    <strong>Vérifier l'historique</strong>
+    Votre commit est-il bien là, au sommet de la frise, avec le bon message ?
+    <details class="reveal"><summary>Indice</summary><p><code>git log --oneline -3</code>, et <code>git show</code> pour relire la photo en détail.</p></details>
+  </li>
+  <li>
+    <strong>Partager avec l'équipe</strong>
+    Pour l'instant, ce commit n'existe que chez vous — souvenez-vous de Franck devant son écran GitLab.
+    <details class="reveal"><summary>Indice</summary><p><code>git push</code>. Puis vérifiez dans le navigateur, sur GitLab : votre commit doit apparaître.</p></details>
+  </li>
+  <li>
+    <strong>Marquer la livraison</strong>
+    C'est une version officielle : posez le jalon, et partagez-le.
+    <details class="reveal"><summary>Indice</summary><p><code>git tag -a livraison-2026-v2 -m "Version avec la part des moins de 30 ans"</code> puis <code>git push origin livraison-2026-v2</code>.</p></details>
+  </li>
+</ol>
+```
+
+::: {.mission-block}
+**Critère de réussite.** Il est 16 h 58. Sur GitLab, l'équipe voit votre commit et le tag `livraison-2026-v2`. Sur votre poste, `git status` répond « rien à valider, la copie de travail est propre ». Le commanditaire a sa version ; l'étude, elle, a une mémoire de plus. Mission accomplie.
+:::
+
+------------------------------------------------------------------------
+
+## Ce que vous avez construit aujourd'hui
+
+Ce matin, cette carte tenait en deux cases. La voici complète — c'est votre carte mentale de Git, et vous savez maintenant lire chacune de ses flèches :
+
+```{=html}
+<div class="git-map" data-animate="stagger" aria-label="Carte complète : GitLab en haut, relié par push, fetch et pull au dépôt local, lui-même alimenté par git commit depuis la sélection, alimentée par git add depuis vos fichiers de travail.">
+  <div class="gm-zone gm-remote">
+    <span class="gm-label">GitLab — dépôt commun</span>
+    <span class="gm-desc">Ce que l'équipe voit et partage. Les jalons ◆ marquent les versions officielles.</span>
+  </div>
+  <div class="gm-arrow gm-both"><code>push ↑ · fetch / pull ↓</code></div>
+  <div class="gm-zone">
+    <span class="gm-label">Votre historique local</span>
+    <span class="gm-desc">L'album des commits — consultable (<code>log</code>, <code>show</code>), visitable (<code>switch</code>), réversible (<code>restore</code>, <code>revert</code>).</span>
+  </div>
+  <div class="gm-arrow"><code>git commit</code></div>
+  <div class="gm-zone">
+    <span class="gm-label">La sélection</span>
+    <span class="gm-desc">Ce qui entrera dans la prochaine photo.</span>
+  </div>
+  <div class="gm-arrow"><code>git add</code></div>
+  <div class="gm-zone is-focus">
+    <span class="gm-label">Vos fichiers de travail</span>
+    <span class="gm-desc">analyse.R, traitement.py, rapport.qmd — là où votre journée se passe (<code>status</code>, <code>diff</code>).</span>
+  </div>
+</div>
+```
+
+::: {.remember}
+Et si vous ne deviez retenir que trois phrases : **commit = photographier chez soi** ; **push = partager avec l'équipe** ; **tout ce qui est commité peut être retrouvé**. Le reste, votre terminal et ce site vous le rappelleront.
+:::
+
+Demain (Jour 2) : travailler à plusieurs en parallèle sans se marcher dessus — les branches, les fusions, et ce fameux mot de « conflit » qui va perdre son pouvoir d'effroi.
+
+```{=html}
+<div class="next-cta" data-animate>
+  <p>Envie de consolider ? Les exercices récapitulatifs et le mémo des commandes vous attendent.</p>
+  <a class="btn-hero" href="../exercices/index.qmd">Exercices récapitulatifs</a>
+</div>
+```
