@@ -1,0 +1,259 @@
+---
+pagetitle: "02 · Premier commit — Git sans douleur"
+---
+
+::: {.page-hero}
+<span class="eyebrow">Séquence 02 · Prise en main</span>
+<span class="page-hero__num" aria-hidden="true">02</span>
+
+# Regarder, choisir, enregistrer {.unnumbered}
+
+[Tout Git tient dans un geste en trois temps. Vous allez le faire une première fois maintenant — et des milliers de fois dans votre carrière.]{.lede}
+:::
+
+## Le geste en trois temps
+
+Quand vous photographiez l'état de votre étude, vous faites toujours la même chose :
+
+```{=html}
+<div class="git-map" data-animate="stagger" aria-label="Schéma en trois étapes : regarder avec git status, choisir avec git add, enregistrer avec git commit.">
+  <div class="gm-zone is-focus">
+    <span class="gm-label">1 · Regarder</span>
+    <span class="gm-desc">Où en suis-je ? Qu'ai-je modifié depuis la dernière photo ?</span>
+    <div class="gm-files">
+      <span class="file-chip is-modified">analyse.R</span>
+      <span class="file-chip is-modified">rapport.qmd</span>
+      <span class="file-chip is-modified">brouillon.R</span>
+    </div>
+  </div>
+  <div class="gm-arrow"><code>git status</code></div>
+  <div class="gm-zone">
+    <span class="gm-label">2 · Choisir</span>
+    <span class="gm-desc">Qu'est-ce qui mérite d'entrer dans la prochaine photo ?</span>
+    <div class="gm-files">
+      <span class="file-chip is-staged">analyse.R</span>
+      <span class="file-chip is-staged">rapport.qmd</span>
+    </div>
+  </div>
+  <div class="gm-arrow"><code>git add</code></div>
+  <div class="gm-zone">
+    <span class="gm-label">3 · Enregistrer</span>
+    <span class="gm-desc">La photo rejoint l'album, avec votre explication.</span>
+  </div>
+</div>
+```
+
+Trois temps, trois commandes : `git status` pour **regarder**, `git add` pour **choisir**, `git commit` pour **enregistrer**. Le reste de cette page ne fait que détailler ce schéma.
+
+::: {.try}
+**Préparons un petit terrain d'entraînement.** Ouvrez un terminal (dans RStudio : onglet *Terminal* ; dans VS Code : menu *Terminal*), puis créez un dossier d'exercice :
+
+```bash
+mkdir atelier-git && cd atelier-git
+git init
+git config user.name "Votre Nom"
+git config user.email "vous@exemple.fr"
+```
+
+`git init` transforme ce dossier en **dépôt** : un dossier ordinaire, plus une mémoire. Vous ne le ferez qu'une fois par projet — et souvent jamais, car le projet viendra de GitLab (séquence 08).
+:::
+
+## Regarder : `git status`
+
+Créez deux fichiers dans votre dossier d'exercice, comme si vous démarriez une étude :
+
+```{=html}
+<div class="terminal-demo" data-title="atelier-git">
+```
+```bash
+echo '# Analyse des salaires 2026' > analyse.R
+echo '# Rapport' > rapport.qmd
+git status
+```
+```text
+Sur la branche main
+
+Aucun commit
+
+Fichiers non suivis:
+	analyse.R
+	rapport.qmd
+
+aucune modification ajoutée à la validation
+```
+```{=html}
+</div>
+```
+
+::: {.concept}
+`git status` répond à une seule question : **« Où en suis-je ? »**. Quels fichiers ont changé depuis la dernière photo, lesquels sont nouveaux, lesquels sont déjà sélectionnés pour la prochaine. C'est la commande que vous taperez le plus souvent — elle ne modifie jamais rien, vous pouvez la lancer sans aucun risque, autant de fois que vous voulez.
+:::
+
+## Choisir : `git add`
+
+Ici, Git se distingue de tout ce que vous connaissez. Entre « fichier modifié » et « photo prise », il existe une étape intermédiaire : **la sélection**. Vous désignez, fichier par fichier, ce qui entrera dans la prochaine photo.
+
+```{=html}
+<div class="terminal-demo" data-title="atelier-git">
+```
+```bash
+git add analyse.R rapport.qmd
+git status
+```
+```text
+Sur la branche main
+
+Aucun commit
+
+Modifications qui seront validées :
+	nouveau fichier : analyse.R
+	nouveau fichier : rapport.qmd
+```
+```{=html}
+</div>
+```
+
+Pourquoi cette étape ? Parce qu'en fin de journée, vos modifications sont rarement homogènes : une vraie correction dans `analyse.R`, un brouillon exploratoire dans `test_truc.R`, un fichier temporaire généré par R. **Tout ne mérite pas d'entrer dans la photo.** `git add` vous laisse composer un enregistrement propre.
+
+### À vous : que va contenir mon prochain commit ?
+
+Trois fichiers ont été modifiés cet après-midi. Cliquez sur les fichiers pour les sélectionner (`git add`) ou les désélectionner, et observez ce que contiendrait le commit :
+
+```{=html}
+<div class="staging-widget" id="staging-widget">
+  <div class="sw-zones">
+    <div class="sw-zone sw-wd">
+      <span class="sw-zone__label">Fichiers modifiés aujourd'hui</span>
+      <button type="button" class="sw-file" data-file="analyse.R" aria-pressed="false">analyse.R <span class="sw-file__state">modifié</span></button>
+      <button type="button" class="sw-file" data-file="rapport.qmd" aria-pressed="false">rapport.qmd <span class="sw-file__state">modifié</span></button>
+      <button type="button" class="sw-file" data-file="brouillon_test.R" aria-pressed="false">brouillon_test.R <span class="sw-file__state">modifié</span></button>
+    </div>
+    <div class="sw-zone sw-stage">
+      <span class="sw-zone__label">Sélection pour la prochaine photo</span>
+      <div class="sw-stage__list"></div>
+      <p class="sw-stage__empty">Rien pour l'instant. Cliquez sur un fichier à gauche.</p>
+    </div>
+  </div>
+  <div class="sw-actions">
+    <button type="button" class="gsd-btn" data-action="add-all"><code>git add .</code> — tout sélectionner</button>
+    <button type="button" class="gsd-btn gsd-btn--ghost" data-action="reset">Recommencer</button>
+  </div>
+  <div class="sw-commit-preview" aria-live="polite">
+    <span class="sw-commit-preview__title">Que va contenir mon prochain commit ?</span>
+    <ul class="sw-preview-list"><li class="sw-empty">Rien : la zone de préparation est vide. Le commit serait refusé.</li></ul>
+  </div>
+</div>
+```
+
+::: {.warning}
+`git add .` sélectionne **tout** d'un coup. C'est pratique, mais c'est aussi comme cela qu'un brouillon ou un fichier de données confidentiel se retrouve enregistré par accident. Réflexe à prendre : toujours un `git status` **après** le `git add`, pour relire sa sélection avant de photographier.
+:::
+
+::: {.go-further}
+<summary>Pour aller plus loin — cette « sélection » a un nom : la staging area</summary>
+
+La zone de sélection s'appelle officiellement la *staging area* (ou *index*). Vous croiserez ces termes dans les messages de Git et les documentations. Inutile de les mémoriser aujourd'hui : retenez le geste — *je compose ma prochaine photo*. Notez aussi que `git add` sur un fichier en capture le contenu **à cet instant** : si vous le modifiez encore après, il faudra refaire `git add` pour inclure les nouveaux changements.
+:::
+
+## Enregistrer : `git commit`
+
+La sélection est prête ? On photographie, en expliquant **pourquoi** :
+
+```{=html}
+<div class="terminal-demo" data-title="atelier-git">
+```
+```bash
+git commit -m "Initialise l'étude salaires 2026"
+```
+```text
+[main (commit racine) f3a9d21] Initialise l'étude salaires 2026
+ 2 fichiers modifiés, 2 insertions(+)
+ create mode 100644 analyse.R
+ create mode 100644 rapport.qmd
+```
+```{=html}
+</div>
+```
+
+Votre premier commit existe. Il contient l'état des deux fichiers, votre nom, la date, et votre message. **Rien ne pourra plus l'effacer par accident.**
+
+::: {.remember}
+Un bon message de commit décrit le changement **du point de vue de l'étude**, pas de la technique : « Passe le seuil de population à 43 ans », « Corrige le taux du tableau 4 », « Ajoute la ventilation par sexe ». Dans trois mois, c'est ce message qui vous sauvera — écrivez-le pour la personne que vous serez alors.
+:::
+
+## Et `git diff`, alors ?
+
+`git status` donne la liste des fichiers modifiés. `git diff` montre **le détail des lignes** : ce que vous avez précisément changé, ligne par ligne.
+
+```{=html}
+<div class="terminal-demo" data-title="atelier-git">
+```
+```bash
+git diff
+```
+```text
+--- a/analyse.R
++++ b/analyse.R
+@@ -12,7 +12,7 @@
+ # Champ : salariés du secteur privé
+-seuil_age <- 40
++seuil_age <- 43
+ pop <- filter(pop, age >= seuil_age)
+```
+```{=html}
+</div>
+```
+
+Lecture : la ligne précédée de `-` disparaît, celle précédée de `+` la remplace. Ici, quelqu'un a changé le seuil d'âge de 40 à 43 ans. C'est exactement la réponse à « qu'est-ce qui a changé depuis vendredi ? ».
+
+::: {.go-further}
+<summary>Pour aller plus loin — `git diff` ou `git diff --staged` ?</summary>
+
+Une fois qu'un fichier est sélectionné (`git add`), il sort du champ de `git diff`. Pour relire ce que contiendra la photo, utilisez `git diff --staged` :
+
+- `git diff` → ce que j'ai modifié **et pas encore sélectionné** ;
+- `git diff --staged` → ce qui est **sélectionné, prêt à être photographié** ;
+- `git status` → la vue d'ensemble des deux.
+
+Le trio complet, juste avant un commit important : `git status`, puis `git diff --staged`, puis `git commit`.
+:::
+
+## À vous, en entier
+
+::: {.mission-block}
+Faites un tour complet du geste, dans votre dossier d'exercice :
+
+```{=html}
+<ol class="micro-steps">
+  <li><strong>Je comprends</strong> Je vais modifier un fichier, puis le photographier proprement.</li>
+  <li><strong>Je regarde</strong> Modifiez une ligne d'<code>analyse.R</code> (par exemple le titre), puis lancez <code>git status</code> et <code>git diff</code>. Retrouvez votre modification.</li>
+  <li><strong>J'essaie</strong> Sélectionnez avec <code>git add analyse.R</code>, vérifiez avec <code>git status</code>, puis enregistrez : <code>git commit -m "Précise le titre de l'analyse"</code>.</li>
+  <li><strong>Je vérifie</strong> Relancez <code>git status</code> : Git doit répondre <em>« rien à valider, la copie de travail est propre »</em>. Votre album contient maintenant deux photos.</li>
+</ol>
+```
+:::
+
+::: {.checkpoint}
+```{=html}
+<div class="quiz" data-quiz>
+  <p class="quiz-q">Vous avez modifié <code>analyse.R</code> et <code>rapport.qmd</code>, puis tapé <code>git add analyse.R</code> et <code>git commit -m "..."</code>. Que contient la photo ?</p>
+  <button type="button" class="quiz-opt">Les deux fichiers : un commit enregistre toujours tout.</button>
+  <button type="button" class="quiz-opt" data-right>Seulement <code>analyse.R</code> : seul ce qui est sélectionné entre dans le commit.</button>
+  <button type="button" class="quiz-opt">Rien : il fallait d'abord fermer les fichiers.</button>
+  <p class="quiz-explain" hidden>Le commit photographie la <em>sélection</em>, pas le dossier entier. <code>rapport.qmd</code> reste modifié, en attente — <code>git status</code> vous le rappellera.</p>
+</div>
+```
+:::
+
+::: {.go-further}
+<summary>Pour aller plus loin — mes messages Git sont en anglais ?</summary>
+
+Selon l'installation, Git parle français ou anglais : `Sur la branche main` devient `On branch main`, `rien à valider` devient `nothing to commit, working tree clean`. Les commandes, elles, sont identiques partout. Les exemples de ce site utilisent les messages français ; si votre poste affiche l'anglais, la structure des messages reste exactement la même.
+:::
+
+```{=html}
+<div class="next-cta" data-animate>
+  <p>Vous savez prendre des photos. Apprenons maintenant à feuilleter l'album.</p>
+  <a class="btn-hero" href="03-historique.qmd">Séquence 03 — L'histoire</a>
+</div>
+```

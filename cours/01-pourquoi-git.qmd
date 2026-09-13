@@ -1,0 +1,172 @@
+---
+pagetitle: "01 · Pourquoi Git ? — Git sans douleur"
+---
+
+::: {.page-hero}
+<span class="eyebrow">Séquence 01 · Pourquoi Git ?</span>
+<span class="page-hero__num" aria-hidden="true">01</span>
+
+# Quelle est la bonne version ? {.unnumbered}
+
+[Avant de parler d'outil, parlons de vous. Quatre situations que vous avez déjà vécues — et une idée simple qui les résout toutes les quatre.]{.lede}
+:::
+
+## Situation 1 — La bonne version
+
+Vous rendez un rapport. Trois semaines plus tard, le commanditaire demande une modification. Vous ouvrez le dossier de l'étude :
+
+```{=html}
+<div class="chaos-scene" data-animate="fade">
+  <div class="chaos-files">
+    <span class="file-chip">rapport_final.docx</span>
+    <span class="file-chip">rapport_final2.docx</span>
+    <span class="file-chip">rapport_final_corrige.docx</span>
+    <span class="file-chip">rapport_final_vraiment_final.docx</span>
+  </div>
+  <div class="chaos-arrow" aria-hidden="true">?</div>
+  <div class="chaos-result">
+    <span class="file-chip">rapport.docx</span>
+    <div class="chaos-history" aria-hidden="true">
+      <span>Version transmise au commanditaire</span>
+      <span>Corrige le tableau 3</span>
+      <span>Première version complète</span>
+    </div>
+  </div>
+</div>
+```
+
+Laquelle a été envoyée ? `final2` est-il plus récent que `final_corrige` ? Personne ne sait. Et le pire : **vous non plus**, alors que c'est votre étude.
+
+::: {.checkpoint}
+Regardez le dossier d'une de vos études en cours. Combien de fichiers portent un nom du type `_v2`, `_final`, `_corrige`, `_OLD` ? Qu'est-ce qui vous ferait peur si vous deviez en supprimer trois ?
+:::
+
+```{=html}
+<div class="video-slot" data-animate>
+  <div class="video-slot__play" aria-hidden="true"></div>
+  <p class="video-slot__title">Mini-film — « La bonne version »</p>
+  <p class="video-slot__note">La vidéo sera ajoutée ici (assets/video/01-bonne-version.mp4).</p>
+</div>
+```
+
+## Situation 2 — « Vendredi, ça fonctionnait »
+
+Vendredi soir, votre programme `analyse.R` tournait parfaitement et produisait les bons chiffres. Lundi matin, après « juste deux ou trois petites retouches », plus rien ne marche.
+
+Vous aimeriez répondre à une question toute simple :
+
+> **Qu'est-ce qui a changé entre vendredi et maintenant ?**
+
+Sans outil, c'est presque impossible : votre mémoire est floue, le fichier a été écrasé, et la corbeille ne contient que la version d'il y a dix minutes.
+
+::: {.before-after data-animate="stagger"}
+::: {.before}
+**Sans mémoire des versions**
+
+- « Je crois que j'ai touché au filtre… ou au seuil ? »
+- On recopie une vieille sauvegarde en croisant les doigts.
+- Une demi-journée perdue à comparer des fichiers à l'œil nu.
+:::
+
+::: {.after}
+**Avec une mémoire des versions**
+
+- La liste exacte des lignes modifiées depuis vendredi.
+- L'état complet de vendredi, récupérable en une commande.
+- Dix minutes, et la certitude de n'avoir rien perdu.
+:::
+:::
+
+## Situation 3 — « Qui a changé ça ? »
+
+Le tableau 4 du rapport affiche un taux de 12,4 % au lieu des 11,9 % validés le mois dernier. Trois personnes sont intervenues sur l'étude.
+
+::: {.duo data-animate="stagger"}
+::: {.duo-card}
+<span class="duo-name" data-initial="M">Marie</span>
+
+« Moi je n'ai touché qu'au graphique de la page 6, je suis formelle. »
+:::
+
+::: {.duo-card .duo-b}
+<span class="duo-name" data-initial="F">Franck</span>
+
+« J'ai peut-être relancé le traitement… mais je n'ai rien modifié. Enfin, je crois. »
+:::
+:::
+
+Trois questions restent sans réponse : **qui** a modifié le calcul, **quand**, et surtout **pourquoi** ? Peut-être que ce 12,4 % est une correction volontaire et parfaitement justifiée. Impossible à savoir.
+
+## Situation 4 — Le voyage dans le temps
+
+Ce qu'il vous faudrait, au fond, c'est une machine à remonter le temps. Elle n'existe pas — mais il existe presque mieux.
+
+::: {.concept}
+Git ne remonte pas le temps. Git **conserve les états successifs de votre projet**, comme un album photo daté et commenté. À tout moment vous pouvez rouvrir l'album, regarder une photo d'il y a trois semaines, et même récupérer un fichier tel qu'il était sur cette photo.
+:::
+
+Chaque « photo » retient trois choses :
+
+::: {data-animate="stagger"}
+1. **L'état complet du projet** à cet instant — tous les fichiers, pas un seul.
+2. **Qui** a pris la photo, et **quand** — automatiquement.
+3. **Pourquoi** — un petit message que vous écrivez vous-même.
+:::
+
+Reprenons nos quatre situations avec cet album photo en main :
+
+| Situation | Réponse de l'album |
+|---|---|
+| Quelle est la bonne version ? | Un seul fichier, et la liste datée de toutes ses versions. |
+| Vendredi ça fonctionnait | On rouvre la photo de vendredi et on compare. |
+| Qui a changé ça ? | Chaque photo porte un nom, une date et une explication. |
+| Voyage dans le temps | Toutes les photos restent accessibles, pour toujours. |
+
+: {tbl-colwidths="[40,60]"}
+
+<p class="punchline">Git est cet album photo. On dit « donner une mémoire au projet » — et chaque photo s'appelle un <em>commit</em>.</p>
+
+## Votre première carte de Git
+
+Voici la carte mentale que nous allons enrichir toute la journée. Pour l'instant, elle est minuscule — et c'est très bien ainsi :
+
+```{=html}
+<div class="git-map" data-animate="stagger" aria-label="Schéma : votre travail devient un commit dans l'historique.">
+  <div class="gm-zone is-focus">
+    <span class="gm-label">Votre travail</span>
+    <span class="gm-desc">analyse.R, rapport.qmd… vos fichiers, comme d'habitude.</span>
+  </div>
+  <div class="gm-arrow"><code>« prendre une photo »</code></div>
+  <div class="gm-zone">
+    <span class="gm-label">L'historique</span>
+    <span class="gm-desc">L'album des états successifs du projet : les commits.</span>
+  </div>
+</div>
+```
+
+Rien d'autre ne change dans votre façon de travailler : vous continuez d'éditer vos fichiers dans RStudio, VS Code ou votre éditeur habituel. Git observe le dossier, et photographie **quand vous le décidez**.
+
+::: {.go-further}
+<summary>Pour aller plus loin — « système de gestion de versions distribué » ?</summary>
+
+C'est la définition officielle de Git, et vous comprenez maintenant chacun de ses mots : *gestion de versions* = l'album photo ; *système* = l'outil qui le tient à jour ; *distribué* = chaque personne possède une copie complète de l'album sur son poste (nous verrons cela en séquence 06). Git a été créé en 2005 pour le développement du noyau Linux ; il est devenu l'outil standard bien au-delà de l'informatique — y compris à l'Insee et dans la statistique publique, pour les programmes R et Python comme pour les publications Quarto.
+:::
+
+::: {.checkpoint}
+```{=html}
+<div class="quiz" data-quiz>
+  <p class="quiz-q">Dans votre pratique actuelle, que se passe-t-il quand vous enregistrez <code>analyse.R</code> dans votre éditeur ?</p>
+  <button type="button" class="quiz-opt" >L'ancienne version est conservée quelque part automatiquement.</button>
+  <button type="button" class="quiz-opt" data-right>L'ancienne version est définitivement écrasée.</button>
+  <button type="button" class="quiz-opt">L'éditeur me demande si je veux garder l'ancienne version.</button>
+  <p class="quiz-explain" hidden>C'est exactement le problème : « Enregistrer » écrase. Git ajoute l'étage qui manque — enregistrer <em>et</em> garder la trace de chaque état antérieur.</p>
+</div>
+```
+:::
+
+```{=html}
+<div class="next-cta" data-animate>
+  <p>L'idée est là. Passons au geste : prendre notre première photo.</p>
+  <a class="btn-hero" href="02-premier-commit.qmd">Séquence 02 — Premier commit</a>
+</div>
+```
