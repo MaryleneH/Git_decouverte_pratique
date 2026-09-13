@@ -150,11 +150,12 @@ Résistez à la tentation de taguer tous les jours « au cas où » : les commit
 ```
 :::
 
-::: {.go-further}
+<details class="go-further">
 <summary>Pour aller plus loin — conventions de nommage des versions</summary>
 
 Dans le monde logiciel, les tags suivent souvent la « gestion sémantique de version » : `v1.0.0`, `v1.1.0`, `v2.0.0`. Pour des études statistiques, un nommage par événement est souvent plus parlant : `livraison-2026-v1`, `publication-ip-1899`, `diffusion-2026-t3`. L'essentiel est d'adopter **une convention d'équipe et de s'y tenir** — le nom doit suffire à comprendre de quelle version officielle il s'agit. Le `-a` de `git tag -a` crée un tag « annoté » : daté, signé de son auteur et porteur d'un message — toujours préférable pour un jalon officiel.
-:::
+
+</details>
 
 ```{=html}
 <div class="next-cta" data-animate>

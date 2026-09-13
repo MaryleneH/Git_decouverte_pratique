@@ -286,6 +286,29 @@ hr {
   }
 }
 
+// --- Débordements maîtrisés ----------------------------------
+// Les blocs de code défilent horizontalement au lieu d'élargir
+// la page ; les tableaux deviennent défilants sur petit écran.
+pre, div.sourceCode {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+// Garde-fou : la page ne défile jamais horizontalement
+// (la grille Quarto laisse parfois dépasser la TOC de quelques
+// pixels sur tablette). `clip` ne crée pas de conteneur de
+// défilement, le positionnement sticky reste fonctionnel.
+body {
+  overflow-x: clip;
+}
+
+@media (max-width: 767px) {
+  .content table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
 // --- Focus visible partout -----------------------------------
 a:focus-visible,
 button:focus-visible,

@@ -155,11 +155,12 @@ Si `git push` est refusé avec un message du type *« le distant contient du tra
 ```
 :::
 
-::: {.go-further}
+<details class="go-further">
 <summary>Pour aller plus loin — que fait exactement `git fetch` de plus prudent que `pull` ?</summary>
 
 `git fetch` range les commits téléchargés dans une copie miroir du distant (visible sous le nom `origin/main`) sans toucher ni à vos fichiers ni à votre `main`. Vous pouvez alors comparer tranquillement : `git log main..origin/main --oneline` liste ce que l'équipe a fait et que vous n'avez pas encore intégré. Quand vous êtes prêt, `git pull` fait l'intégration. Avec l'habitude, beaucoup gardent `pull` au quotidien et sortent `fetch` quand ils veulent inspecter avant d'intégrer — par exemple au retour de congés.
-:::
+
+</details>
 
 ```{=html}
 <div class="next-cta" data-animate>

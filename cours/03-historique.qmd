@@ -154,7 +154,7 @@ Un commit doit permettre de retrouver **ce qui** a changé — Git s'en charge t
 ```
 :::
 
-::: {.go-further}
+<details class="go-further">
 <summary>Pour aller plus loin — trois variantes utiles de `git log`</summary>
 
 - `git log` (sans option) : la version détaillée, avec auteur, date et message complet de chaque commit ;
@@ -162,7 +162,8 @@ Un commit doit permettre de retrouver **ce qui** a changé — Git s'en charge t
 - `git log --since="2 weeks ago"` : les commits des deux dernières semaines, pratique pour préparer un point d'équipe.
 
 Et pour répondre à « qui a écrit cette ligne précise ? », il existe `git blame analyse.R` — affichage ligne par ligne du dernier commit qui a modifié chacune.
-:::
+
+</details>
 
 ```{=html}
 <div class="next-cta" data-animate>
