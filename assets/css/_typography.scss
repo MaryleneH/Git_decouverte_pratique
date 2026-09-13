@@ -91,7 +91,18 @@ p code, li code, td code, h2 code, h3 code {
   background: var(--gsd-paper-soft);
   border: 1px solid var(--gsd-line);
   color: var(--gsd-teal-deep);
-  white-space: nowrap;
+  // La feuille de coloration de Quarto impose `pre` : le code
+  // inline doit pouvoir passer à la ligne sur petit écran.
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+// Sur grand écran seulement : une commande inline ne se coupe pas
+// au milieu. Sur mobile, elle doit pouvoir passer à la ligne.
+@media (min-width: 768px) {
+  p code, li code, td code {
+    white-space: nowrap;
+  }
 }
 
 strong {
