@@ -1,0 +1,22 @@
+# Sortie de rendu Quarto
+/_site/
+/.quarto/
+/_freeze/
+
+# Fichiers temporaires d'édition
+*.html.md
+*~
+.DS_Store
+Thumbs.db
+
+# Environnements locaux éventuels
+.Rproj.user/
+.Rhistory
+.RData
+__pycache__/
+.venv/
+venv/
+
+# Fichiers d'IDE
+.vscode/
+.idea/
