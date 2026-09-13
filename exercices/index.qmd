@@ -1,0 +1,91 @@
+---
+pagetitle: "Exercices récapitulatifs — Git sans douleur"
+---
+
+::: {.page-hero}
+<span class="eyebrow">Entraînement · Après la journée</span>
+
+# Exercices récapitulatifs {.unnumbered}
+
+[Cinq situations réalistes, sans autre aide que vos souvenirs de la journée. Les réponses sont repliées : essayez d'abord, vérifiez ensuite.]{.lede}
+:::
+
+## 1 · Le lundi matin
+
+Vous arrivez au bureau. Vous avez travaillé jeudi et vendredi sur l'étude commune ; vos collègues aussi, peut-être. Dans quel ordre lancez-vous vos trois premières commandes, et pourquoi ?
+
+<details class="reveal">
+<summary>Votre réponse d'abord — puis comparez</summary>
+
+1. `git pull` — je me mets au niveau du travail poussé par l'équipe ;
+2. `git status` — je vérifie qu'il ne traînait pas chez moi une modification oubliée de vendredi ;
+3. `git log --oneline -5` — je lis ce qui s'est passé pour reprendre le fil.
+
+L'ordre exact de 2 et 3 se discute ; l'important est le `pull` en premier, et de ne jamais commencer à modifier avant d'avoir regardé où on en est.
+</details>
+
+## 2 · Le brouillon indésirable
+
+`git status` affiche trois fichiers modifiés : `traitement.py` (la vraie correction du jour), `rapport.qmd` (une coquille corrigée) et `test_brouillon.py` (des essais sans lendemain). Vous voulez un commit propre avec la correction et la coquille, et *jeter* les essais. Quelles commandes ?
+
+<details class="reveal">
+<summary>Votre réponse d'abord — puis comparez</summary>
+
+```bash
+git add traitement.py rapport.qmd
+git status                      # relecture : seuls les deux bons fichiers sont prêts
+git commit -m "Corrige le traitement des NA et une coquille du rapport"
+git restore test_brouillon.py   # les essais disparaissent
+```
+
+Variante défendable : deux commits séparés (un pour la correction, un pour la coquille), encore plus lisibles dans l'historique.
+</details>
+
+## 3 · L'archéologie
+
+Un chiffre du rapport publié en mars vous semble étrange. Le tag `publication-2026-mars` existe. Comment consulter le programme exactement tel qu'il était à la publication, puis revenir au présent ?
+
+<details class="reveal">
+<summary>Votre réponse d'abord — puis comparez</summary>
+
+```bash
+git switch --detach publication-2026-mars
+# ... on regarde, on relance les calculs si besoin ...
+git switch main
+```
+
+Visite en lecture seule : on regarde le passé, on ne commite rien pendant la visite, et `git switch main` ramène toujours à la maison.
+</details>
+
+## 4 · L'annulation propre
+
+Le commit `d4e5f6a`, poussé hier sur GitLab, introduisait un mauvais champ de population — les collègues l'ont déjà récupéré. Comment corriger la situation sans réécrire l'histoire, et que verront vos collègues ?
+
+<details class="reveal">
+<summary>Votre réponse d'abord — puis comparez</summary>
+
+```bash
+git revert d4e5f6a
+git push
+```
+
+`revert` crée un **nouveau** commit qui défait le mauvais ; le `push` le partage. Vos collègues récupéreront l'annulation par un simple `git pull` — l'historique de chacun reste cohérent, et l'erreur comme sa correction restent documentées.
+</details>
+
+## 5 · La passation express
+
+Vous partez en formation deux semaines ; une collègue reprend votre étude demain matin. Elle connaît Git mais pas votre projet. Citez trois choses de votre dépôt qui doivent être impeccables ce soir — et la commande qu'elle tapera en premier demain.
+
+<details class="reveal">
+<summary>Votre réponse d'abord — puis comparez</summary>
+
+À soigner ce soir : **tout pousser** (`git status` propre, puis `git push` — rien ne doit rester uniquement sur votre poste) ; **le README** (objectif, données, ordre d'exécution des programmes) ; **les messages des derniers commits** (le pourquoi des choix en cours, pas juste « maj »).
+
+Demain matin, elle tapera : `git clone <adresse-du-projet>` — et aura tout, historique compris.
+</details>
+
+------------------------------------------------------------------------
+
+::: {.remember}
+Vous avez tout réussi sans regarder les réponses ? Alors vous êtes prêt·e pour le Jour 2. Des hésitations ? C'est normal — refaites simplement la séquence correspondante : [le geste de base](../cours/02-premier-commit.qmd), [revenir en arrière](../cours/04-revenir.qmd) ou [la synchronisation](../cours/07-local-distant.qmd).
+:::

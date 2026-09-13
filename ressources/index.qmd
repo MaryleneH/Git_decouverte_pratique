@@ -1,0 +1,99 @@
+---
+pagetitle: "Mémo des commandes — Git sans douleur"
+---
+
+::: {.page-hero}
+<span class="eyebrow">Référence · À garder sous la main</span>
+
+# Mémo des commandes du Jour 1 {.unnumbered}
+
+[Toutes les commandes de la journée, classées par intention. À imprimer, à épingler, à retrouver dans trois mois.]{.lede}
+:::
+
+## Regarder — sans aucun risque
+
+Ces commandes ne modifient jamais rien. Lancez-les autant que vous voulez.
+
+| J'ai besoin de… | Commande |
+|---|---|
+| Savoir où j'en suis | `git status` |
+| Voir le détail de mes modifications non sélectionnées | `git diff` |
+| Relire ce qui entrera dans le prochain commit | `git diff --staged` |
+| Feuilleter l'album, une ligne par photo | `git log --oneline` |
+| Ouvrir une photo en grand (qui, quand, pourquoi, quoi) | `git show <commit>` |
+| Lister les versions officielles | `git tag` |
+| Savoir vers quel dépôt distant je pousse | `git remote -v` |
+
+: {tbl-colwidths="[55,45]"}
+
+## Enregistrer — le geste en trois temps
+
+| J'ai besoin de… | Commande |
+|---|---|
+| Sélectionner un fichier pour la prochaine photo | `git add <fichier>` |
+| Tout sélectionner (avec relecture ensuite !) | `git add .` |
+| Prendre la photo, avec son pourquoi | `git commit -m "message"` |
+
+: {tbl-colwidths="[55,45]"}
+
+## Revenir — trois intentions, trois gestes
+
+| J'ai besoin de… | Commande |
+|---|---|
+| Visiter l'état d'un ancien commit | `git switch --detach <commit>` |
+| Revenir au présent après une visite | `git switch main` |
+| Jeter mes modifications non commitées d'un fichier | `git restore <fichier>` |
+| Récupérer un fichier tel qu'il était à un commit | `git restore --source=<commit> <fichier>` |
+| Annuler proprement un commit (même partagé) | `git revert <commit>` |
+
+: {tbl-colwidths="[55,45]"}
+
+## Marquer — les versions officielles
+
+| J'ai besoin de… | Commande |
+|---|---|
+| Poser un jalon officiel sur l'état actuel | `git tag -a <nom> -m "message"` |
+| Examiner un jalon | `git show <nom>` |
+| Partager un jalon sur GitLab | `git push origin <nom>` |
+
+: {tbl-colwidths="[55,45]"}
+
+## Synchroniser — entre mon poste et GitLab
+
+| J'ai besoin de… | Commande |
+|---|---|
+| Récupérer un projet depuis GitLab (une seule fois) | `git clone <adresse>` |
+| Me mettre au niveau de l'équipe (le matin) | `git pull` |
+| Voir ce qui est arrivé sans rien toucher chez moi | `git fetch` |
+| Partager mes commits (le soir, ou dès que c'est prêt) | `git push` |
+
+: {tbl-colwidths="[55,45]"}
+
+------------------------------------------------------------------------
+
+## Le vocabulaire de la journée
+
+Dépôt (*repository*)
+: Un dossier de projet, plus sa mémoire : l'ensemble des versions et de leur histoire.
+
+Commit
+: Une « photo » de l'état complet du projet, avec son auteur, sa date et un message qui explique le pourquoi.
+
+Sélection (*staging area*, *index*)
+: La zone où l'on compose la prochaine photo : seuls les fichiers ajoutés avec `git add` en feront partie.
+
+`main`
+: La ligne principale du projet — le présent. `git switch main` y ramène toujours.
+
+Tag
+: Un nom officiel et durable donné à un commit précis : la version livrée, publiée, validée.
+
+Local / distant
+: Local = votre poste, là où vous commitez. Distant = le dépôt hébergé (GitLab), là où l'équipe partage. `origin` est le surnom du distant.
+
+Git / GitLab
+: Git : l'outil de mémoire des versions, sur votre machine. GitLab : la plateforme qui héberge le dépôt commun et les services d'équipe autour.
+
+::: {.remember}
+En cas de doute, une commande ne présente jamais aucun risque et répond à la moitié des questions : `git status`. Commencez toujours par elle.
+:::
