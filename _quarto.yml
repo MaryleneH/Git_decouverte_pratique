@@ -1,0 +1,90 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - assets/js/
+    - assets/video/
+    - assets/img/
+
+lang: fr
+
+website:
+  title: "Git sans douleur"
+  description: "Jour 1 — Donner une mémoire à vos études statistiques. Formation Git/GitLab pour statisticiens."
+  favicon: assets/img/favicon.svg
+  page-navigation: true
+  back-to-top-navigation: false
+  bread-crumbs: false
+
+  navbar:
+    logo: assets/img/logo.svg
+    logo-alt: "Git sans douleur — accueil"
+    title: false
+    pinned: true
+    left:
+      - href: index.qmd
+        text: Accueil
+      - href: cours/01-pourquoi-git.qmd
+        text: La journée
+      - href: exercices/index.qmd
+        text: Exercices
+      - href: ressources/index.qmd
+        text: Mémo
+
+  sidebar:
+    - id: cours
+      style: floating
+      collapse-level: 2
+      contents:
+        - href: index.qmd
+          text: "Accueil — Git sans douleur"
+        - section: "Le parcours du jour"
+          contents:
+            - href: cours/01-pourquoi-git.qmd
+              text: "01 · Pourquoi Git ?"
+            - href: cours/02-premier-commit.qmd
+              text: "02 · Premier commit"
+            - href: cours/03-historique.qmd
+              text: "03 · L'histoire"
+            - href: cours/04-revenir.qmd
+              text: "04 · Revenir"
+            - href: cours/05-tags.qmd
+              text: "05 · Versions officielles"
+            - href: cours/06-gitlab.qmd
+              text: "06 · GitLab"
+            - href: cours/07-local-distant.qmd
+              text: "07 · Synchroniser"
+            - href: cours/08-collaboration.qmd
+              text: "08 · Collaborer"
+            - href: cours/09-mission.qmd
+              text: "09 · Mission"
+        - section: "Pour aller plus loin"
+          contents:
+            - href: exercices/index.qmd
+              text: "Exercices récapitulatifs"
+            - href: ressources/index.qmd
+              text: "Mémo des commandes"
+
+  page-footer:
+    left: "Git sans douleur — Jour 1 · Formation Git/GitLab pour statisticiens"
+    right: "Construit avec [Quarto](https://quarto.org)"
+
+format:
+  html:
+    theme:
+      light: [assets/css/theme.scss]
+    highlight-style: github
+    toc: true
+    toc-title: "Sur cette page"
+    toc-depth: 2
+    smooth-scroll: true
+    link-external-newwindow: true
+    include-after-body: assets/partials/scripts.html
+    grid:
+      sidebar-width: 290px
+      body-width: 860px
+      margin-width: 240px
+      gutter-width: 2.5rem
+
+execute:
+  freeze: auto
