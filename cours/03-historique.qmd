@@ -1,0 +1,172 @@
+---
+pagetitle: "03 · L'histoire — Git sans douleur"
+---
+
+::: {.page-hero}
+<span class="eyebrow">Séquence 03 · Comprendre l'historique</span>
+<span class="page-hero__num" aria-hidden="true">03</span>
+
+# Feuilleter l'album {.unnumbered}
+
+[Vos commits s'accumulent, photo après photo. L'historique devient le journal de bord de l'étude — à condition de savoir le lire.]{.lede}
+:::
+
+## La liste des photos : `git log`
+
+Une seule commande pour feuilleter l'album, du plus récent au plus ancien :
+
+```{=html}
+<div class="terminal-demo" data-title="etude-population">
+```
+```bash
+git log --oneline
+```
+```text
+8f31c2a Modifie le calcul de l'indicateur
+51bd882 Version stable avant modification
+a904ef1 Ajoute le graphique par sexe
+2c9e0d4 Initialise l'étude
+```
+```{=html}
+</div>
+```
+
+Chaque ligne est un commit : à gauche son **identifiant** (une petite étiquette comme `51bd882`, attribuée automatiquement), à droite **votre message**. L'option `--oneline` compacte l'affichage : une photo par ligne.
+
+::: {.concept}
+L'identifiant d'un commit est son **nom propre**. Il permet de désigner sans ambiguïté un état précis du projet : « la version `51bd882` » est infiniment plus fiable que « la version d'avant les modifications de la semaine dernière, je crois ». Sept caractères suffisent, pas besoin de le mémoriser — on le copie depuis `git log`.
+:::
+
+## La frise du projet
+
+Le même historique, vu comme une frise. Survolez les commits — chacun est un état complet du projet, pas seulement « ce qui a changé » :
+
+```{=html}
+<ol class="git-timeline" data-animate="timeline" aria-label="Frise des commits, du plus récent en haut au plus ancien en bas.">
+  <li class="tl-commit">
+    <span class="tl-hash">8f31c2a</span>
+    <span class="tl-msg">Modifie le calcul de l'indicateur</span>
+    <span class="tl-meta">Franck · aujourd'hui, 11 h 42</span>
+  </li>
+  <li class="tl-commit">
+    <span class="tl-hash">51bd882</span>
+    <span class="tl-msg">Version stable avant modification</span>
+    <span class="tl-meta">Marie · hier, 17 h 03</span>
+  </li>
+  <li class="tl-commit">
+    <span class="tl-hash">a904ef1</span>
+    <span class="tl-msg">Ajoute le graphique par sexe</span>
+    <span class="tl-meta">Marie · lundi, 9 h 30</span>
+  </li>
+  <li class="tl-commit">
+    <span class="tl-hash">2c9e0d4</span>
+    <span class="tl-msg">Initialise l'étude</span>
+    <span class="tl-meta">Marie · il y a trois semaines</span>
+  </li>
+</ol>
+```
+
+Notez le sens de lecture : le temps monte. Le commit du bas est le plus ancien, celui du haut est l'état actuel. La frise se construit **toujours vers le haut**, un commit à la fois — exactement comme votre étude avance.
+
+## Ouvrir une photo : `git show`
+
+`git log` donne la liste ; `git show` ouvre une photo en grand. Donnez-lui l'identifiant d'un commit :
+
+```{=html}
+<div class="terminal-demo" data-title="etude-population">
+```
+```bash
+git show 51bd882
+```
+```text
+commit 51bd882c1f9e2d3a4b5c6d7e8f9a0b1c2d3e4f5a
+Auteur : Marie Dupont <marie.dupont@exemple.fr>
+Date :   jeudi 12 septembre 2026, 17:03
+
+    Version stable avant modification
+
+--- a/analyse.R
++++ b/analyse.R
+@@ -8,6 +8,9 @@
+ pop <- read_parquet("donnees/population.parquet")
++# Champ validé avec le service producteur
++pop <- filter(pop, champ == "France hors Mayotte")
+```
+```{=html}
+</div>
+```
+
+Tout y est : qui, quand, le message, et le détail exact des lignes modifiées. C'est la réponse complète au « Qui a changé ça ? » de la séquence 01.
+
+::: {.try}
+Dans votre dossier d'exercice de la séquence 02 :
+
+```bash
+git log --oneline
+git show <identifiant>
+```
+
+Remplacez `<identifiant>` par l'un des identifiants affichés par `git log` (copiez-collez les 7 caractères). Retrouvez la modification que vous aviez faite.
+:::
+
+## Pourquoi 43 ans ? — une histoire vraie (ou presque)
+
+Dans le programme de calcul des estimations de départ, une ligne intrigue tout le monde :
+
+```r
+seuil_age <- 43   # pourquoi 43 ?
+```
+
+Personne dans le service ne sait plus d'où vient ce seuil. Heureusement, l'historique s'en souvient. Premier indice, le commit d'origine :
+
+```{=html}
+<ol class="git-timeline" data-animate="timeline">
+  <li class="tl-commit">
+    <span class="tl-hash">b7e4a91</span>
+    <span class="tl-msg">Justifie le seuil de 43 ans</span>
+    <span class="tl-meta">Franck · mars 2026 — « Seuil = génération ayant 40 ans en 2023, millésime de référence des estimations. Validé en réunion méthodologique du 12/03. »</span>
+  </li>
+  <li class="tl-commit">
+    <span class="tl-hash">4d02c7f</span>
+    <span class="tl-msg">Fixe le seuil de population à 43 ans</span>
+    <span class="tl-meta">Marie · janvier 2026 — « Premier réglage, à confirmer. »</span>
+  </li>
+</ol>
+```
+
+Marie avait posé 43 ans comme premier réglage — clin d'œil à sa propre génération de naissance, à confirmer. Deux mois plus tard, Franck **ne change pas la valeur** mais commite la justification méthodologique : la génération qui a 40 ans en 2023, millésime de référence des estimations.
+
+Le chiffre est le même ; le projet, lui, a changé : un réglage provisoire est devenu un choix documenté. Sans ces deux commits, il ne resterait qu'un `43` mystérieux dans le code.
+
+::: {.remember}
+Un commit doit permettre de retrouver **ce qui** a changé — Git s'en charge tout seul — et si possible **pourquoi** — cela, personne ne peut l'écrire à votre place. Trente secondes de message aujourd'hui, des heures d'archéologie économisées dans un an.
+:::
+
+::: {.checkpoint}
+```{=html}
+<div class="quiz" data-quiz>
+  <p class="quiz-q">Un collègue vous demande : « c'était quoi déjà, l'état du programme avant la refonte de l'indicateur ? ». Quelle est la meilleure réponse ?</p>
+  <button type="button" class="quiz-opt">« Attends, je dois avoir une copie du dossier quelque part sur le réseau. »</button>
+  <button type="button" class="quiz-opt">« Aucune idée, c'était il y a trop longtemps. »</button>
+  <button type="button" class="quiz-opt" data-right>« <code>git log --oneline</code>, on repère le commit, et <code>git show</code> nous montre tout. »</button>
+  <p class="quiz-explain" hidden>L'historique répond en quelques secondes, avec certitude, et sans dépendre de la mémoire de quiconque. C'est toute la valeur des messages soignés.</p>
+</div>
+```
+:::
+
+::: {.go-further}
+<summary>Pour aller plus loin — trois variantes utiles de `git log`</summary>
+
+- `git log` (sans option) : la version détaillée, avec auteur, date et message complet de chaque commit ;
+- `git log --oneline -- analyse.R` : l'historique **d'un seul fichier** — précieux pour savoir qui a touché au programme de l'indicateur ;
+- `git log --since="2 weeks ago"` : les commits des deux dernières semaines, pratique pour préparer un point d'équipe.
+
+Et pour répondre à « qui a écrit cette ligne précise ? », il existe `git blame analyse.R` — affichage ligne par ligne du dernier commit qui a modifié chacune.
+:::
+
+```{=html}
+<div class="next-cta" data-animate>
+  <p>Lire le passé, c'est bien. Y retourner sans rien casser, c'est encore mieux.</p>
+  <a class="btn-hero" href="04-revenir.qmd">Séquence 04 — Revenir</a>
+</div>
+```
