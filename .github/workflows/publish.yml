@@ -26,6 +26,14 @@ jobs:
         with:
           version: 1.6.43
 
+      # Active GitHub Pages (source « GitHub Actions ») si ce n'est pas
+      # déjà fait — sans cette étape, le job deploy échoue tant que Pages
+      # n'a pas été activé manuellement dans Settings → Pages.
+      - name: Configurer GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - name: Rendre le site
         run: quarto render
 
