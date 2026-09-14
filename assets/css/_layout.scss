@@ -342,7 +342,15 @@ body {
       [screen-end];
   }
 
-  // Pages sans table des matières (accueil, mission)
+  // Pages sans table des matières (accueil, mission) : sans TOC à
+  // caser, la colonne de lecture peut être plus généreuse que sur
+  // les pages de cours. --gsd-fullwidth pilote cette largeur (la
+  // colonne vaut la variable moins 5rem de gouttières) — le ruban
+  // droit de l'accueil (_ribbon.scss) est calé sur ces valeurs.
+  :root {
+    --gsd-fullwidth: 895px; // colonne de 810px : fin à 1185px
+  }
+
   body.floating.fullcontent .page-columns {
     grid-template-columns:
       [screen-start] 1.5rem
@@ -351,11 +359,17 @@ body {
       [page-start-inset] minmax(58px, 174px)
       [body-start-outset] 58px
       [body-start] 2.5rem
-      [body-content-start] minmax(500px, calc(860px - 5rem))
+      [body-content-start] minmax(500px, calc(var(--gsd-fullwidth) - 5rem))
       [body-content-end] 2.5rem
       [body-end body-end-outset page-end-inset page-end] 5fr
       [screen-end-inset] 1.5rem
       [screen-end];
+  }
+}
+
+@media (min-width: 1512px) {
+  :root {
+    --gsd-fullwidth: 985px; // colonne de 900px : fin à 1275px
   }
 }
 
