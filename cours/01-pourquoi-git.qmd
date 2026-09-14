@@ -13,7 +13,40 @@ pagetitle: "01 · Pourquoi Git ? — Git sans douleur"
 
 ## Situation 1 — La bonne version
 
-Vous rendez un rapport. Trois semaines plus tard, le commanditaire demande une modification. Vous ouvrez le dossier de l'étude :
+::: {.film-row data-animate="stagger"}
+```{=html}
+<figure class="learning-film">
+  <div class="learning-film__media">
+    <video class="learning-film__video" controls playsinline preload="none" hidden
+           data-src="../assets/video/pourquoi-git-01-final-v12.mp4"
+           data-poster="../assets/img/video/pourquoi-git-01-poster.webp"
+           aria-label="Mini-film 1 — Quelle est la bonne version ?"></video>
+    <button type="button" class="learning-film__placeholder" disabled>
+      <span class="learning-film__num" aria-hidden="true">01</span>
+      <span class="learning-film__play" aria-hidden="true"></span>
+      <span class="learning-film__label">Quelle est la bonne version ?</span>
+      <span class="learning-film__status" data-role="status">Mini-film bientôt disponible</span>
+    </button>
+  </div>
+  <figcaption class="learning-film__caption">Mini-film 01 · Quatre « finales », aucune référence.</figcaption>
+</figure>
+```
+
+::: {.film-row__text}
+Vous rendez un rapport. Trois semaines plus tard, le commanditaire demande une modification. Vous ouvrez le dossier de l'étude — et vous retrouvez `rapport_final`, `rapport_final2`, `rapport_final_corrige`, `rapport_final_vraiment_final`…
+
+[Comment conserver l'histoire d'un projet **sans multiplier les fichiers** ?]{.film-question}
+:::
+:::
+
+<details class="go-further">
+<summary>Transcription du mini-film 01</summary>
+
+La transcription sera ajoutée avec la vidéo. L'essentiel de la situation est raconté dans le texte ci-contre : plusieurs versions d'un même rapport coexistent, et personne ne sait laquelle fait référence.
+
+</details>
+
+Ce que raconte le film, chacun l'a vécu :
 
 ```{=html}
 <div class="chaos-scene" data-animate="fade">
@@ -41,23 +74,42 @@ Laquelle a été envoyée ? `final2` est-il plus récent que `final_corrige` ? P
 Regardez le dossier d'une de vos études en cours. Combien de fichiers portent un nom du type `_v2`, `_final`, `_corrige`, `_OLD` ? Qu'est-ce qui vous ferait peur si vous deviez en supprimer trois ?
 :::
 
-```{=html}
-<div class="video-slot" data-animate>
-  <div class="video-slot__play" aria-hidden="true"></div>
-  <p class="video-slot__title">Mini-film — « La bonne version »</p>
-  <p class="video-slot__note">La vidéo sera ajoutée ici (assets/video/01-bonne-version.mp4).</p>
-</div>
-```
-
 ## Situation 2 — « Vendredi, ça fonctionnait »
 
+::: {.film-row .film-row--flip data-animate="stagger"}
+```{=html}
+<figure class="learning-film">
+  <div class="learning-film__media">
+    <video class="learning-film__video" controls playsinline preload="none" hidden
+           data-src="../assets/video/pourquoi-git-02-vendredi-ca-marchait.mp4"
+           data-poster="../assets/img/video/pourquoi-git-02-poster.webp"
+           aria-label="Mini-film 2 — Vendredi, ça fonctionnait"></video>
+    <button type="button" class="learning-film__placeholder" disabled>
+      <span class="learning-film__num" aria-hidden="true">02</span>
+      <span class="learning-film__play" aria-hidden="true"></span>
+      <span class="learning-film__label">Vendredi, ça fonctionnait</span>
+      <span class="learning-film__status" data-role="status">Mini-film bientôt disponible</span>
+    </button>
+  </div>
+  <figcaption class="learning-film__caption">Mini-film 02 · Trois « petites retouches » plus tard…</figcaption>
+</figure>
+```
+
+::: {.film-row__text}
 Vendredi soir, votre programme `analyse.R` tournait parfaitement et produisait les bons chiffres. Lundi matin, après « juste deux ou trois petites retouches », plus rien ne marche.
 
-Vous aimeriez répondre à une question toute simple :
+[Je sais qu'un état correct de mon projet **a existé**. Comment le retrouver précisément ?]{.film-question}
+:::
+:::
 
-> **Qu'est-ce qui a changé entre vendredi et maintenant ?**
+<details class="go-further">
+<summary>Transcription du mini-film 02</summary>
 
-Sans outil, c'est presque impossible : votre mémoire est floue, le fichier a été écrasé, et la corbeille ne contient que la version d'il y a dix minutes.
+La transcription sera ajoutée avec la vidéo. La situation : une analyse qui fonctionnait vendredi ne fonctionne plus après plusieurs modifications, et impossible de dire lesquelles sont en cause.
+
+</details>
+
+Sans outil, c'est presque impossible : votre mémoire est floue, le fichier a été écrasé, et la corbeille ne contient que la version d'il y a dix minutes. L'idée qui change tout : un outil qui **conserve les états successifs du projet** — l'état de vendredi existe encore quelque part, intact.
 
 ::: {.before-after data-animate="stagger"}
 ::: {.before}
@@ -79,7 +131,40 @@ Sans outil, c'est presque impossible : votre mémoire est floue, le fichier a é
 
 ## Situation 3 — « Qui a changé ça ? »
 
+::: {.film-row data-animate="stagger"}
+```{=html}
+<figure class="learning-film">
+  <div class="learning-film__media">
+    <video class="learning-film__video" controls playsinline preload="none" hidden
+           data-src="../assets/video/pourquoi-git-03-qui-a-change-ca.mp4"
+           data-poster="../assets/img/video/pourquoi-git-03-poster.webp"
+           aria-label="Mini-film 3 — Qui a changé ça ?"></video>
+    <button type="button" class="learning-film__placeholder" disabled>
+      <span class="learning-film__num" aria-hidden="true">03</span>
+      <span class="learning-film__play" aria-hidden="true"></span>
+      <span class="learning-film__label">Qui a changé ça ?</span>
+      <span class="learning-film__status" data-role="status">Mini-film bientôt disponible</span>
+    </button>
+  </div>
+  <figcaption class="learning-film__caption">Mini-film 03 · Un taux a changé. Personne ne sait pourquoi.</figcaption>
+</figure>
+```
+
+::: {.film-row__text}
 Le tableau 4 du rapport affiche un taux de 12,4 % au lieu des 11,9 % validés le mois dernier. Trois personnes sont intervenues sur l'étude.
+
+[**Qui** a modifié le calcul, **quand** — et surtout **pourquoi** ?]{.film-question}
+:::
+:::
+
+<details class="go-further">
+<summary>Transcription du mini-film 03</summary>
+
+La transcription sera ajoutée avec la vidéo. La situation : un résultat statistique a changé, et l'équipe cherche qui a fait la modification, quand, et pour quelle raison.
+
+</details>
+
+Écoutez l'équipe :
 
 ::: {.duo data-animate="stagger"}
 ::: {.duo-card}
@@ -95,11 +180,38 @@ Le tableau 4 du rapport affiche un taux de 12,4 % au lieu des 11,9 % validés le
 :::
 :::
 
-Trois questions restent sans réponse : **qui** a modifié le calcul, **quand**, et surtout **pourquoi** ? Peut-être que ce 12,4 % est une correction volontaire et parfaitement justifiée. Impossible à savoir.
+Peut-être que ce 12,4 % est une correction volontaire et parfaitement justifiée. Impossible à savoir — à moins qu'un outil garde **la trace de chaque modification** : son historique, son auteur, sa date, et le message qui explique le changement.
 
 ## Situation 4 — Le voyage dans le temps
 
-Ce qu'il vous faudrait, au fond, c'est une machine à remonter le temps. Elle n'existe pas — mais il existe presque mieux.
+::: {data-animate="fade"}
+```{=html}
+<figure class="learning-film learning-film--wide">
+  <div class="learning-film__media">
+    <video class="learning-film__video" controls playsinline preload="none" hidden
+           data-src="../assets/video/pourquoi-git-04-voyage-dans-le-temps.mp4"
+           data-poster="../assets/img/video/pourquoi-git-04-poster.webp"
+           aria-label="Mini-film 4 — Le voyage dans le temps"></video>
+    <button type="button" class="learning-film__placeholder" disabled>
+      <span class="learning-film__num" aria-hidden="true">04</span>
+      <span class="learning-film__play" aria-hidden="true"></span>
+      <span class="learning-film__label">Le voyage dans le temps</span>
+      <span class="learning-film__status" data-role="status">Mini-film bientôt disponible</span>
+    </button>
+  </div>
+  <figcaption class="learning-film__caption">Mini-film 04 · « Juste avant, ça fonctionnait. Je voudrais simplement revenir à avant ma modification. »</figcaption>
+</figure>
+```
+:::
+
+<details class="go-further">
+<summary>Transcription du mini-film 04</summary>
+
+La transcription sera ajoutée avec la vidéo. La situation : Marie vient de faire une modification et voudrait simplement revenir à l'état d'avant — le monde se rembobine symboliquement.
+
+</details>
+
+<p class="punchline">Git ne remonte pas le temps. Mais il permet de <em>retrouver l'histoire</em> de votre projet.</p>
 
 ::: {.concept}
 Git ne remonte pas le temps. Git **conserve les états successifs de votre projet**, comme un album photo daté et commenté. À tout moment vous pouvez rouvrir l'album, regarder une photo d'il y a trois semaines, et même récupérer un fichier tel qu'il était sur cette photo.
@@ -112,6 +224,23 @@ Chaque « photo » retient trois choses :
 2. **Qui** a pris la photo, et **quand** — automatiquement.
 3. **Pourquoi** — un petit message que vous écrivez vous-même.
 :::
+
+Et cette histoire se consulte en une seule commande — un simple aperçu ici, nous la pratiquerons tranquillement en séquence 03 :
+
+```{=html}
+<div class="terminal-demo" data-title="etude-population">
+```
+```bash
+git log --oneline
+```
+```text
+8f31c2a Modifie le calcul de l'indicateur
+51bd882 Version stable avant modification
+a904ef1 Ajoute le graphique par sexe
+```
+```{=html}
+</div>
+```
 
 Reprenons nos quatre situations avec cet album photo en main :
 
