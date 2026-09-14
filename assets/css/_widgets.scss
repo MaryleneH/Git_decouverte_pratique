@@ -51,6 +51,25 @@
   }
 }
 
+// Sur desktop, la colonne de l'accueil s'élargit (--gsd-fullwidth,
+// voir _layout.scss) : le héro et la scène en profitent pleinement,
+// avec une hiérarchie de largeurs — titre très large, accroche
+// large mais lisible, paragraphes courants toujours bornés à 68ch.
+@media (min-width: 1200px) {
+  .home-hero h1 {
+    max-width: none;
+  }
+
+  .home-hero .home-hero__lede {
+    max-width: 52ch;
+    font-size: 1.3rem;
+  }
+
+  .chaos-scene {
+    max-width: 780px;
+  }
+}
+
 // La scène : les fichiers en désordre deviennent un historique
 .chaos-scene {
   max-width: 640px;
