@@ -14,6 +14,10 @@
 
   function classifyLine(text) {
     var t = text;
+    // En-têtes de diff : les noms de fichiers (--- a/…, +++ b/…) sont du
+    // texte principal ; les repères de position (@@ … @@) des métadonnées.
+    if (/^(---|\+\+\+)\s/.test(t)) return "t-bold";
+    if (/^@@/.test(t)) return "t-meta";
     if (/^\+(?!\+\+)/.test(t)) return "t-green";
     if (/^-(?!--)/.test(t)) return "t-red";
     if (/(modifi[ée]\s?:|modified:|nouveau fichier\s?:|new file:)/i.test(t)) return "t-yellow";

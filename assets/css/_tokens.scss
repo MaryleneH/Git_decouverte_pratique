@@ -26,8 +26,13 @@
   --gsd-night: #1a1723;
   --gsd-night-soft: #262231;
   --gsd-night-line: #3a3448;
+  // Échelle de texte sur fond nuit — 3 niveaux, tous AA sur --gsd-night :
+  //   ink   (principal)  : commandes, fichiers, résultats clés  ~14.2:1
+  //   ink-2 (secondaire) : sortie standard, contexte de diff    ~10.4:1
+  //   muted (métadonnées): @@, commentaires, titre du terminal   ~7.5:1
   --gsd-night-ink: #e8e5f0;
-  --gsd-night-muted: #a49dbb;
+  --gsd-night-ink-2: #c9c4da;
+  --gsd-night-muted: #aca6c2;
   --gsd-term-green: #7ee2b8;
   --gsd-term-yellow: #f5d76e;
   --gsd-term-red: #ff9d8f;
