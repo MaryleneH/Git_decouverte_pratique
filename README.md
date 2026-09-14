@@ -104,20 +104,32 @@ déployable sur n'importe quel serveur web (ou consultable en local).
 
 ## Ajouter les mini-films
 
-Déposez les vidéos dans `assets/video/` (par exemple
-`01-bonne-version.mp4`), puis remplacez le contenu d'un emplacement
-`.video-slot` par un lecteur :
+La séquence « Pourquoi Git ? » attend quatre vidéos. Il suffit de déposer
+les fichiers — aucun code à modifier, `films.js` détecte leur présence et
+active la lecture (tant qu'ils sont absents, un placeholder élégant
+s'affiche) :
 
-```html
-<div class="video-slot">
-  <video controls preload="metadata" width="100%">
-    <source src="../assets/video/01-bonne-version.mp4" type="video/mp4">
-  </video>
-</div>
+```text
+assets/video/pourquoi-git-01-final-v12.mp4
+assets/video/pourquoi-git-02-vendredi-ca-marchait.mp4
+assets/video/pourquoi-git-03-qui-a-change-ca.mp4
+assets/video/pourquoi-git-04-voyage-dans-le-temps.mp4
 ```
 
-Bonnes pratiques : pas d'auto-play, `preload="metadata"` pour rester léger,
-et prévoir des sous-titres (`<track kind="captions" …>`) pour l'accessibilité.
+Posters optionnels (détectés automatiquement eux aussi) :
+
+```text
+assets/img/video/pourquoi-git-01-poster.webp
+assets/img/video/pourquoi-git-02-poster.webp
+assets/img/video/pourquoi-git-03-poster.webp
+assets/img/video/pourquoi-git-04-poster.webp
+```
+
+Pensez aussi à remplir les accordéons « Transcription du mini-film » de
+`cours/01-pourquoi-git.qmd` (accessibilité), et à prévoir des sous-titres
+(`<track kind="captions" …>`) si les films comportent des dialogues.
+Comportement du lecteur : lecture volontaire uniquement, jamais deux vidéos
+en même temps, `preload="none"` tant que l'utilisateur n'a pas cliqué.
 
 ## Déploiement
 
