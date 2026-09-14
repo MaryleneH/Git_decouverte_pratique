@@ -110,13 +110,23 @@
     code span.dt, code span.va { color: var(--gsd-night-ink); }
   }
 
-  // La sortie : plus discrète, séparée par un fin filet
+  // La sortie : un cran sous la commande, séparée par un fin filet.
+  // Attention à la structure : les blocs ```text ne sont pas enveloppés
+  // dans div.sourceCode, donc .term-out est posé sur le <pre> lui-même.
+  pre.term-out,
   .term-out pre {
     padding-top: 0.55rem;
     border-top: 1px dashed var(--gsd-night-line);
-    color: var(--gsd-night-muted);
+    color: var(--gsd-night-ink-2);
+  }
 
-    code { color: var(--gsd-night-muted); }
+  // Le sélecteur `code span` est indispensable : la feuille de coloration
+  // syntaxique de Quarto pose `code span { color: #24292e }`, qui sinon
+  // s'applique aux spans .t-line injectés par terminal.js et rend la
+  // sortie quasi invisible sur fond nuit (contraste 1.2:1).
+  .term-out code,
+  .term-out code span {
+    color: var(--gsd-night-ink-2);
   }
 
   // Mise en évidence sémantique dans les sorties (via terminal.js)
@@ -125,6 +135,7 @@
     .t-red { color: var(--gsd-term-red); }
     .t-yellow { color: var(--gsd-term-yellow); }
     .t-bold { color: var(--gsd-night-ink); font-weight: 600; }
+    .t-meta { color: var(--gsd-night-muted); }
   }
 
   // Révélation progressive des lignes de sortie
