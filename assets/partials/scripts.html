@@ -11,7 +11,7 @@
       var url = ref.getAttribute("src") || ref.getAttribute("href");
       root = url.split("site_libs")[0] || "./";
     }
-    ["animations.js", "terminal.js", "progress.js", "interactions.js"].forEach(function (f) {
+    ["animations.js", "terminal.js", "progress.js", "interactions.js", "home-graph.js"].forEach(function (f) {
       var s = document.createElement("script");
       s.src = root + "assets/js/" + f;
       s.defer = true;
