@@ -104,9 +104,10 @@ déployable sur n'importe quel serveur web (ou consultable en local).
 
 ## Ajouter les mini-films
 
-La séquence « Pourquoi Git ? » utilise quatre vidéos, versionnées via
-Git LFS (le workflow de publication fait son checkout avec `lfs: true`
-pour récupérer les vrais fichiers). `films.js` détecte leur présence et
+La séquence « Pourquoi Git ? » utilise quatre vidéos, versionnées comme
+fichiers Git ordinaires (ré-encodées pour le web : H.264 1080p,
+`+faststart`, ~10 Mo chacune — pas de Git LFS, donc aucun quota de bande
+passante consommé au déploiement). `films.js` détecte leur présence et
 active la lecture (si un fichier manque, un placeholder élégant
 s'affiche) :
 
@@ -126,9 +127,11 @@ assets/img/video/pourquoi-git-03-poster.webp
 assets/img/video/pourquoi-git-04-poster.webp
 ```
 
-Pensez aussi à remplir les accordéons « Transcription du mini-film » de
-`cours/01-pourquoi-git.qmd` (accessibilité), et à prévoir des sous-titres
-(`<track kind="captions" …>`) si les films comportent des dialogues.
+Les accordéons « Transcription du mini-film » de
+`cours/01-pourquoi-git.qmd` contiennent une version décrite de chaque
+film (accessibilité) ; si les films comportent des dialogues, remplacez-y
+la description par le texte exact et prévoyez des sous-titres
+(`<track kind="captions" …>`).
 Comportement du lecteur : lecture volontaire uniquement, jamais deux vidéos
 en même temps, `preload="none"` tant que l'utilisateur n'a pas cliqué.
 

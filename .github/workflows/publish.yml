@@ -20,11 +20,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          # Les mini-films (assets/video/*.mp4) sont versionnés via Git LFS :
-          # sans lfs: true, le site publié servirait les pointeurs texte de
-          # 134 octets au lieu des vraies vidéos.
-          lfs: true
 
       - name: Installer Quarto
         uses: quarto-dev/quarto-actions/setup@v2
