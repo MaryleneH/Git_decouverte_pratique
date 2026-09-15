@@ -42,7 +42,7 @@ Vous rendez un rapport. Trois semaines plus tard, le commanditaire demande une m
 <details class="go-further">
 <summary>Transcription du mini-film 01</summary>
 
-La transcription sera ajoutée avec la vidéo. L'essentiel de la situation est raconté dans le texte ci-contre : plusieurs versions d'un même rapport coexistent, et personne ne sait laquelle fait référence.
+**Version décrite (27 s).** Fin de journée dans un bureau en open space. Marie, chargée d'études, peaufine son rapport à l'écran — plusieurs documents presque identiques sont ouverts côte à côte. Un collègue s'approche : il faut envoyer « la » version finale. Ensemble, ils étalent sur la table trois tirages du même rapport, aux graphiques presque identiques ; Marie pointe l'un, puis l'autre — impossible de dire lequel fait référence. Dernier plan : Marie face caméra, entourée de piles de versions imprimées, le regard las.
 
 </details>
 
@@ -105,7 +105,7 @@ Vendredi soir, votre programme `analyse.R` tournait parfaitement et produisait l
 <details class="go-further">
 <summary>Transcription du mini-film 02</summary>
 
-La transcription sera ajoutée avec la vidéo. La situation : une analyse qui fonctionnait vendredi ne fonctionne plus après plusieurs modifications, et impossible de dire lesquelles sont en cause.
+**Version décrite (29 s).** Lundi matin, lumière douce. Marie rouvre son analyse, confiante — vendredi, tout fonctionnait. À l'écran, les résultats ne correspondent plus : elle fait défiler le tableur, compare avec ses notes papier, refait un essai… rien n'y fait. Elle a modifié plusieurs choses depuis vendredi, impossible de dire laquelle a tout cassé — et la version de vendredi n'existe plus nulle part. Dernier plan : Marie face caméra, le regard fixe de celle qui sait qu'elle va tout refaire.
 
 </details>
 
@@ -160,7 +160,7 @@ Le tableau 4 du rapport affiche un taux de 12,4 % au lieu des 11,9 % validés le
 <details class="go-further">
 <summary>Transcription du mini-film 03</summary>
 
-La transcription sera ajoutée avec la vidéo. La situation : un résultat statistique a changé, et l'équipe cherche qui a fait la modification, quand, et pour quelle raison.
+**Version décrite (29 s).** Salle de réunion. Marie présente le rapport à un collègue ; il feuillette les pages de graphiques, s'arrête sur un chiffre et lève les yeux : ce résultat n'est pas celui de la dernière réunion. Marie reprend le document, le compare — le chiffre a bel et bien changé. S'engage alors l'échange que tout le monde connaît : qui a modifié ce calcul ? quand ? pourquoi ? Les regards se croisent, personne n'a la réponse — le fichier, lui, ne dit rien.
 
 </details>
 
@@ -207,7 +207,7 @@ Peut-être que ce 12,4 % est une correction volontaire et parfaitement justifié
 <details class="go-further">
 <summary>Transcription du mini-film 04</summary>
 
-La transcription sera ajoutée avec la vidéo. La situation : Marie vient de faire une modification et voudrait simplement revenir à l'état d'avant — le monde se rembobine symboliquement.
+**Version décrite (29 s).** Marie travaille sur son indicateur, modifie le calcul… et le regrette aussitôt : elle voudrait simplement revenir à l'état d'avant. Cette fois, la réponse s'affiche à l'écran. Texte incrusté : `git log --oneline`, puis la liste des états enregistrés — `a904ef1 Version stable avant modification`, `51bd882 Modifie le calcul de l'indicateur`, `8f31c2a Ajuste le graphique`. Second texte incrusté : `git switch --detach a904ef1`. Marie consulte, sereine, la version stable retrouvée : rien n'était perdu — tout était dans l'historique.
 
 </details>
 
