@@ -104,16 +104,17 @@ déployable sur n'importe quel serveur web (ou consultable en local).
 
 ## Ajouter les mini-films
 
-La séquence « Pourquoi Git ? » attend quatre vidéos. Il suffit de déposer
-les fichiers — aucun code à modifier, `films.js` détecte leur présence et
-active la lecture (tant qu'ils sont absents, un placeholder élégant
+La séquence « Pourquoi Git ? » utilise quatre vidéos, versionnées via
+Git LFS (le workflow de publication fait son checkout avec `lfs: true`
+pour récupérer les vrais fichiers). `films.js` détecte leur présence et
+active la lecture (si un fichier manque, un placeholder élégant
 s'affiche) :
 
 ```text
-assets/video/pourquoi-git-01-final-v12.mp4
-assets/video/pourquoi-git-02-vendredi-ca-marchait.mp4
-assets/video/pourquoi-git-03-qui-a-change-ca.mp4
-assets/video/pourquoi-git-04-voyage-dans-le-temps.mp4
+assets/video/Sequence1_film1.mp4   # Situation 1 — rapport_final_vraiment_final
+assets/video/Sequence1_film2.mp4   # Situation 2 — vendredi, ça marchait
+assets/video/Sequence1_film3.mp4   # Situation 3 — qui a changé ça ?
+assets/video/Sequence1_film4.mp4   # Situation 4 — voyage dans le temps
 ```
 
 Posters optionnels (détectés automatiquement eux aussi) :
