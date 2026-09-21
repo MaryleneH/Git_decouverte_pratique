@@ -84,7 +84,7 @@ Une seule idée à garder en tête toute la journée : Git ne fait qu'une chose 
     <span class="day-outline__num">03</span>
     <span>
       <span class="day-outline__title">L'histoire</span>
-      <span class="day-outline__desc">Lire l'historique du projet et comprendre pourquoi 43 ans, et pas 40.</span>
+      <span class="day-outline__desc">Lire l'historique du projet et retrouver pourquoi le graphique est passé en pourcentage.</span>
     </span>
     <span class="day-outline__go" aria-hidden="true">→</span>
   </a>

@@ -305,6 +305,16 @@ details.go-further {
       &::before { transform: scale(1.25); }
     }
 
+    // Commit mis en évidence dans le récit (ex. celui qui répond à la
+    // question de la séquence) : fond teal doux et pastille ambrée —
+    // discret, le tl-meta explicite toujours pourquoi en toutes lettres.
+    &.tl-commit--focus {
+      background: var(--gsd-teal-soft);
+
+      &::before { border-color: var(--gsd-amber-bright); }
+      &:hover { background: var(--gsd-teal-soft); }
+    }
+
     .tl-hash {
       font-family: var(--gsd-font-mono);
       font-size: 0.78rem;
