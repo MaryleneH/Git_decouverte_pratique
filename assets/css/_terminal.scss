@@ -131,11 +131,25 @@
 
   // Mise en évidence sémantique dans les sorties (via terminal.js)
   .term-out {
+    // Une ligne par span, quel que soit le mode : sans ce display de base,
+    // les utilisateurs en prefers-reduced-motion (pas de [data-animated])
+    // voyaient toutes les lignes concaténées sur une seule.
+    .t-line { display: block; }
+
     .t-green { color: var(--gsd-term-green); }
     .t-red { color: var(--gsd-term-red); }
     .t-yellow { color: var(--gsd-term-yellow); }
     .t-bold { color: var(--gsd-night-ink); font-weight: 600; }
     .t-meta { color: var(--gsd-night-muted); }
+
+    // Ligne pointée par data-highlight : plus claire et en graisse (le
+    // signal ne repose pas que sur la couleur), halo ambré très léger.
+    .t-hl {
+      color: var(--gsd-night-ink);
+      font-weight: 600;
+      background: linear-gradient(90deg, rgba(245, 215, 110, 0.13), transparent 88%);
+      border-radius: 4px;
+    }
   }
 
   // Révélation progressive des lignes de sortie

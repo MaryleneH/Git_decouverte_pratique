@@ -11,30 +11,70 @@ pagetitle: "03 · L'histoire — Git sans douleur"
 [Vos commits s'accumulent, photo après photo. L'historique devient le journal de bord de l'étude — à condition de savoir le lire.]{.lede}
 :::
 
+## Le problème — « Pourquoi on est passé en pourcentage ? »
+
+::: {.film-row data-animate="stagger"}
+```{=html}
+<figure class="learning-film">
+  <div class="learning-film__media">
+    <video class="learning-film__video" controls playsinline preload="none" hidden
+           data-src="../assets/video/historique-graphique-pourcentage.mp4"
+           data-poster="../assets/img/video/historique-graphique-pourcentage-poster.webp"
+           aria-label="Mini-film 5 — Pourquoi ce graphique est passé en pourcentage ?"></video>
+    <button type="button" class="learning-film__placeholder" disabled>
+      <span class="learning-film__num" aria-hidden="true">05</span>
+      <span class="learning-film__play" aria-hidden="true"></span>
+      <span class="learning-film__label">Pourquoi ce graphique est passé en&nbsp;pourcentage&#8239;?</span>
+      <span class="learning-film__status" data-role="status">Mini-film bientôt disponible</span>
+    </button>
+  </div>
+  <figcaption class="learning-film__caption">Mini-film 05 · Une décision prise il y a des semaines — et sa trace.</figcaption>
+</figure>
+```
+
+::: {.film-row__text}
+Franck reprend le rapport sur les zones d'emploi. Page 8, un graphique le fait tiquer : il était en **effectifs** la dernière fois — le voilà en **pourcentages**. « Pourquoi on est passé en pourcentage sur le graphique ? » Marie se souvient qu'il y avait une raison, une bonne raison même… mais laquelle ?
+
+[Comment retrouver une décision prise il y a plusieurs semaines — et surtout **pourquoi** elle a été prise ?]{.film-question}
+:::
+:::
+
+<details class="go-further">
+<summary>Transcription du mini-film 05</summary>
+
+La transcription sera ajoutée avec la vidéo. La situation : Franck remarque qu'un graphique du rapport est passé des effectifs aux pourcentages et demande pourquoi ; Marie se souvient qu'il y avait une raison, sans réussir à la retrouver. Ensemble, ils consultent l'historique Git, repèrent le commit du changement et y retrouvent la justification méthodologique.
+
+</details>
+
+La décision date de plusieurs semaines. Elle n'est dans aucun mail, aucun compte rendu — et la mémoire de Marie n'en a gardé que la silhouette. Bonne nouvelle : le projet est versionné. Son journal de bord existe déjà, il suffit de l'ouvrir.
+
 ## La liste des photos : `git log`
 
 Une seule commande pour feuilleter l'album, du plus récent au plus ancien :
 
 ```{=html}
-<div class="terminal-demo" data-title="etude-population">
+<div class="terminal-demo" data-title="zones-emploi" data-highlight="8f31c2a">
 ```
 ```bash
 git log --oneline
 ```
 ```text
-8f31c2a Modifie le calcul de l'indicateur
-51bd882 Version stable avant modification
-a904ef1 Ajoute le graphique par sexe
-2c9e0d4 Initialise l'étude
+c3b9e10 Corrige les libellés du rapport
+91ad7be Ajoute le graphique des effectifs
+8f31c2a Passe les graphiques en parts pour comparer les zones d'emploi de tailles différentes
+51bd882 Nettoie les données des zones d'emploi
+a904ef1 Initialise l'analyse
 ```
 ```{=html}
 </div>
 ```
 
-Chaque ligne est un commit : à gauche son **identifiant** (une petite étiquette comme `51bd882`, attribuée automatiquement), à droite **votre message**. L'option `--oneline` compacte l'affichage : une photo par ligne.
+Chaque ligne est un commit : à gauche son **identifiant** (une petite étiquette comme `8f31c2a`, attribuée automatiquement), à droite **votre message**. L'option `--oneline` compacte l'affichage : une photo par ligne.
+
+Et là, sous les yeux de Franck et Marie, un message répond presque tout seul : *« Passe les graphiques en parts pour comparer les zones d'emploi de tailles différentes »*. La question portait sur le **pourquoi** — et le pourquoi est écrit dans l'historique.
 
 ::: {.concept}
-L'identifiant d'un commit est son **nom propre**. Il permet de désigner sans ambiguïté un état précis du projet : « la version `51bd882` » est infiniment plus fiable que « la version d'avant les modifications de la semaine dernière, je crois ». Sept caractères suffisent, pas besoin de le mémoriser — on le copie depuis `git log`.
+L'identifiant d'un commit est son **nom propre**. Il permet de désigner sans ambiguïté un état précis du projet : « la version `8f31c2a` » est infiniment plus fiable que « la version d'avant les modifications de la semaine dernière, je crois ». Sept caractères suffisent, pas besoin de le mémoriser — on le copie depuis `git log`.
 :::
 
 ## La frise du projet
@@ -42,26 +82,31 @@ L'identifiant d'un commit est son **nom propre**. Il permet de désigner sans am
 Le même historique, vu comme une frise. Survolez les commits — chacun est un état complet du projet, pas seulement « ce qui a changé » :
 
 ```{=html}
-<ol class="git-timeline" data-animate="timeline" aria-label="Frise des commits, du plus récent en haut au plus ancien en bas.">
+<ol class="git-timeline" data-animate="timeline" aria-label="Frise des commits, du plus récent en haut au plus ancien en bas. Le commit 8f31c2a répond à la question de Franck.">
   <li class="tl-commit">
+    <span class="tl-hash">c3b9e10</span>
+    <span class="tl-msg">Corrige les libellés du rapport</span>
+    <span class="tl-meta">Franck · aujourd'hui, 9 h 15</span>
+  </li>
+  <li class="tl-commit">
+    <span class="tl-hash">91ad7be</span>
+    <span class="tl-msg">Ajoute le graphique des effectifs</span>
+    <span class="tl-meta">Marie · lundi, 14 h 20</span>
+  </li>
+  <li class="tl-commit tl-commit--focus">
     <span class="tl-hash">8f31c2a</span>
-    <span class="tl-msg">Modifie le calcul de l'indicateur</span>
-    <span class="tl-meta">Franck · aujourd'hui, 11 h 42</span>
+    <span class="tl-msg">Passe les graphiques en parts pour comparer les zones d'emploi de tailles différentes</span>
+    <span class="tl-meta">Marie · il y a cinq semaines — la réponse à la question de Franck</span>
   </li>
   <li class="tl-commit">
     <span class="tl-hash">51bd882</span>
-    <span class="tl-msg">Version stable avant modification</span>
-    <span class="tl-meta">Marie · hier, 17 h 03</span>
+    <span class="tl-msg">Nettoie les données des zones d'emploi</span>
+    <span class="tl-meta">Marie · il y a six semaines</span>
   </li>
   <li class="tl-commit">
     <span class="tl-hash">a904ef1</span>
-    <span class="tl-msg">Ajoute le graphique par sexe</span>
-    <span class="tl-meta">Marie · lundi, 9 h 30</span>
-  </li>
-  <li class="tl-commit">
-    <span class="tl-hash">2c9e0d4</span>
-    <span class="tl-msg">Initialise l'étude</span>
-    <span class="tl-meta">Marie · il y a trois semaines</span>
+    <span class="tl-msg">Initialise l'analyse</span>
+    <span class="tl-meta">Marie · il y a deux mois</span>
   </li>
 </ol>
 ```
@@ -70,33 +115,46 @@ Notez le sens de lecture : le temps monte. Le commit du bas est le plus ancien, 
 
 ## Ouvrir une photo : `git show`
 
-`git log` donne la liste ; `git show` ouvre une photo en grand. Donnez-lui l'identifiant d'un commit :
+Le message a mis Franck et Marie sur la piste ; il reste à examiner le commit lui-même. `git log` donne la liste, `git show` ouvre une photo en grand — donnez-lui l'identifiant :
 
 ```{=html}
-<div class="terminal-demo" data-title="etude-population">
+<div class="terminal-demo" data-title="zones-emploi">
 ```
 ```bash
-git show 51bd882
+git show 8f31c2a
 ```
 ```text
-commit 51bd882c1f9e2d3a4b5c6d7e8f9a0b1c2d3e4f5a
+commit 8f31c2a7d4e1b9c2f5a8d3e6b1c4f7a2d5e8b3c6
 Auteur : Marie Dupont <marie.dupont@exemple.fr>
-Date :   jeudi 12 septembre 2026, 17:03
+Date :   mardi 18 août 2026, 15:47
 
-    Version stable avant modification
+    Passe les graphiques en parts pour comparer les
+    zones d'emploi de tailles différentes
 
 --- a/analyse.R
 +++ b/analyse.R
-@@ -8,6 +8,9 @@
- pop <- read_parquet("donnees/population.parquet")
-+# Champ validé avec le service producteur
-+pop <- filter(pop, champ == "France hors Mayotte")
+@@ -42,7 +42,9 @@
+ # Comparaison des zones d'emploi
+-ggplot(emplois, aes(zone, effectifs)) +
++# Zones de tailles très différentes : les parts rendent la comparaison lisible
++emplois <- mutate(emplois, part = effectifs / sum(effectifs))
++ggplot(emplois, aes(zone, part)) +
+   geom_col()
 ```
 ```{=html}
 </div>
 ```
 
-Tout y est : qui, quand, le message, et le détail exact des lignes modifiées. C'est la réponse complète au « Qui a changé ça ? » de la séquence 01.
+Tout y est. **Qui** : Marie. **Quand** : mi-août, il y a cinq semaines. **Le message** : l'intention méthodologique du changement. **Les lignes** : le détail exact du passage des effectifs aux parts. La réponse complète tient en deux commandes : les zones d'emploi ont des tailles très différentes — en effectifs, les petites zones deviennent illisibles ; en parts, elles se comparent.
+
+Franck a sa réponse sans dépendre de la mémoire de quiconque. Et dans six mois, la personne qui reprendra l'étude l'aura aussi.
+
+<details class="go-further">
+<summary>Pour aller plus loin — ce que `git show` affiche exactement</summary>
+
+Pour un commit donné, `git show` réunit : l'**identifiant complet** (les 7 caractères de `git log --oneline` en sont l'abréviation), l'**auteur**, la **date**, le **message** intégral, puis le **diff** — les lignes supprimées (`-`) et ajoutées (`+`) fichier par fichier. C'est la même lecture que `git diff` (séquence 02), appliquée à une photo passée de l'album.
+
+</details>
 
 ::: {.try}
 Dans votre dossier d'exercice de la séquence 02 :
@@ -106,50 +164,64 @@ git log --oneline
 git show <identifiant>
 ```
 
-Remplacez `<identifiant>` par l'un des identifiants affichés par `git log` (copiez-collez les 7 caractères). Retrouvez la modification que vous aviez faite.
+Remplacez `<identifiant>` par l'un des identifiants affichés par `git log` (copiez-collez les 7 caractères). Retrouvez la modification que vous aviez faite — et relisez votre message : aurait-il répondu à un « pourquoi ? » posé dans six mois ?
 :::
 
-## Pourquoi 43 ans ? — une histoire vraie (ou presque)
+## Le message qui pense à la suite
 
-Dans le programme de calcul des estimations de départ, une ligne intrigue tout le monde :
+Le scénario ne tenait qu'à un fil : que Marie ait écrit un vrai message au moment du changement. Comparez ce que l'historique aurait donné :
 
-```r
-seuil_age <- 43   # pourquoi 43 ?
+::: {.before-after data-animate="stagger"}
+::: {.before}
+**Message pauvre**
+
+```text
+8f31c2a modif graphique
 ```
 
-Personne dans le service ne sait plus d'où vient ce seuil. Heureusement, l'historique s'en souvient. Premier indice, le commit d'origine :
+- **Ce qui** a changé : il faudra ouvrir le diff pour le deviner.
+- **Pourquoi** : perdu. Retour aux mails, à la mémoire, aux suppositions.
+:::
 
-```{=html}
-<ol class="git-timeline" data-animate="timeline">
-  <li class="tl-commit">
-    <span class="tl-hash">b7e4a91</span>
-    <span class="tl-msg">Justifie le seuil de 43 ans</span>
-    <span class="tl-meta">Franck · mars 2026 — « Seuil = génération ayant 40 ans en 2023, millésime de référence des estimations. Validé en réunion méthodologique du 12/03. »</span>
-  </li>
-  <li class="tl-commit">
-    <span class="tl-hash">4d02c7f</span>
-    <span class="tl-msg">Fixe le seuil de population à 43 ans</span>
-    <span class="tl-meta">Marie · janvier 2026 — « Premier réglage, à confirmer. »</span>
-  </li>
-</ol>
+::: {.after}
+**Message utile**
+
+```text
+8f31c2a Passe les graphiques
+en parts pour comparer les
+zones d'emploi de tailles
+différentes
 ```
 
-Marie avait posé 43 ans comme premier réglage — clin d'œil à sa propre génération de naissance, à confirmer. Deux mois plus tard, Franck **ne change pas la valeur** mais commite la justification méthodologique : la génération qui a 40 ans en 2023, millésime de référence des estimations.
+- **Ce qui** a changé : dit en clair, avant même d'ouvrir le diff.
+- **Pourquoi** : la justification méthodologique, lisible en une ligne de `git log`.
+:::
+:::
 
-Le chiffre est le même ; le projet, lui, a changé : un réglage provisoire est devenu un choix documenté. Sans ces deux commits, il ne resterait qu'un `43` mystérieux dans le code.
+Git enregistre toujours **ce qui** a changé — le diff, il s'en charge tout seul. Le **pourquoi**, personne ne peut l'écrire à votre place : c'est le message de commit qui le porte. Un bon message ne décrit pas seulement l'action technique ; il documente la décision — et la transmet à l'équipe, au futur relecteur, à vous-même dans six mois.
 
 ::: {.remember}
-Un commit doit permettre de retrouver **ce qui** a changé — Git s'en charge tout seul — et si possible **pourquoi** — cela, personne ne peut l'écrire à votre place. Trente secondes de message aujourd'hui, des heures d'archéologie économisées dans un an.
+Git n'est pas qu'une sauvegarde : c'est la **mémoire méthodologique** de l'étude. Le code montre *ce qui* a changé ; des commits bien écrits disent aussi *pourquoi*. Trente secondes de message aujourd'hui, des heures d'archéologie économisées dans un an.
 :::
 
 ::: {.checkpoint}
 ```{=html}
 <div class="quiz" data-quiz>
-  <p class="quiz-q">Un collègue vous demande : « c'était quoi déjà, l'état du programme avant la refonte de l'indicateur ? ». Quelle est la meilleure réponse ?</p>
-  <button type="button" class="quiz-opt">« Attends, je dois avoir une copie du dossier quelque part sur le réseau. »</button>
-  <button type="button" class="quiz-opt">« Aucune idée, c'était il y a trop longtemps. »</button>
-  <button type="button" class="quiz-opt" data-right>« <code>git log --oneline</code>, on repère le commit, et <code>git show</code> nous montre tout. »</button>
-  <p class="quiz-explain" hidden>L'historique répond en quelques secondes, avec certitude, et sans dépendre de la mémoire de quiconque. C'est toute la valeur des messages soignés.</p>
+  <p class="quiz-q">Vous trouvez ce commit : <code>8f31c2a Passe les graphiques en parts pour comparer les zones d'emploi de tailles différentes</code>. Quelle information ce message apporte-t-il qu'un « modif graphique » n'aurait pas donnée ?</p>
+  <button type="button" class="quiz-opt">La liste des fichiers modifiés par le commit.</button>
+  <button type="button" class="quiz-opt" data-right>L'intention méthodologique du changement, pas seulement l'action technique.</button>
+  <button type="button" class="quiz-opt">La date et l'auteur de la modification.</button>
+  <p class="quiz-explain" hidden>Fichiers, date et auteur, Git les enregistre automatiquement — quel que soit le message. La seule chose que « modif graphique » aurait perdue à jamais, c'est le <strong>pourquoi</strong> : la raison méthodologique du passage en parts.</p>
+</div>
+```
+
+```{=html}
+<div class="quiz" data-quiz>
+  <p class="quiz-q">Quelle commande permet d'examiner précisément le contenu de ce commit ?</p>
+  <button type="button" class="quiz-opt"><code>git log --oneline</code></button>
+  <button type="button" class="quiz-opt" data-right><code>git show 8f31c2a</code></button>
+  <button type="button" class="quiz-opt"><code>git status</code></button>
+  <p class="quiz-explain" hidden><code>git log --oneline</code> donne la liste, <code>git status</code> décrit l'atelier en cours. Pour ouvrir une photo précise de l'album — auteur, date, message et diff — c'est <code>git show</code> suivi de l'identifiant.</p>
 </div>
 ```
 :::
@@ -158,7 +230,7 @@ Un commit doit permettre de retrouver **ce qui** a changé — Git s'en charge t
 <summary>Pour aller plus loin — trois variantes utiles de `git log`</summary>
 
 - `git log` (sans option) : la version détaillée, avec auteur, date et message complet de chaque commit ;
-- `git log --oneline -- analyse.R` : l'historique **d'un seul fichier** — précieux pour savoir qui a touché au programme de l'indicateur ;
+- `git log --oneline -- analyse.R` : l'historique **d'un seul fichier** — précieux pour savoir qui a touché au programme des graphiques ;
 - `git log --since="2 weeks ago"` : les commits des deux dernières semaines, pratique pour préparer un point d'équipe.
 
 Et pour répondre à « qui a écrit cette ligne précise ? », il existe `git blame analyse.R` — affichage ligne par ligne du dernier commit qui a modifié chacune.

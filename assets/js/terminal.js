@@ -66,6 +66,10 @@
     term.insertBefore(bar, term.firstChild);
 
     // Coloration + découpe en lignes des sorties
+    // data-highlight="préfixe" sur .terminal-demo : la ligne de sortie qui
+    // commence par ce préfixe (ex. un identifiant de commit) est mise en
+    // évidence — mécanisme générique, le contenu reste dans la page.
+    var highlight = term.getAttribute("data-highlight");
     term.querySelectorAll(".term-out").forEach(function (out) {
       var code = out.querySelector("code");
       if (!code || code.querySelector(".t-line")) return;
@@ -74,6 +78,7 @@
       lines.forEach(function (line, idx) {
         var span = document.createElement("span");
         span.className = ("t-line " + classifyLine(line)).trim();
+        if (highlight && line.indexOf(highlight) === 0) span.className = "t-line t-hl";
         span.textContent = line === "" ? " " : line;
         if (!reduced) span.style.transitionDelay = Math.min(idx * 70, 900) + "ms";
         code.appendChild(span);
