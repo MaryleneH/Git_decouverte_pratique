@@ -381,7 +381,17 @@
               transform var(--gsd-dur-fast) var(--gsd-ease);
 
   &:hover { background: var(--gsd-teal-deep); transform: translateY(-1px); }
-  &:disabled { background: var(--gsd-ink-faint); cursor: not-allowed; transform: none; }
+
+  // État désactivé : « Jalon posé ✓ » ou « git push » en attente restent
+  // du contenu à lire — fond clair + encre foncée (≈7:1) plutôt qu'un
+  // blanc sur gris pâle sous le seuil AA.
+  &:disabled {
+    background: var(--gsd-paper-soft);
+    color: var(--gsd-ink-soft);
+    box-shadow: inset 0 0 0 1.5px var(--gsd-line);
+    cursor: not-allowed;
+    transform: none;
+  }
 
   &.gsd-btn--ghost {
     background: transparent;
@@ -391,12 +401,25 @@
     &:hover { border-color: var(--gsd-teal); background: var(--gsd-teal-soft); }
   }
 
-  code {
-    background: rgba(255, 255, 255, 0.18);
+  // Le fragment de commande dans le bouton. Le :not(.sourceCode) n'est
+  // pas décoratif : Quarto pose `p code:not(.sourceCode) { background:
+  // #f4f1ea }` (spécificité 0-1-2) qui battait `.gsd-btn code` (0-1-1) —
+  // résultat : texte blanc hérité sur pastille crème, illisible. (0-2-1)
+  // reprend la main. Voile sombre plutôt que clair : le blanc y garde
+  // un contraste ≥ 4.5:1 (AA) au lieu de ~3.5:1.
+  code:not(.sourceCode) {
+    background: rgba(0, 0, 0, 0.22);
     color: inherit;
     border: none;
     font-size: 0.85em;
+    font-weight: 600;
     padding: 0.1em 0.45em;
+  }
+
+  // Sur fond clair désactivé, le même voile serait trop dense :
+  // version légère pour garder l'encre douce lisible (~5.8:1).
+  &:disabled code:not(.sourceCode) {
+    background: rgba(0, 0, 0, 0.08);
   }
 }
 
