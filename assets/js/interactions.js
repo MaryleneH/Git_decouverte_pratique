@@ -150,6 +150,11 @@
     var name = w.getAttribute("data-tag-name") || "livraison-2026-v1";
     if (!btn || !target) return;
 
+    // Région de statut déclarée dès le départ : la révélation de la
+    // confirmation sera annoncée par les lecteurs d'écran.
+    var done = w.querySelector("[data-tag-done]");
+    if (done) done.setAttribute("role", "status");
+
     btn.addEventListener("click", function () {
       if (target.classList.contains("tl-tag")) return;
       target.classList.add("tl-tag");
@@ -160,7 +165,6 @@
       (msg || target).appendChild(pill);
       btn.disabled = true;
       btn.textContent = "Jalon posé ✓";
-      var done = w.querySelector("[data-tag-done]");
       if (done) done.hidden = false;
     });
   });
