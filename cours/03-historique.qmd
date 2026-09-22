@@ -17,10 +17,15 @@ pagetitle: "03 · L'histoire — Git sans douleur"
 ```{=html}
 <figure class="learning-film">
   <div class="learning-film__media">
-    <video class="learning-film__video" controls playsinline preload="none" hidden
-           data-src="../assets/video/historique-graphique-pourcentage.mp4"
+    <!-- Film hébergé sur le S3 du SSPCloud (84 Mio) : URL absolue
+         → films.js l'active sans sonde HEAD ; preload="metadata"
+         ne charge que l'index de la vidéo, jamais le fichier entier. -->
+    <video class="learning-film__video" controls playsinline preload="metadata" hidden
+           data-src="https://minio.lab.sspcloud.fr/marylene/formations/decouverte-git/03-historique/Sequence1_film5.mp4"
            data-poster="../assets/img/video/historique-graphique-pourcentage-poster.webp"
-           aria-label="Mini-film 5 — Pourquoi ce graphique est passé en pourcentage ?"></video>
+           aria-label="Mini-film 5 — Pourquoi ce graphique est passé en pourcentage ?">
+      Votre navigateur ne permet pas de lire cette vidéo.
+    </video>
     <button type="button" class="learning-film__placeholder" disabled>
       <span class="learning-film__num" aria-hidden="true">05</span>
       <span class="learning-film__play" aria-hidden="true"></span>
