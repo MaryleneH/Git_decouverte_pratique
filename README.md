@@ -104,26 +104,20 @@ déployable sur n'importe quel serveur web (ou consultable en local).
 
 ## Ajouter les mini-films
 
-La séquence « Pourquoi Git ? » utilise quatre vidéos, versionnées comme
-fichiers Git ordinaires (ré-encodées pour le web : H.264 1080p,
-`+faststart`, ~10 Mo chacune — pas de Git LFS, donc aucun quota de bande
-passante consommé au déploiement). `films.js` détecte leur présence et
-active la lecture (si un fichier manque, un placeholder élégant
-s'affiche) :
+Les mini-films sont **hébergés hors du dépôt**, sur le stockage S3 du
+SSPCloud (`https://minio.lab.sspcloud.fr/marylene/formations/
+decouverte-git/…`) : aucun fichier vidéo dans Git, aucun quota LFS ni
+GitHub Pages consommé. Le composant `learning-film` référence chaque
+film par son URL absolue dans `data-src` — `films.js` l'active
+directement, sans sonde. Films en place : 01 à 04 (séquence 01,
+« Pourquoi Git ? ») et 05 (séquence 03, « L'histoire »).
 
-```text
-assets/video/Sequence1_film1.mp4   # Situation 1 — rapport_final_vraiment_final
-assets/video/Sequence1_film2.mp4   # Situation 2 — vendredi, ça marchait
-assets/video/Sequence1_film3.mp4   # Situation 3 — qui a changé ça ?
-assets/video/Sequence1_film4.mp4   # Situation 4 — voyage dans le temps
-```
+Pour ajouter un film : déposer le mp4 sur le S3, puis mettre son URL
+dans le `data-src` du composant. Un chemin **relatif** reste possible
+pour un fichier du dépôt : `films.js` vérifie alors sa présence
+(placeholder élégant tant qu'il est absent).
 
-Un film peut aussi être **hébergé hors du dépôt** (S3, MinIO…) : il
-suffit de mettre l'URL absolue (`https://…`) dans le `data-src` du
-composant — `films.js` l'active directement, sans sonde (c'est le cas
-du mini-film 05 de la séquence 03, servi depuis le SSPCloud).
-
-Posters optionnels (détectés automatiquement eux aussi) :
+Posters optionnels (fichiers locaux, détectés automatiquement) :
 
 ```text
 assets/img/video/pourquoi-git-01-poster.webp

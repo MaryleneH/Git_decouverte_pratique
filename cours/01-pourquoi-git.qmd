@@ -17,10 +17,12 @@ pagetitle: "01 · Pourquoi Git ? — Git sans douleur"
 ```{=html}
 <figure class="learning-film">
   <div class="learning-film__media">
-    <video class="learning-film__video" controls playsinline preload="none" hidden
-           data-src="../assets/video/Sequence1_film1.mp4"
+    <video class="learning-film__video" controls playsinline preload="metadata" hidden
+           data-src="https://minio.lab.sspcloud.fr/marylene/formations/decouverte-git/03-historique/Sequence1_film1.mp4"
            data-poster="../assets/img/video/pourquoi-git-01-poster.webp"
-           aria-label="Mini-film 1 — Quelle est la bonne version ?"></video>
+           aria-label="Mini-film 1 — Quelle est la bonne version ?">
+      Votre navigateur ne permet pas de lire cette vidéo.
+    </video>
     <button type="button" class="learning-film__placeholder" disabled>
       <span class="learning-film__num" aria-hidden="true">01</span>
       <span class="learning-film__play" aria-hidden="true"></span>
@@ -80,10 +82,12 @@ Regardez le dossier d'une de vos études en cours. Combien de fichiers portent u
 ```{=html}
 <figure class="learning-film">
   <div class="learning-film__media">
-    <video class="learning-film__video" controls playsinline preload="none" hidden
-           data-src="../assets/video/Sequence1_film2.mp4"
+    <video class="learning-film__video" controls playsinline preload="metadata" hidden
+           data-src="https://minio.lab.sspcloud.fr/marylene/formations/decouverte-git/03-historique/Sequence1_film2.mp4"
            data-poster="../assets/img/video/pourquoi-git-02-poster.webp"
-           aria-label="Mini-film 2 — Vendredi, ça fonctionnait"></video>
+           aria-label="Mini-film 2 — Vendredi, ça fonctionnait">
+      Votre navigateur ne permet pas de lire cette vidéo.
+    </video>
     <button type="button" class="learning-film__placeholder" disabled>
       <span class="learning-film__num" aria-hidden="true">02</span>
       <span class="learning-film__play" aria-hidden="true"></span>
@@ -135,10 +139,12 @@ Sans outil, c'est presque impossible : votre mémoire est floue, le fichier a é
 ```{=html}
 <figure class="learning-film">
   <div class="learning-film__media">
-    <video class="learning-film__video" controls playsinline preload="none" hidden
-           data-src="../assets/video/Sequence1_film3.mp4"
+    <video class="learning-film__video" controls playsinline preload="metadata" hidden
+           data-src="https://minio.lab.sspcloud.fr/marylene/formations/decouverte-git/03-historique/Sequence1_film3.mp4"
            data-poster="../assets/img/video/pourquoi-git-03-poster.webp"
-           aria-label="Mini-film 3 — Qui a changé ça ?"></video>
+           aria-label="Mini-film 3 — Qui a changé ça ?">
+      Votre navigateur ne permet pas de lire cette vidéo.
+    </video>
     <button type="button" class="learning-film__placeholder" disabled>
       <span class="learning-film__num" aria-hidden="true">03</span>
       <span class="learning-film__play" aria-hidden="true"></span>
@@ -188,10 +194,12 @@ Peut-être que ce 12,4 % est une correction volontaire et parfaitement justifié
 ```{=html}
 <figure class="learning-film learning-film--wide">
   <div class="learning-film__media">
-    <video class="learning-film__video" controls playsinline preload="none" hidden
-           data-src="../assets/video/Sequence1_film4.mp4"
+    <video class="learning-film__video" controls playsinline preload="metadata" hidden
+           data-src="https://minio.lab.sspcloud.fr/marylene/formations/decouverte-git/03-historique/Sequence1_film4.mp4"
            data-poster="../assets/img/video/pourquoi-git-04-poster.webp"
-           aria-label="Mini-film 4 — Le voyage dans le temps"></video>
+           aria-label="Mini-film 4 — Le voyage dans le temps">
+      Votre navigateur ne permet pas de lire cette vidéo.
+    </video>
     <button type="button" class="learning-film__placeholder" disabled>
       <span class="learning-film__num" aria-hidden="true">04</span>
       <span class="learning-film__play" aria-hidden="true"></span>
@@ -212,6 +220,31 @@ Peut-être que ce 12,4 % est une correction volontaire et parfaitement justifié
 </details>
 
 <p class="punchline">Git ne remonte pas le temps. Mais il permet de <em>retrouver l'histoire</em> de votre projet.</p>
+
+## Le point commun
+
+Quatre situations différentes, un seul et même manque : une **histoire fiable du projet**. C'est exactement ce que Git apporte — quatre capacités, que vous pratiquerez toute la journée :
+
+```{=html}
+<div class="git-powers" data-animate="stagger">
+  <div class="gp-item">
+    <span class="gp-verb">Sauvegarder</span>
+    <span class="gp-desc">une étape cohérente du projet</span>
+  </div>
+  <div class="gp-item">
+    <span class="gp-verb">Retrouver</span>
+    <span class="gp-desc">un état antérieur, intact</span>
+  </div>
+  <div class="gp-item">
+    <span class="gp-verb">Comprendre</span>
+    <span class="gp-desc">ce qui a changé — et pourquoi</span>
+  </div>
+  <div class="gp-item">
+    <span class="gp-verb">Partager</span>
+    <span class="gp-desc">une histoire commune du projet</span>
+  </div>
+</div>
+```
 
 ::: {.concept}
 Git ne remonte pas le temps. Git **conserve les états successifs de votre projet**, comme un album photo daté et commenté. À tout moment vous pouvez rouvrir l'album, regarder une photo d'il y a trois semaines, et même récupérer un fichier tel qu'il était sur cette photo.

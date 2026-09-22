@@ -619,3 +619,41 @@ table {
 .table-responsive-wrap {
   overflow-x: auto;
 }
+
+// --- Les quatre capacités de Git (synthèse de la séquence 01) ------
+// Une bande 2x2 sobre : le verbe en Fraunces, une ligne de
+// description — même famille visuelle que les cartes du site.
+.git-powers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gsd-space-2);
+  margin: var(--gsd-space-4) 0;
+
+  @media (max-width: 575.98px) {
+    grid-template-columns: 1fr;
+  }
+
+  .gp-item {
+    min-width: 0;
+    background: var(--gsd-surface);
+    border: 1px solid var(--gsd-line);
+    border-radius: var(--gsd-radius);
+    box-shadow: var(--gsd-shadow-sm);
+    padding: 0.9rem 1.1rem;
+  }
+
+  .gp-verb {
+    display: block;
+    font-family: var(--gsd-font-display);
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: var(--gsd-teal-deep);
+    margin-bottom: 0.15rem;
+  }
+
+  .gp-desc {
+    display: block;
+    font-size: 0.92rem;
+    color: var(--gsd-ink-soft);
+  }
+}
