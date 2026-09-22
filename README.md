@@ -118,6 +118,11 @@ assets/video/Sequence1_film3.mp4   # Situation 3 — qui a changé ça ?
 assets/video/Sequence1_film4.mp4   # Situation 4 — voyage dans le temps
 ```
 
+Un film peut aussi être **hébergé hors du dépôt** (S3, MinIO…) : il
+suffit de mettre l'URL absolue (`https://…`) dans le `data-src` du
+composant — `films.js` l'active directement, sans sonde (c'est le cas
+du mini-film 05 de la séquence 03, servi depuis le SSPCloud).
+
 Posters optionnels (détectés automatiquement eux aussi) :
 
 ```text
