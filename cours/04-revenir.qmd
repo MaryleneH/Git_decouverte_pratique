@@ -31,19 +31,21 @@ Avant les commandes, clarifions **ce que vous voulez faire**. Ce sont trois situ
 
 ## Geste 1 — Regarder le passé
 
-Le programme tournait parfaitement au commit `51bd882`. Allons **voir** cet état, sans rien toucher :
+Retour dans l'analyse des zones d'emploi de la séquence 03. Franck veut **revoir** un chiffre tel qu'il se lisait en effectifs, avant le passage en parts — c'est-à-dire l'état `51bd882`, la photo juste avant le commit `8f31c2a`. Allons le voir, sans rien toucher :
 
 ```{=html}
-<div class="terminal-demo" data-title="etude-population">
+<div class="terminal-demo" data-title="zones-emploi" data-highlight="51bd882">
 ```
 ```bash
 git log --oneline
 git switch --detach 51bd882
 ```
 ```text
-8f31c2a Modifie le calcul de l'indicateur
-51bd882 Version stable avant modification
-a904ef1 Ajoute le graphique par sexe
+c3b9e10 Corrige les libellés du rapport
+91ad7be Ajoute le graphique des effectifs
+8f31c2a Passe les graphiques en parts pour comparer les zones d'emploi de tailles différentes
+51bd882 Nettoie les données des zones d'emploi
+a904ef1 Initialise l'analyse
 
 Note : basculement sur '51bd882'.
 Vous êtes dans un état « HEAD détachée » : vous pouvez regarder,
@@ -54,12 +56,12 @@ de ce commit.
 </div>
 ```
 
-Ouvrez `analyse.R` : c'est la version de vendredi. Relancez vos calculs : ce sont les chiffres de vendredi. Vous êtes en visite dans le passé — Git a simplement remis vos fichiers dans l'état de cette photo.
+Ouvrez `analyse.R` : c'est la version d'avant le passage en parts. Relancez le programme : les graphiques ressortent en effectifs, comme à l'époque. Vous êtes en visite dans le passé — Git a simplement remis vos fichiers dans l'état de cette photo.
 
 Quand la visite est finie, on **revient au présent** :
 
 ```{=html}
-<div class="terminal-demo" data-title="etude-population">
+<div class="terminal-demo" data-title="zones-emploi">
 ```
 ```bash
 git switch main
@@ -86,7 +88,7 @@ Pendant une visite du passé (« HEAD détachée »), ne créez pas de nouveaux 
 Depuis 9 h, vous retouchez `analyse.R`… et c'est de pire en pire. Vous voulez repartir de la dernière photo :
 
 ```{=html}
-<div class="terminal-demo" data-title="etude-population">
+<div class="terminal-demo" data-title="zones-emploi">
 ```
 ```bash
 git restore analyse.R
@@ -105,10 +107,10 @@ Pas de message : Git a silencieusement remis `analyse.R` dans l'état du dernier
 
 ### Cas B : récupérer la version d'un ancien commit
 
-Le graphique était meilleur dans la version `51bd882` ? Récupérez le fichier tel qu'il était **sur cette photo-là**, sans toucher au reste du projet :
+Le commanditaire demande une annexe avec les graphiques **en effectifs** — exactement le code d'avant le passage en parts, celui de la photo `51bd882`. Récupérez le fichier tel qu'il était **sur cette photo-là**, sans toucher au reste du projet :
 
 ```{=html}
-<div class="terminal-demo" data-title="etude-population">
+<div class="terminal-demo" data-title="zones-emploi">
 ```
 ```bash
 git restore --source=51bd882 analyse.R
@@ -127,16 +129,16 @@ Regardez bien le `git status` : le fichier restauré apparaît comme une **modif
 
 ## Geste 3 — Annuler proprement un commit
 
-Le commit `8f31c2a` (« Modifie le calcul de l'indicateur ») s'avère être une erreur : les chiffres validés étaient les bons. Ce commit a déjà été partagé avec l'équipe — impossible de faire comme s'il n'avait jamais existé. La bonne solution : **un commit qui défait**.
+Le commit `c3b9e10` (« Corrige les libellés du rapport ») s'avère être une erreur : les nouveaux libellés s'appuyaient sur une nomenclature de zonage périmée, les anciens étaient les bons. Ce commit a déjà été partagé avec l'équipe — impossible de faire comme s'il n'avait jamais existé. La bonne solution : **un commit qui défait**.
 
 ```{=html}
-<div class="terminal-demo" data-title="etude-population">
+<div class="terminal-demo" data-title="zones-emploi">
 ```
 ```bash
-git revert 8f31c2a
+git revert c3b9e10
 ```
 ```text
-[main 9c8d7e6] Revert "Modifie le calcul de l'indicateur"
+[main 9c8d7e6] Revert "Corrige les libellés du rapport"
  1 fichier modifié, 3 insertions(+), 3 suppressions(-)
 ```
 ```{=html}
@@ -149,18 +151,18 @@ L'historique raconte alors toute la vérité :
 <ol class="git-timeline" data-animate="timeline">
   <li class="tl-commit">
     <span class="tl-hash">9c8d7e6</span>
-    <span class="tl-msg">Revert "Modifie le calcul de l'indicateur"</span>
-    <span class="tl-meta">Le commit d'annulation : le calcul revient à la version validée.</span>
+    <span class="tl-msg">Revert "Corrige les libellés du rapport"</span>
+    <span class="tl-meta">Le commit d'annulation : les libellés validés reviennent.</span>
   </li>
   <li class="tl-commit">
-    <span class="tl-hash">8f31c2a</span>
-    <span class="tl-msg">Modifie le calcul de l'indicateur</span>
-    <span class="tl-meta">L'erreur — toujours visible, assumée, documentée.</span>
+    <span class="tl-hash">c3b9e10</span>
+    <span class="tl-msg">Corrige les libellés du rapport</span>
+    <span class="tl-meta">L'erreur — nomenclature périmée — toujours visible, assumée, documentée.</span>
   </li>
   <li class="tl-commit">
-    <span class="tl-hash">51bd882</span>
-    <span class="tl-msg">Version stable avant modification</span>
-    <span class="tl-meta">La version validée.</span>
+    <span class="tl-hash">91ad7be</span>
+    <span class="tl-msg">Ajoute le graphique des effectifs</span>
+    <span class="tl-meta">L'état sur lequel le rapport s'appuyait.</span>
   </li>
 </ol>
 ```
