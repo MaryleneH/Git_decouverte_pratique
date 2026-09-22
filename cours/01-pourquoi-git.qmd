@@ -18,7 +18,7 @@ pagetitle: "01 · Pourquoi Git ? — Git sans douleur"
 <figure class="learning-film">
   <div class="learning-film__media">
     <video class="learning-film__video" controls playsinline preload="metadata" hidden
-           data-src="https://minio.lab.sspcloud.fr/marylene/formations/decouverte-git/03-historique/Sequence1_film1.mp4"
+           data-src="https://minio.lab.sspcloud.fr/marylene/formations/decouverte-git/03-historique/Sequence1_film1-web-4k-v1.mp4"
            data-poster="../assets/img/video/pourquoi-git-01-poster.webp"
            aria-label="Mini-film 1 — Quelle est la bonne version ?">
       Votre navigateur ne permet pas de lire cette vidéo.
@@ -83,7 +83,7 @@ Regardez le dossier d'une de vos études en cours. Combien de fichiers portent u
 <figure class="learning-film">
   <div class="learning-film__media">
     <video class="learning-film__video" controls playsinline preload="metadata" hidden
-           data-src="https://minio.lab.sspcloud.fr/marylene/formations/decouverte-git/03-historique/Sequence1_film2.mp4"
+           data-src="https://minio.lab.sspcloud.fr/marylene/formations/decouverte-git/03-historique/Sequence1_film2-web-4k-v1.mp4"
            data-poster="../assets/img/video/pourquoi-git-02-poster.webp"
            aria-label="Mini-film 2 — Vendredi, ça fonctionnait">
       Votre navigateur ne permet pas de lire cette vidéo.
@@ -140,7 +140,7 @@ Sans outil, c'est presque impossible : votre mémoire est floue, le fichier a é
 <figure class="learning-film">
   <div class="learning-film__media">
     <video class="learning-film__video" controls playsinline preload="metadata" hidden
-           data-src="https://minio.lab.sspcloud.fr/marylene/formations/decouverte-git/03-historique/Sequence1_film3.mp4"
+           data-src="https://minio.lab.sspcloud.fr/marylene/formations/decouverte-git/03-historique/Sequence1_film3-web-4k-v1.mp4"
            data-poster="../assets/img/video/pourquoi-git-03-poster.webp"
            aria-label="Mini-film 3 — Qui a changé ça ?">
       Votre navigateur ne permet pas de lire cette vidéo.
@@ -195,7 +195,7 @@ Peut-être que ce 12,4 % est une correction volontaire et parfaitement justifié
 <figure class="learning-film learning-film--wide">
   <div class="learning-film__media">
     <video class="learning-film__video" controls playsinline preload="metadata" hidden
-           data-src="https://minio.lab.sspcloud.fr/marylene/formations/decouverte-git/03-historique/Sequence1_film4.mp4"
+           data-src="https://minio.lab.sspcloud.fr/marylene/formations/decouverte-git/03-historique/Sequence1_film4-web-4k-v1.mp4"
            data-poster="../assets/img/video/pourquoi-git-04-poster.webp"
            aria-label="Mini-film 4 — Le voyage dans le temps">
       Votre navigateur ne permet pas de lire cette vidéo.
