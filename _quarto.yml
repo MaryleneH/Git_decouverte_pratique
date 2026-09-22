@@ -3,7 +3,6 @@ project:
   output-dir: _site
   resources:
     - assets/js/
-    - assets/video/
     - assets/img/
 
 lang: fr
