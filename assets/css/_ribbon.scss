@@ -16,12 +16,14 @@
 .home-ribbon {
   // La colonne d'espace libre à droite du contenu. Géométrie calée
   // sur --gsd-fullwidth (_layout.scss) : contenu 375 + 810 = 1185px,
-  // + 24px de respiration → le ruban commence à 1209px (puis 1299px
-  // au-delà de 1512px, quand la colonne passe à 900px).
+  // + 8px de respiration → le ruban commence à 1193px (puis 1283px
+  // au-delà de 1512px, quand la colonne passe à 900px). La
+  // respiration est volontairement mince : chaque pixel de colonne
+  // sert la lisibilité des messages du graphe à 1366px.
   position: fixed;
   top: 0;
   bottom: 0;
-  left: 1209px;
+  left: 1193px;
   right: 0;
   z-index: 1;              // sous la navbar (fixe, z ≥ 1030)
   overflow: hidden;
@@ -49,28 +51,32 @@
     background-repeat: no-repeat;
   }
 
-  // Fondu d'entrée côté contenu. 12px seulement : la composition est
-  // désormais calée pour que la branche (x=56 du viewBox) reste
-  // entièrement visible dès 1366px — le fondu ne doit rien recouvrir
-  // de signifiant.
+  // Fondu d'entrée très mince côté contenu : le canvas (172px) tient
+  // entièrement dans la colonne dès 1366px, rien de signifiant n'est
+  // recouvert.
   &::after {
     content: "";
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
-    width: 12px;
+    width: 6px;
     background: linear-gradient(90deg, var(--gsd-paper), transparent);
   }
 
-  // Le rail : ancré côté droit, dérive doucement vers le centre
-  // de la colonne quand l'écran s'élargit.
+  // Le graphe : ancré à GAUCHE, largeur fluide plafonnée. À 1366px la
+  // colonne fait 173px → le canvas de 172px se rend à l'échelle 1:1 ;
+  // quand la colonne s'élargit, le SVG grandit d'un bloc jusqu'à
+  // 208px (échelle ~1.21 : les messages de 13px se rendent ~15.7px)
+  // puis dérive doucement vers le centre de la colonne. La hauteur
+  // suit le ratio du viewBox — le débordement bas est masqué par le
+  // conteneur.
   svg {
     position: absolute;
     top: 0;
-    height: 100%;
-    width: 200px;
-    right: clamp(0px, calc((100% - 200px) * 0.4), 140px);
+    left: clamp(0px, calc((100% - 208px) * 0.35), 130px);
+    width: min(100%, 208px);
+    height: auto;
   }
 
   // --- Lignes -------------------------------------------------
@@ -87,15 +93,18 @@
   .rb-node {
     fill: var(--gsd-paper);
     stroke: var(--gsd-teal);
-    stroke-width: 1.6;
-    opacity: 0.48;
+    stroke-width: 1.8;
+    opacity: 0.55;
   }
 
-  .rb-dim { opacity: 0.26; }
-  .rb-node-branch { opacity: 0.30; stroke-width: 1.4; }
+  .rb-dim { opacity: 0.32; }
+  .rb-node-branch { opacity: 0.38; stroke-width: 1.6; }
 
   // Le merge : la branche rejoint l'histoire, le nœud s'affirme
-  .rb-merge { opacity: 0.58; }
+  .rb-merge { opacity: 0.66; }
+
+  // Le commit mis en avant (celui du tag) : un cran au-dessus
+  .rb-focus { opacity: 0.7; stroke-width: 2; }
 
   // --- Constellation ---------------------------------------------
   .rb-halos {
@@ -126,40 +135,51 @@
   }
 
   // --- Messages de commit et décorations ---------------------------
+  // Trois niveaux de lecture, tous réellement lisibles à l'écran :
+  // 1. main / analyse-par-sexe / livraison-v1 / message mis en avant ;
+  // 2. les autres messages de commit ;
+  // 3. lignes, halos, étoiles (décor, jamais du texte pédagogique).
   .rb-step {
     font-family: var(--gsd-font-body);
-    font-size: 9px;
+    font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.01em;
     fill: var(--gsd-ink-soft);
-    opacity: 0.52;
+    opacity: 0.72;
+  }
+
+  // Le message mis en avant (commit tagué) : à peine plus affirmé
+  .rb-step-focus {
+    font-weight: 700;
+    fill: var(--gsd-ink);
+    opacity: 0.8;
   }
 
   .rb-git {
     font-family: var(--gsd-font-mono);
-    font-size: 8.5px;
+    font-size: 11.5px;
     fill: var(--gsd-teal-deep);
-    opacity: 0.36;
+    opacity: 0.6;
   }
 
   // Le tag en amber : même encre que son losange
-  .rb-tag-text { fill: var(--gsd-amber); opacity: 0.5; }
+  .rb-tag-text { fill: var(--gsd-amber); opacity: 0.72; }
 
   // main : le pointeur de branche, un cran plus présent
   .rb-ref {
     font-family: var(--gsd-font-mono);
-    font-size: 8.5px;
+    font-size: 11.5px;
     font-weight: 600;
     fill: var(--gsd-teal-deep);
-    opacity: 0.5;
+    opacity: 0.72;
   }
 
   // Nom de la branche secondaire, le long de son rail
   .rb-branch-name {
     font-family: var(--gsd-font-mono);
-    font-size: 8px;
+    font-size: 10.5px;
     fill: var(--gsd-teal-deep);
-    opacity: 0.28;
+    opacity: 0.45;
   }
 
   // --- Révélation (une fois, puis stable) ----------------------------
@@ -214,7 +234,7 @@
 // --- Responsive -----------------------------------------------------
 // La colonne s'élargissant à 1512px, le ruban recule d'autant.
 @media (min-width: 1512px) {
-  .home-ribbon { left: 1299px; }
+  .home-ribbon { left: 1283px; }
 }
 
 // En dessous de 1340 px, la colonne droite est trop étroite :
