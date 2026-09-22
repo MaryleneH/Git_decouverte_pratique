@@ -173,106 +173,110 @@ Si vous connaissez déjà un peu Git, ouvrez les blocs « Pour aller plus loin �
      grand desktop uniquement ; invisible aux lecteurs d'écran. -->
 <template id="home-ribbon-tpl">
   <div class="home-ribbon" aria-hidden="true">
-    <svg viewBox="0 0 200 1400" preserveAspectRatio="xMidYMin slice" focusable="false">
+    <svg viewBox="0 0 172 1200" focusable="false">
       <!-- Un vrai petit historique Git, convention git log : le plus
            récent en haut. Six commits sur main, une branche
            analyse-par-sexe (2 commits) fusionnée, un tag livraison-v1,
-           main pointant le commit de tête. Le récit tient dans les
-           ~660 premiers pixels (écrans de 768 px de haut, ruban fixe) ;
-           sous la racine « Initialise l'analyse » : plus de ligne,
-           seulement la poussière d'étoiles — avant le projet. -->
+           main pointant le commit de tête. Canvas de 172px calé sur la
+           colonne disponible à 1366px (échelle 1:1) ; au-delà, le SVG
+           grandit d'un bloc jusqu'à ~1.2x (largeur fluide plafonnée
+           dans _ribbon.scss) — le texte reste donc lisible partout.
+           Le récit tient dans les ~620 premiers pixels ; sous la
+           racine « Initialise l'analyse » : plus de ligne, seulement
+           la poussière d'étoiles — avant le projet. -->
 
       <!-- Halos doux : la profondeur derrière les commits clés -->
       <g class="rb-halos">
-        <circle cx="88"  cy="120" r="12" />
-        <circle class="rb-halo-amber" cx="88" cy="212" r="14" />
-        <circle cx="88"  cy="304" r="15" />
-        <circle cx="88"  cy="452" r="11" />
-        <circle cx="150" cy="88"  r="7" />
-        <circle cx="163" cy="466" r="7" />
-        <circle cx="60"  cy="920" r="10" />
+        <circle cx="36"  cy="100" r="13" />
+        <circle class="rb-halo-amber" cx="36" cy="196" r="15" />
+        <circle cx="36"  cy="288" r="16" />
+        <circle cx="36"  cy="424" r="12" />
+        <circle cx="138" cy="80"  r="7" />
+        <circle cx="150" cy="452" r="7" />
+        <circle cx="40"  cy="880" r="10" />
       </g>
 
       <!-- Constellation : poussière d'étoiles à opacités variées.
            Sous la racine, elle occupe seule le bas du ruban. -->
       <g class="rb-stars">
-        <circle cx="150" cy="88"   r="1.6" style="--rb-o:0.30" />
-        <circle cx="38"  cy="168"  r="1.2" style="--rb-o:0.16" />
-        <circle cx="162" cy="252"  r="1.4" style="--rb-o:0.22" />
-        <circle cx="60"  cy="510"  r="1.3" style="--rb-o:0.18" />
-        <circle cx="163" cy="466"  r="1.7" style="--rb-o:0.26" />
-        <circle cx="140" cy="586"  r="1.1" style="--rb-o:0.14" />
-        <circle cx="152" cy="748"  r="1.4" style="--rb-o:0.19" />
-        <circle cx="60"  cy="882"  r="1.2" style="--rb-o:0.15" />
-        <circle cx="168" cy="1010" r="1.3" style="--rb-o:0.16" />
-        <circle cx="90"  cy="1160" r="1.3" style="--rb-o:0.14" />
-        <circle cx="48"  cy="1264" r="1.1" style="--rb-o:0.12" />
+        <circle cx="138" cy="80"   r="1.7" style="--rb-o:0.30" />
+        <circle cx="24"  cy="158"  r="1.3" style="--rb-o:0.16" />
+        <circle cx="148" cy="240"  r="1.5" style="--rb-o:0.22" />
+        <circle cx="18"  cy="492"  r="1.4" style="--rb-o:0.18" />
+        <circle cx="150" cy="452"  r="1.8" style="--rb-o:0.26" />
+        <circle cx="126" cy="560"  r="1.2" style="--rb-o:0.14" />
+        <circle cx="136" cy="716"  r="1.5" style="--rb-o:0.19" />
+        <circle cx="44"  cy="842"  r="1.3" style="--rb-o:0.15" />
+        <circle cx="150" cy="962"  r="1.4" style="--rb-o:0.16" />
+        <circle cx="78"  cy="1080" r="1.4" style="--rb-o:0.14" />
+        <circle cx="36"  cy="1156" r="1.2" style="--rb-o:0.12" />
       </g>
 
       <!-- main, du commit racine (bas) au merge : se dessine en
            premier, dans l'ordre de création des commits -->
-      <path class="rb-path rb-main" pathLength="1" d="M88,652 L88,304" />
+      <path class="rb-path rb-main" pathLength="1" d="M36,604 L36,288" />
 
       <!-- La branche analyse-par-sexe : naît du commit « Prépare le
-           rapport » (76,452), porte deux commits, fusionne dans le
-           commit de merge (76,304) -->
+           rapport » (36,424), porte deux commits, fusionne dans le
+           commit de merge (36,288) -->
       <path class="rb-path rb-branch" pathLength="1"
-            d="M88,452 C88,426 60,426 60,400 L60,356 C60,330 88,330 88,304" />
+            d="M36,424 C36,400 12,400 12,376 L12,336 C12,312 36,312 36,288" />
 
       <!-- main, du merge au commit de tête : l'histoire continue
            après la fusion -->
-      <path class="rb-path rb-main rb-main-2" pathLength="1" d="M88,304 L88,120" />
+      <path class="rb-path rb-main rb-main-2" pathLength="1" d="M36,288 L36,100" />
 
       <!-- Commits de main, du plus ancien (bas) au plus récent (haut) -->
-      <circle class="rb-node rb-dim"   style="--rb-d:0.35s" cx="88" cy="652" r="3.6" />
-      <circle class="rb-node rb-dim"   style="--rb-d:0.60s" cx="88" cy="552" r="3.8" />
-      <circle class="rb-node"          style="--rb-d:0.85s" cx="88" cy="452" r="4.2" />
-      <circle class="rb-node rb-merge" style="--rb-d:1.70s" cx="88" cy="304" r="5.2" />
-      <circle class="rb-node"          style="--rb-d:2.05s" cx="88" cy="212" r="4.4" />
-      <circle class="rb-node"          style="--rb-d:2.30s" cx="88" cy="120" r="4.4" />
+      <circle class="rb-node rb-dim"   style="--rb-d:0.35s" cx="36" cy="604" r="4.2" />
+      <circle class="rb-node rb-dim"   style="--rb-d:0.60s" cx="36" cy="516" r="4.4" />
+      <circle class="rb-node"          style="--rb-d:0.85s" cx="36" cy="424" r="4.8" />
+      <circle class="rb-node rb-merge" style="--rb-d:1.70s" cx="36" cy="288" r="6" />
+      <circle class="rb-node rb-focus" style="--rb-d:2.05s" cx="36" cy="196" r="5.2" />
+      <circle class="rb-node"          style="--rb-d:2.30s" cx="36" cy="100" r="5" />
 
       <!-- Commits de la branche (le plus récent des deux en haut) -->
-      <circle class="rb-node rb-node-branch" style="--rb-d:1.25s" cx="60" cy="394" r="3.8" />
-      <circle class="rb-node rb-node-branch" style="--rb-d:1.45s" cx="60" cy="362" r="3.8" />
+      <circle class="rb-node rb-node-branch" style="--rb-d:1.25s" cx="12" cy="366" r="4.4" />
+      <circle class="rb-node rb-node-branch" style="--rb-d:1.45s" cx="12" cy="346" r="4.4" />
 
-      <!-- Nom de la branche, le long de son rail -->
+      <!-- Nom de la branche, le long de son rail (entre les deux rails) -->
       <text class="rb-branch-name" style="--rb-d:1.5s"
-            x="73" y="379" text-anchor="middle"
-            transform="rotate(-90 73 379)">analyse-par-sexe</text>
+            x="25" y="356" text-anchor="middle"
+            transform="rotate(-90 25 356)">analyse-par-sexe</text>
 
       <!-- Le tag livraison-v1 : accroché au commit « Documente la
            méthode » (losange contre le nœud) -->
       <g class="rb-tag" style="--rb-d:2.35s">
-        <rect x="65.5" y="207.5" width="9" height="9" rx="2"
-              transform="rotate(45 70 212)" />
+        <rect x="16" y="191" width="10" height="10" rx="2"
+              transform="rotate(45 21 196)" />
       </g>
 
       <!-- Messages de commit (et décorations : main, tag) -->
       <g class="rb-steps">
         <g style="--rb-d:2.45s">
-          <text class="rb-step" x="100" y="117">Corrige les libellés</text>
-          <text class="rb-step" x="100" y="130">du rapport</text>
-          <text class="rb-ref"  x="100" y="145">main</text>
+          <text class="rb-step" x="48" y="96">Corrige</text>
+          <text class="rb-step" x="48" y="111">les libellés</text>
+          <text class="rb-ref"  x="48" y="129">main</text>
         </g>
         <g style="--rb-d:2.2s">
-          <text class="rb-step" x="100" y="203">Documente</text>
-          <text class="rb-step" x="100" y="216">la méthode</text>
-          <text class="rb-git rb-tag-text" x="100" y="231">livraison-v1</text>
+          <text class="rb-step rb-step-focus" x="48" y="189">Documente</text>
+          <text class="rb-step rb-step-focus" x="48" y="204">la méthode</text>
+          <text class="rb-git rb-tag-text" x="48" y="221">livraison-v1</text>
         </g>
         <g style="--rb-d:1.85s">
-          <text class="rb-step" x="100" y="301">Fusionne</text>
-          <text class="rb-git"  x="100" y="315">analyse-par-sexe</text>
+          <text class="rb-step" x="48" y="285">Fusionne</text>
+          <text class="rb-git"  x="48" y="302">analyse-par-sexe</text>
         </g>
         <g style="--rb-d:1.0s">
-          <text class="rb-step" x="100" y="449">Prépare le rapport</text>
+          <text class="rb-step" x="48" y="420">Prépare</text>
+          <text class="rb-step" x="48" y="435">le rapport</text>
         </g>
         <g style="--rb-d:0.75s">
-          <text class="rb-step" x="100" y="549">Nettoie</text>
-          <text class="rb-step" x="100" y="562">les données</text>
+          <text class="rb-step" x="48" y="512">Nettoie</text>
+          <text class="rb-step" x="48" y="527">les données</text>
         </g>
         <g style="--rb-d:0.5s">
-          <text class="rb-step" x="100" y="649">Initialise</text>
-          <text class="rb-step" x="100" y="662">l'analyse</text>
+          <text class="rb-step" x="48" y="600">Initialise</text>
+          <text class="rb-step" x="48" y="615">l'analyse</text>
         </g>
       </g>
     </svg>
