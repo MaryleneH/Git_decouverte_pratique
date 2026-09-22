@@ -15,7 +15,7 @@ pagetitle: "08 · Collaborer — Git sans douleur"
 
 Lundi matin. Marie est absente pour trois semaines, et les estimations qu'elle produisait doivent partir vendredi. Franck hérite du dossier. Il n'a **jamais** travaillé sur cette étude.
 
-Dans le monde d'avant, Franck passerait sa semaine à fouiller un dossier réseau : quelle version est la bonne ? quel programme lance-t-on en premier ? pourquoi ce seuil de 43 ans ?
+Dans le monde d'avant, Franck passerait sa semaine à fouiller un dossier réseau : quelle version est la bonne ? quel programme lance-t-on en premier ? pourquoi ce graphique de synthèse est-il en pourcentage ?
 
 Dans le monde Git + GitLab, voici sa matinée.
 
@@ -60,8 +60,8 @@ git status
 f2e9b04 Finalise les graphiques du T2
 c47d1e9 Met à jour les estimations
 e02ab55 Corrige la population de référence
-b7e4a91 Justifie le seuil de 43 ans
-4d02c7f Fixe le seuil de population à 43 ans
+b7e4a91 Passe le graphique de synthèse en parts pour comparer les régions
+4d02c7f Corrige le champ : France hors Mayotte
 
 livraison-2025-v2
 livraison-2026-v1
