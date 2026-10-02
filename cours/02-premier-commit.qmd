@@ -123,7 +123,7 @@ Pourquoi cette étape ? Parce qu'en fin de journée, vos modifications sont rare
          → films.js l'active sans sonde HEAD ; preload="metadata"
          ne charge que l'index de la vidéo, jamais le fichier entier. -->
     <video class="learning-film__video" controls playsinline preload="metadata" hidden
-           data-src="https://minio.lab.sspcloud.fr/marylene/formations/decouverte-git/atelier1/Comment_Git_g%C3%A8re_vos_fichiers.mp4"
+           data-src="https://minio.lab.sspcloud.fr/marylene/formations/decouverte-git/atelier1/Comment_Git_gere_vos_fichiers.mp4"
            aria-label="Mini-film — Comment Git gère vos fichiers">
       Votre navigateur ne permet pas de lire cette vidéo.
     </video>
