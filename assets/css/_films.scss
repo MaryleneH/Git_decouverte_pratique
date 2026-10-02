@@ -224,11 +224,50 @@
   }
 }
 
+// --- État « Chargement du film… » -------------------------------
+// Après le clic, le film est mis en tampon avant de démarrer
+// (films.js). La pastille play devient un spinner et le libellé
+// d'état l'annonce — l'utilisateur sait que sa demande est prise
+// en compte et que la lecture démarrera sans à-coups.
+.learning-film.is-loading {
+  .learning-film__placeholder {
+    cursor: progress;
+  }
+
+  .learning-film__play {
+    animation: gsd-film-spin 0.9s linear infinite;
+
+    // Le triangle laisse place à un anneau de progression
+    &::before {
+      border: 3px solid var(--gsd-line);
+      border-top-color: var(--gsd-teal);
+      border-radius: 50%;
+      inline-size: 1.1rem;
+      block-size: 1.1rem;
+      margin-left: 0;
+    }
+  }
+
+  .learning-film__status {
+    color: var(--gsd-teal-deep);
+  }
+}
+
+@keyframes gsd-film-spin {
+  to { transform: rotate(360deg); }
+}
+
 // --- Mouvement réduit ------------------------------------------
 @media (prefers-reduced-motion: reduce) {
   .learning-film .learning-film__media,
   .learning-film__placeholder .learning-film__play {
     transition: none;
     transform: none !important;
+  }
+
+  // Pas de rotation : l'anneau statique + le texte
+  // « Chargement du film… » suffisent à signaler l'attente.
+  .learning-film.is-loading .learning-film__play {
+    animation: none;
   }
 }
