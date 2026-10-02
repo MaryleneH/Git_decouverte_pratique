@@ -10,8 +10,13 @@
  *   lecture par la balise <video> n'en a pas besoin.
  * Quand le film est disponible, le bouton s'active : lecture
  * volontaire uniquement (pas d'autoplay), une seule vidéo à la
- * fois. Sans JavaScript, le placeholder statique suffit : tout le
- * contenu pédagogique est dans le texte.
+ * fois. Au clic, la lecture ne démarre pas immédiatement : le
+ * film est d'abord mis en tampon (état « Chargement du film… »),
+ * et ne se lance que lorsque le navigateur estime pouvoir le lire
+ * sans interruption (canplaythrough) — avec un garde-fou de
+ * quelques secondes pour ne jamais laisser l'utilisateur bloqué
+ * sur un réseau lent. Sans JavaScript, le placeholder statique
+ * suffit : tout le contenu pédagogique est dans le texte.
  * ============================================================ */
 (function () {
   "use strict";
@@ -44,12 +49,55 @@
       if (status) status.textContent = "Lancer le mini-film";
       videos.push(video);
 
-      btn.addEventListener("click", function () {
+      var loading = false;
+
+      function reveal() {
+        film.classList.remove("is-loading");
         btn.hidden = true;
         video.hidden = false;
         var playing = video.play();
         if (playing && playing.catch) playing.catch(function () {});
         video.focus();
+      }
+
+      btn.addEventListener("click", function () {
+        if (loading) return;
+
+        // Déjà assez de données en tampon (petit fichier, cache,
+        // réseau rapide) : lecture immédiate, sans état d'attente.
+        if (video.readyState >= 4 /* HAVE_ENOUGH_DATA */) {
+          reveal();
+          return;
+        }
+
+        // Sinon : on charge d'abord, on ne lit qu'une fois prêt.
+        loading = true;
+        film.classList.add("is-loading");
+        if (status) status.textContent = "Chargement du film…";
+        btn.setAttribute("aria-busy", "true");
+
+        var timer = null;
+        var done = false;
+        function start() {
+          if (done) return;
+          done = true;
+          if (timer) clearTimeout(timer);
+          video.removeEventListener("canplaythrough", start);
+          btn.removeAttribute("aria-busy");
+          reveal();
+        }
+
+        // canplaythrough : le navigateur estime pouvoir lire le
+        // film jusqu'au bout sans pause de mise en tampon.
+        video.addEventListener("canplaythrough", start);
+        video.preload = "auto";
+        if (video.readyState === 0) video.load();
+
+        // Garde-fou : sur un réseau très lent, l'estimation peut
+        // tarder — on lance quand même après 8 s plutôt que de
+        // laisser l'utilisateur devant un spinner sans fin (la
+        // mise en tampon continue pendant la lecture).
+        timer = setTimeout(start, 8000);
       });
 
       // Jamais deux mini-films en même temps
