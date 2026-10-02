@@ -115,6 +115,42 @@ Modifications qui seront validées :
 
 Pourquoi cette étape ? Parce qu'en fin de journée, vos modifications sont rarement homogènes : une vraie correction dans `analyse.R`, un brouillon exploratoire dans `test_truc.R`, un fichier temporaire généré par R. **Tout ne mérite pas d'entrer dans la photo.** `git add` vous laisse composer un enregistrement propre.
 
+::: {.film-row data-animate="stagger"}
+```{=html}
+<figure class="learning-film">
+  <div class="learning-film__media">
+    <!-- Film hébergé sur le S3 du SSPCloud : URL absolue
+         → films.js l'active sans sonde HEAD ; preload="metadata"
+         ne charge que l'index de la vidéo, jamais le fichier entier. -->
+    <video class="learning-film__video" controls playsinline preload="metadata" hidden
+           data-src="https://minio.lab.sspcloud.fr/marylene/formations/decouverte-git/atelier1/Comment_Git_g%C3%A8re_vos_fichiers.mp4"
+           aria-label="Mini-film — Comment Git gère vos fichiers">
+      Votre navigateur ne permet pas de lire cette vidéo.
+    </video>
+    <button type="button" class="learning-film__placeholder" disabled>
+      <span class="learning-film__play" aria-hidden="true"></span>
+      <span class="learning-film__label">Comment Git gère vos fichiers</span>
+      <span class="learning-film__status" data-role="status">Mini-film bientôt disponible</span>
+    </button>
+  </div>
+  <figcaption class="learning-film__caption">Mini-film · La copie de travail, la sélection, l'album — en images.</figcaption>
+</figure>
+```
+
+::: {.film-row__text}
+Deux minutes pour poser les images avant de pratiquer : où vivent vos fichiers, ce qui change au moment où vous les sélectionnez, ce qui entre vraiment dans la photo. C'est le schéma en trois temps du début de page — en mouvement cette fois.
+
+[Gardez une question en tête pendant le film : que se passe-t-il **précisément** quand vous tapez `git add` ?]{.film-question}
+:::
+:::
+
+<details class="go-further">
+<summary>Transcription du mini-film</summary>
+
+La transcription mot à mot sera ajoutée avec la vidéo. Le film montre comment Git gère vos fichiers : la **copie de travail**, où vous modifiez librement ; la **zone de sélection**, où `git add` compose la prochaine photo fichier par fichier ; et l'**album**, où `git commit` enregistre la photo pour de bon. Il illustre l'intérêt de cette étape intermédiaire : choisir ce qui mérite d'être photographié, et laisser le reste de côté.
+
+</details>
+
 ### À vous : que va contenir mon prochain commit ?
 
 Trois fichiers ont été modifiés cet après-midi. Cliquez sur les fichiers pour les sélectionner (`git add`) ou les désélectionner, et observez ce que contiendrait le commit :

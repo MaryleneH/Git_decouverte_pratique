@@ -110,7 +110,8 @@ decouverte-git/…`) : aucun fichier vidéo dans Git, aucun quota LFS ni
 GitHub Pages consommé. Le composant `learning-film` référence chaque
 film par son URL absolue dans `data-src` — `films.js` l'active
 directement, sans sonde. Films en place : 01 à 04 (séquence 01,
-« Pourquoi Git ? ») et 05 (séquence 03, « L'histoire »).
+« Pourquoi Git ? »), « Comment Git gère vos fichiers » (séquence 02,
+section `git add`) et 05 (séquence 03, « L'histoire »).
 
 Pour ajouter un film : déposer le mp4 sur le S3, puis mettre son URL
 dans le `data-src` du composant. Un chemin **relatif** reste possible
