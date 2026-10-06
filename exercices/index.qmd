@@ -87,5 +87,5 @@ Demain matin, elle tapera : `git clone <adresse-du-projet>` — et aura tout, hi
 ------------------------------------------------------------------------
 
 ::: {.remember}
-Vous avez tout réussi sans regarder les réponses ? Alors vous êtes prêt·e pour le Jour 2. Des hésitations ? C'est normal — refaites simplement la séquence correspondante : [le geste de base](../cours/02-premier-commit.qmd), [revenir en arrière](../cours/04-revenir.qmd) ou [la synchronisation](../cours/07-local-distant.qmd).
+Vous avez tout réussi sans regarder les réponses ? Alors vous êtes prêt·e pour le Jour 2. Des hésitations ? C'est normal — refaites simplement la séquence correspondante : [le geste de base](../cours/02-premier-commit.qmd), [revenir en arrière](../cours/04-revenir.qmd) ou [la synchronisation](../cours/06-local-distant.qmd).
 :::

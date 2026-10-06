@@ -44,9 +44,9 @@ déployable sur n'importe quel serveur web (ou consultable en local).
 │   ├── 02-premier-commit.qmd#   status / diff / add / commit + widget staging
 │   ├── 03-historique.qmd    #   log / show + frise + cas « 43 ans »
 │   ├── 04-revenir.qmd       #   switch --detach / restore / revert
-│   ├── 05-tags.qmd          #   Versions officielles + widget jalon
-│   ├── 06-gitlab.qmd        #   Git ≠ GitLab
-│   ├── 07-local-distant.qmd #   fetch / pull / push + widget commit ≠ push
+│   ├── 05-gitlab.qmd        #   Git ≠ GitLab
+│   ├── 06-local-distant.qmd #   fetch / pull / push + widget commit ≠ push
+│   ├── 07-tags.qmd          #   Versions officielles + widget jalon
 │   ├── 08-collaboration.qmd #   clone / remote -v, reprise d'étude
 │   └── 09-mission.qmd       #   Challenge final en autonomie
 ├── exercices/index.qmd      # 5 exercices récapitulatifs (réponses repliées)

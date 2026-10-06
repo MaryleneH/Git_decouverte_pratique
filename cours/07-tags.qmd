@@ -1,10 +1,12 @@
 ---
-pagetitle: "05 · Versions officielles — Git sans douleur"
+pagetitle: "07 · Versions officielles — Git sans douleur"
+aliases:
+  - /cours/05-tags.html
 ---
 
 ::: {.page-hero}
-<span class="eyebrow">Séquence 05 · Les versions officielles</span>
-<span class="page-hero__num" aria-hidden="true">05</span>
+<span class="eyebrow">Séquence 07 · Les versions officielles</span>
+<span class="page-hero__num" aria-hidden="true">07</span>
 
 # Marquer la version livrée {.unnumbered}
 
@@ -114,7 +116,7 @@ Besoin de relancer les calculs de cette livraison à l'identique ? C'est le gest
 
 ## Partager le jalon
 
-Détail qui compte : les tags ne partent pas tout seuls vers GitLab (nous verrons le partage en détail dans les séquences suivantes). Il faut pousser le tag explicitement :
+Détail qui compte : les tags ne partent pas tout seuls vers GitLab — même le `git push` de la séquence 06 ne les emporte pas par défaut. Il faut pousser le tag explicitement :
 
 ```bash
 git push origin livraison-2026-v1
@@ -126,7 +128,7 @@ Une fois poussé, toute l'équipe voit la même version officielle — et GitLab
 Dans votre dossier d'exercice :
 
 ```bash
-git tag -a exercice-v1 -m "Fin de la séquence 05"
+git tag -a exercice-v1 -m "Fin de la séquence 07"
 git tag
 git show exercice-v1
 ```
@@ -159,7 +161,7 @@ Dans le monde logiciel, les tags suivent souvent la « gestion sémantique de ve
 
 ```{=html}
 <div class="next-cta" data-animate>
-  <p>Jusqu'ici, tout se passait sur votre poste. Il est temps de parler de GitLab.</p>
-  <a class="btn-hero" href="06-gitlab.qmd">Séquence 06 — Git ≠ GitLab</a>
+  <p>Commits partagés, versions officielles marquées. Voyons ce que cela change quand un collègue doit vous remplacer.</p>
+  <a class="btn-hero" href="08-collaboration.qmd">Séquence 08 — Collaborer</a>
 </div>
 ```

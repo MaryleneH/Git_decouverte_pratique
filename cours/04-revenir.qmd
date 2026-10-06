@@ -205,7 +205,7 @@ Dans votre dossier d'exercice : modifiez `analyse.R` n'importe comment (cassez-l
 
 ```{=html}
 <div class="next-cta" data-animate>
-  <p>Toutes les photos se valent-elles ? Non — certaines sont des versions officielles.</p>
-  <a class="btn-hero" href="05-tags.qmd">Séquence 05 — Versions officielles</a>
+  <p>Jusqu'ici, tout se passait sur votre poste. Il est temps de parler de GitLab.</p>
+  <a class="btn-hero" href="05-gitlab.qmd">Séquence 05 — Git ≠ GitLab</a>
 </div>
 ```

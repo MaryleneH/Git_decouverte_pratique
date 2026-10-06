@@ -1,10 +1,12 @@
 ---
-pagetitle: "07 · Synchroniser — Git sans douleur"
+pagetitle: "06 · Synchroniser — Git sans douleur"
+aliases:
+  - /cours/07-local-distant.html
 ---
 
 ::: {.page-hero}
-<span class="eyebrow">Séquence 07 · Local ↔ distant</span>
-<span class="page-hero__num" aria-hidden="true">07</span>
+<span class="eyebrow">Séquence 06 · Local ↔ distant</span>
+<span class="page-hero__num" aria-hidden="true">06</span>
 
 # Pourquoi Franck ne voit rien {.unnumbered}
 
@@ -164,7 +166,7 @@ Si `git push` est refusé avec un message du type *« le distant contient du tra
 
 ```{=html}
 <div class="next-cta" data-animate>
-  <p>Vous savez tout partager. Voyons ce que cela change quand un collègue doit vous remplacer.</p>
-  <a class="btn-hero" href="08-collaboration.qmd">Séquence 08 — Collaborer</a>
+  <p>Vos commits savent voyager. Reste à marquer ceux qui comptent : les versions officielles.</p>
+  <a class="btn-hero" href="07-tags.qmd">Séquence 07 — Versions officielles</a>
 </div>
 ```

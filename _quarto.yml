@@ -47,12 +47,12 @@ website:
               text: "03 · L'histoire"
             - href: cours/04-revenir.qmd
               text: "04 · Revenir"
-            - href: cours/05-tags.qmd
-              text: "05 · Versions officielles"
-            - href: cours/06-gitlab.qmd
-              text: "06 · GitLab"
-            - href: cours/07-local-distant.qmd
-              text: "07 · Synchroniser"
+            - href: cours/05-gitlab.qmd
+              text: "05 · GitLab"
+            - href: cours/06-local-distant.qmd
+              text: "06 · Synchroniser"
+            - href: cours/07-tags.qmd
+              text: "07 · Versions officielles"
             - href: cours/08-collaboration.qmd
               text: "08 · Collaborer"
             - href: cours/09-mission.qmd
