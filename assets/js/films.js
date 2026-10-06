@@ -76,6 +76,35 @@
         if (status) status.textContent = "Chargement du film…";
         btn.setAttribute("aria-busy", "true");
 
+        // Jauge réelle : à chaque événement progress, la part du
+        // film déjà téléchargée (fin du tampon / durée totale)
+        // alimente le libellé (« … 42 % ») et la barre du
+        // placeholder (variable CSS). Si le navigateur ne fournit
+        // pas l'info (durée inconnue, pas d'événements), la jauge
+        // reste simplement absente — le spinner suffit.
+        var lastPct = -1;
+        function onProgress() {
+          var pct;
+          try {
+            if (!isFinite(video.duration) || video.duration <= 0) return;
+            if (!video.buffered.length) return;
+            pct = Math.min(
+              100,
+              Math.round(
+                (video.buffered.end(video.buffered.length - 1) /
+                  video.duration) * 100
+              )
+            );
+          } catch (e) {
+            return;
+          }
+          if (pct === lastPct) return;
+          lastPct = pct;
+          film.classList.add("has-progress");
+          film.style.setProperty("--gsd-film-progress", pct + "%");
+          if (status) status.textContent = "Chargement du film… " + pct + " %";
+        }
+
         var timer = null;
         var done = false;
         function start() {
@@ -83,6 +112,8 @@
           done = true;
           if (timer) clearTimeout(timer);
           video.removeEventListener("canplaythrough", start);
+          video.removeEventListener("progress", onProgress);
+          film.classList.remove("has-progress");
           btn.removeAttribute("aria-busy");
           reveal();
         }
@@ -90,6 +121,8 @@
         // canplaythrough : le navigateur estime pouvoir lire le
         // film jusqu'au bout sans pause de mise en tampon.
         video.addEventListener("canplaythrough", start);
+        video.addEventListener("progress", onProgress);
+        onProgress(); // données éventuellement déjà en tampon
         video.preload = "auto";
         if (video.readyState === 0) video.load();
 

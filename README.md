@@ -134,7 +134,8 @@ la description par le texte exact et prévoyez des sous-titres
 (`<track kind="captions" …>`).
 Comportement du lecteur : lecture volontaire uniquement, jamais deux vidéos
 en même temps, `preload="metadata"` tant que l'utilisateur n'a pas cliqué.
-Au clic, le film est d'abord mis en tampon (état « Chargement du film… »)
+Au clic, le film est d'abord mis en tampon (état « Chargement du film… »,
+avec jauge de progression réelle quand le navigateur fournit l'information)
 et la lecture ne démarre que lorsqu'elle peut se faire sans à-coups
 (`canplaythrough`, avec un garde-fou de 8 s sur réseau très lent).
 
