@@ -250,6 +250,25 @@
 
   .learning-film__status {
     color: var(--gsd-teal-deep);
+    // Largeur stabilisée : le passage de « 9 % » à « 100 % »
+    // ne fait pas sauter la mise en page.
+    font-variant-numeric: tabular-nums;
+  }
+
+  // Jauge réelle de téléchargement (films.js alimente
+  // --gsd-film-progress via les événements progress). La barre
+  // n'apparaît que lorsque le navigateur fournit l'information
+  // (classe has-progress) — sinon, le spinner seul.
+  &.has-progress .learning-film__placeholder::after {
+    content: "";
+    inline-size: min(60%, 220px);
+    block-size: 4px;
+    border-radius: 999px;
+    background: linear-gradient(
+      to right,
+      var(--gsd-teal) var(--gsd-film-progress, 0%),
+      var(--gsd-line) var(--gsd-film-progress, 0%)
+    );
   }
 }
 
