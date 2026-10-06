@@ -38,7 +38,7 @@ Résolution des deltas: 100% (121/121), fait.
 </div>
 ```
 
-`git clone` ne se fait **qu'une fois** par projet et par poste. Ensuite, le dépôt local de Franck vit sa vie : `pull` le matin, `commit` dans la journée, `push` le soir — exactement la routine de la séquence 07.
+`git clone` ne se fait **qu'une fois** par projet et par poste. Ensuite, le dépôt local de Franck vit sa vie : `pull` le matin, `commit` dans la journée, `push` le soir — exactement la routine de la séquence 06.
 
 ::: {.concept}
 Cloner, ce n'est pas « télécharger les fichiers » : c'est recevoir **le projet avec toute sa mémoire**. Sur son poste, Franck peut immédiatement feuilleter trois ans d'historique, lire chaque décision, retrouver chaque version livrée — comme s'il avait toujours été là.

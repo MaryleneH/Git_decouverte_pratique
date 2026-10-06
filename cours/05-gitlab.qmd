@@ -1,10 +1,12 @@
 ---
-pagetitle: "06 · Git ≠ GitLab — Git sans douleur"
+pagetitle: "05 · Git ≠ GitLab — Git sans douleur"
+aliases:
+  - /cours/06-gitlab.html
 ---
 
 ::: {.page-hero}
-<span class="eyebrow">Séquence 06 · Git n'est pas GitLab</span>
-<span class="page-hero__num" aria-hidden="true">06</span>
+<span class="eyebrow">Séquence 05 · Git n'est pas GitLab</span>
+<span class="page-hero__num" aria-hidden="true">05</span>
 
 # Deux outils, deux mondes {.unnumbered}
 
@@ -94,6 +96,6 @@ Question pour vous, sans bouton ni bonne réponse cachée : dans votre équipe, 
 ```{=html}
 <div class="next-cta" data-animate>
   <p>Reste à faire voyager les commits entre votre poste et GitLab.</p>
-  <a class="btn-hero" href="07-local-distant.qmd">Séquence 07 — Synchroniser</a>
+  <a class="btn-hero" href="06-local-distant.qmd">Séquence 06 — Synchroniser</a>
 </div>
 ```

@@ -96,27 +96,27 @@ Une seule idée à garder en tête toute la journée : Git ne fait qu'une chose 
     </span>
     <span class="day-outline__go" aria-hidden="true">→</span>
   </a>
-  <a class="day-outline__item" href="cours/05-tags.qmd">
+  <a class="day-outline__item" href="cours/05-gitlab.qmd">
     <span class="day-outline__num">05</span>
-    <span>
-      <span class="day-outline__title">Versions officielles</span>
-      <span class="day-outline__desc">Marquer la version livrée au commanditaire, pour toujours.</span>
-    </span>
-    <span class="day-outline__go" aria-hidden="true">→</span>
-  </a>
-  <a class="day-outline__item" href="cours/06-gitlab.qmd">
-    <span class="day-outline__num">06</span>
     <span>
       <span class="day-outline__title">Git ≠ GitLab</span>
       <span class="day-outline__desc">L'un vit sur votre poste, l'autre sur le réseau. Deux rôles très différents.</span>
     </span>
     <span class="day-outline__go" aria-hidden="true">→</span>
   </a>
-  <a class="day-outline__item" href="cours/07-local-distant.qmd">
-    <span class="day-outline__num">07</span>
+  <a class="day-outline__item" href="cours/06-local-distant.qmd">
+    <span class="day-outline__num">06</span>
     <span>
       <span class="day-outline__title">Synchroniser</span>
       <span class="day-outline__desc">Pourquoi Franck ne voit pas le commit de Marie — et comment y remédier.</span>
+    </span>
+    <span class="day-outline__go" aria-hidden="true">→</span>
+  </a>
+  <a class="day-outline__item" href="cours/07-tags.qmd">
+    <span class="day-outline__num">07</span>
+    <span>
+      <span class="day-outline__title">Versions officielles</span>
+      <span class="day-outline__desc">Marquer la version livrée au commanditaire, pour toujours.</span>
     </span>
     <span class="day-outline__go" aria-hidden="true">→</span>
   </a>
